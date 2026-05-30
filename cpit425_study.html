@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CPIT-425 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b27;--bg3:#1e2535;--card:#192032;
+  --border:#243048;--accent:#4f8ef7;--accent2:#7c3aed;
+  --teal:#0ea5a0;--green:#22c55e;--amber:#f59e0b;--coral:#f43f5e;
+  --text:#e2e8f0;--muted:#7a8aaa;
+  --mono:'IBM Plex Mono',monospace;
+  --sans-ar:'IBM Plex Sans Arabic',sans-serif;
+  --sans-en:'IBM Plex Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* ── BODY LANGUAGE MODES ── */
+body{background:var(--bg);color:var(--text);font-size:15px;line-height:1.85;min-height:100vh}
+body.ar{font-family:var(--sans-ar);direction:rtl;text-align:right}
+body.en{font-family:var(--sans-en);direction:ltr;text-align:left}
+
+/* hide/show language layers */
+body.ar .en{display:none!important}
+body.en .ar{display:none!important}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;right:0;left:0;z-index:200;
+  background:rgba(13,17,23,.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);height:54px;
+  display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+.nav-brand{font-size:.95rem;font-weight:600;color:var(--accent);white-space:nowrap}
+.nav-ch{display:flex;gap:.4rem;flex:1;overflow-x:auto;scrollbar-width:none}
+.nav-ch a{color:var(--muted);text-decoration:none;font-size:.78rem;
+  padding:4px 10px;border:1px solid transparent;border-radius:6px;
+  white-space:nowrap;transition:all .2s}
+.nav-ch a:hover,.nav-ch a.active{color:var(--text);border-color:var(--border);background:var(--bg3)}
+.lang-btn{display:flex;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;flex-shrink:0}
+.lang-btn button{background:none;border:none;color:var(--muted);font-size:.78rem;
+  font-weight:600;padding:5px 12px;cursor:pointer;transition:all .2s}
+.lang-btn button.active{background:var(--accent);color:#fff}
+
+/* ── PAGE ── */
+.page{max-width:880px;margin:0 auto;padding:72px 1.25rem 5rem}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:3rem 0 2.5rem;
+  border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.hero-tag{display:inline-block;font-size:.7rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+  border:1px solid rgba(79,142,247,.4);padding:4px 14px;
+  border-radius:20px;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:600;color:#fff;
+  margin-bottom:.6rem;line-height:1.25}
+.hero p{color:var(--muted);font-size:.9rem;max-width:500px;margin:0 auto}
+
+/* ── TOC ── */
+.toc{margin-bottom:2rem}
+.toc-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.7rem}
+.toc-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.toc-pills a{text-decoration:none;color:var(--muted);font-size:.8rem;
+  padding:4px 12px;border:1px solid var(--border);border-radius:6px;
+  transition:all .2s}
+.toc-pills a:hover{color:var(--text);border-color:var(--accent)}
+.toc-pills a.dim{opacity:.35;pointer-events:none}
+
+/* ── CHAPTER ── */
+.chapter{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;margin-bottom:1.5rem;overflow:hidden}
+.ch-hdr{padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.9rem;
+  cursor:pointer;user-select:none;border-bottom:1px solid transparent;
+  transition:border-color .2s}
+.ch-hdr.open{border-bottom-color:var(--border)}
+.ch-badge{width:38px;height:38px;border-radius:9px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0}
+.ch-title{font-size:1rem;font-weight:600}
+.ch-sub{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.ch-arrow{margin-right:auto;color:var(--muted);font-size:.85rem;
+  transition:transform .3s}
+body.en .ch-arrow{margin-right:0;margin-left:auto}
+.ch-hdr.open .ch-arrow{transform:rotate(180deg)}
+.ch-body{padding:1.8rem;display:none}
+.ch-body.open{display:block}
+
+/* ── SECTION ── */
+.sec{margin-bottom:2.2rem}
+.sec:last-child{margin-bottom:0}
+.sec-title{font-size:.68rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.9rem;
+  display:flex;align-items:center;gap:.5rem}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+p{margin-bottom:.65rem}
+p:last-child{margin-bottom:0}
+.aw{color:var(--amber);font-size:.87em} /* arabic word gloss */
+strong{font-weight:600;color:#fff}
+
+/* ── CALLOUT ── */
+.callout{border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;font-size:.9rem}
+body.ar .callout{border-right:3px solid}
+body.en .callout{border-left:3px solid}
+.callout.tip{background:rgba(14,165,160,.1);border-color:var(--teal)}
+.callout.warn{background:rgba(245,158,11,.1);border-color:var(--amber)}
+.callout.key{background:rgba(79,142,247,.1);border-color:var(--accent)}
+.callout.danger{background:rgba(244,63,94,.1);border-color:var(--coral)}
+.c-head{font-weight:600;font-size:.78rem;letter-spacing:.07em;margin-bottom:.35rem}
+.callout.tip .c-head{color:var(--teal)}
+.callout.warn .c-head{color:var(--amber)}
+.callout.key .c-head{color:var(--accent)}
+.callout.danger .c-head{color:var(--coral)}
+
+/* ── FORMULA BOX ── */
+.formula{background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem 1.4rem;margin:.8rem 0}
+body.ar .formula{border-right:3px solid var(--accent)}
+body.en .formula{border-left:3px solid var(--accent)}
+.f-label{font-size:.68rem;font-weight:600;letter-spacing:.09em;
+  color:var(--accent);margin-bottom:.45rem}
+.f-eq{font-family:var(--mono);font-size:1rem;color:#a5f3fc;
+  line-height:2.1;direction:ltr;text-align:left}
+.f-eq .v{color:#f9a8d4}
+.f-eq .n{color:#86efac}
+.f-eq .r{color:var(--amber);font-weight:600}
+.f-eq .op{color:var(--muted)}
+
+/* ── STEP-BY-STEP SOLUTION ── */
+.solution{background:var(--bg);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin:1rem 0}
+.sol-head{padding:.7rem 1.2rem;background:var(--bg3);
+  font-size:.7rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green);
+  border-bottom:1px solid var(--border)}
+.sol-step{display:grid;grid-template-columns:auto 1fr;
+  border-bottom:1px solid var(--border)}
+.sol-step:last-child{border-bottom:none}
+.sol-num{padding:.75rem 1rem;background:rgba(79,142,247,.07);
+  font-size:.75rem;font-weight:700;color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  min-width:42px;border-left:1px solid var(--border)}
+body.en .sol-num{border-left:none;border-right:1px solid var(--border)}
+.sol-content{padding:.75rem 1.2rem}
+.sol-rule{font-size:.75rem;color:var(--muted);margin-bottom:.3rem}
+.sol-calc{font-family:var(--mono);font-size:.9rem;color:#a5f3fc;
+  direction:ltr;text-align:left;margin-bottom:.2rem}
+.sol-result{font-family:var(--mono);font-size:.95rem;
+  color:var(--amber);font-weight:600;direction:ltr;text-align:left}
+.sol-note{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+
+/* ── ORDERED STEPS LIST ── */
+.steps{list-style:none;margin:.9rem 0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:.9rem;
+  margin-bottom:.8rem;align-items:flex-start}
+.steps li::before{content:counter(s);min-width:26px;height:26px;
+  border-radius:7px;background:var(--accent);color:#000;
+  font-size:.72rem;font-weight:700;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;margin-top:.18rem}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;margin:.9rem 0;font-size:.87rem}
+.tbl th{background:var(--bg3);color:var(--accent);padding:.55rem 1rem;
+  font-weight:600;font-size:.7rem;letter-spacing:.09em;
+  border-bottom:1px solid var(--border)}
+body.ar .tbl th{text-align:right}
+body.en .tbl th{text-align:left}
+.tbl td{padding:.5rem 1rem;border-bottom:1px solid var(--border)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(79,142,247,.04)}
+.bd{display:inline-block;padding:2px 8px;border-radius:4px;
+  font-size:.7rem;font-weight:600}
+.bg{background:rgba(34,197,94,.15);color:#86efac}
+.br{background:rgba(244,63,94,.15);color:#fda4af}
+.ba{background:rgba(245,158,11,.15);color:#fcd34d}
+.bb{background:rgba(79,142,247,.15);color:#93c5fd}
+
+/* ── DIAGRAM ── */
+.drow{display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:.5rem;margin:1.1rem 0}
+.dbox{background:var(--bg3);border:1px solid var(--border);
+  border-radius:9px;padding:.55rem .9rem;text-align:center;
+  min-width:80px;font-size:.8rem}
+.dbox small{display:block;color:var(--muted);font-size:.68rem;margin-top:.1rem}
+.dbox.blue{border-color:var(--accent);color:var(--accent)}
+.dbox.green{border-color:var(--green);color:var(--green)}
+.dbox.coral{border-color:var(--coral);color:var(--coral)}
+.dbox.amber{border-color:var(--amber);color:var(--amber)}
+.darr{color:var(--muted);font-size:1.1rem}
+
+code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
+  background:rgba(165,243,252,.08);padding:1px 5px;border-radius:3px}
+</style>
+</head>
+<body class="ar">
+
+<nav>
+  <span class="nav-brand">CPIT-425</span>
+  <div class="nav-ch">
+    <a href="#ch9" class="active">Ch.9 RSA</a>
+    <a href="#ch10">Ch.10 DH/ElGamal</a>
+    <a href="#ch11">Ch.11 Hash</a>
+    <a class="dim">Ch.12 MAC</a>
+    <a class="dim">Ch.13 Digital Sig</a>
+    <a class="dim">Ch.14 Key Dist</a>
+    <a class="dim">Ch.16 SSL/TLS</a>
+    <a class="dim">Ch.22 Firewalls</a>
+  </div>
+  <div class="lang-btn">
+    <button class="active" onclick="setLang('ar')">AR</button>
+    <button onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<div class="page">
+<div class="hero">
+  <div class="hero-tag">CPIT-425 · Information Security</div>
+  <h1>CPIT-425 Study Guide</h1>
+</div>
+
+<div class="toc">
+  <div class="toc-label ar">الشابترات</div>
+  <div class="toc-label en">Chapters</div>
+  <div class="toc-pills">
+    <a href="#ch9">Ch.9 — RSA</a>
+    <a href="#ch10">Ch.10 — DH/ElGamal</a>
+    <a href="#ch11">Ch.11 — Hash</a>
+    <a class="dim">Ch.12 — MAC</a>
+    <a class="dim">Ch.13 — Digital Signatures</a>
+    <a class="dim">Ch.14 — Key Distribution</a>
+    <a class="dim">Ch.16 — SSL/TLS</a>
+    <a class="dim">Ch.22 — Firewalls</a>
+  </div>
+</div>
+
+<!-- ═══════════ CH 9 ═══════════ -->
+<div class="chapter" id="ch9">
+  <div class="ch-hdr open" onclick="tog(this)">
+    <div class="ch-badge">9</div>
+    <div>
+      <div class="ch-title">Public Key Cryptography &amp; RSA</div>
+      <div class="ch-sub ar">التشفير بالمفتاح العام · Slides 1–42</div>
+      <div class="ch-sub en">Public Key Cryptography · Slides 1–42</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body open">
+
+    <!-- ─── WHY ─── -->
+    <div class="sec">
+      <div class="sec-title ar">لماذا ظهر التشفير بالمفتاح العام؟ — Slides 3–5</div>
+      <div class="sec-title en">Why Public-Key Cryptography? — Slides 3–5</div>
+
+      <p class="ar">قبل عام ١٩٧٦، كل التشفير كان <strong>Symmetric</strong> <span class="aw">(متماثل)</span> — يعني نفس المفتاح للتشفير وفك التشفير. هذا سبّب مشكلتين كبيرتين:</p>
+      <p class="en">Before 1976, all encryption was <strong>Symmetric</strong> — same key for both encryption and decryption. This caused two major problems:</p>
+
+      <ul class="steps">
+        <li>
+          <div>
+            <p class="ar"><strong>Key Distribution Problem</strong> <span class="aw">(مشكلة توزيع المفاتيح)</span>: كيف تُوصّل المفتاح السري لأول مرة بأمان؟ إذا القناة غير آمنة، المفتاح ينكشف.</p>
+            <p class="en"><strong>Key Distribution Problem</strong>: How do you securely deliver the secret key for the first time? If the channel is insecure, the key is exposed.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="ar"><strong>Digital Signature Problem</strong> <span class="aw">(مشكلة التوقيع الرقمي)</span>: كيف تُثبت أن رسالة جاءت منك فعلاً وليس من شخص آخر؟</p>
+            <p class="en"><strong>Digital Signature Problem</strong>: How do you prove a message truly came from you and not someone impersonating you?</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="ar">في <strong>١٩٧٦</strong>، حل <strong>Diffie و Hellman</strong> من Stanford كلتا المشكلتين باستخدام مفتاحين مختلفين رياضياً — <strong>Asymmetric Encryption</strong> <span class="aw">(التشفير غير المتماثل)</span>.</p>
+      <p class="en">In <strong>1976</strong>, <strong>Diffie and Hellman</strong> from Stanford solved both problems using two mathematically linked keys — <strong>Asymmetric Encryption</strong>.</p>
+
+      <div class="callout key">
+        <div class="c-head ar">💡 المبدأ الأساسي</div>
+        <div class="c-head en">💡 Core Principle</div>
+        <p class="ar"><strong>Public Key</strong> <span class="aw">(مفتاح عام)</span>: يعرفه الجميع — للتشفير فقط.<br>
+        <strong>Private Key</strong> <span class="aw">(مفتاح خاص)</span>: تعرفه أنت فقط — لفك التشفير.</p>
+        <p class="en"><strong>Public Key</strong>: Known to everyone — used for encryption only.<br>
+        <strong>Private Key</strong>: Known only to you — used for decryption.</p>
+      </div>
+    </div>
+
+    <!-- ─── TERMINOLOGY ─── -->
+    <div class="sec">
+      <div class="sec-title ar">المصطلحات الأساسية — Slide 3</div>
+      <div class="sec-title en">Key Terminology — Slide 3</div>
+      <table class="tbl ar">
+        <tr><th>المصطلح</th><th>التعريف</th></tr>
+        <tr><td><code>Plaintext</code></td><td>النص الأصلي القابل للقراءة</td></tr>
+        <tr><td><code>Ciphertext</code></td><td>النص المشفّر غير المقروء</td></tr>
+        <tr><td><code>Encryption</code></td><td>تحويل Plaintext إلى Ciphertext</td></tr>
+        <tr><td><code>Decryption</code></td><td>عكس التشفير — إرجاع Plaintext</td></tr>
+        <tr><td><code>Public Key (PU)</code></td><td>مفتاح مشترك — يعرفه الجميع — للتشفير</td></tr>
+        <tr><td><code>Private Key (PR)</code></td><td>مفتاح سري — تعرفه أنت فقط — لفك التشفير</td></tr>
+        <tr><td><code>φ(n)</code></td><td>دالة أويلر = (p−1)(q−1) — المفتاح الخفي</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td><code>Plaintext</code></td><td>Original readable message</td></tr>
+        <tr><td><code>Ciphertext</code></td><td>Encrypted unreadable output</td></tr>
+        <tr><td><code>Encryption</code></td><td>Converting plaintext to ciphertext</td></tr>
+        <tr><td><code>Decryption</code></td><td>Reversing encryption to recover plaintext</td></tr>
+        <tr><td><code>Public Key (PU)</code></td><td>Shared key — known to everyone — for encryption</td></tr>
+        <tr><td><code>Private Key (PR)</code></td><td>Secret key — known only to owner — for decryption</td></tr>
+        <tr><td><code>φ(n)</code></td><td>Euler's Totient = (p−1)(q−1) — the hidden trapdoor</td></tr>
+      </table>
+    </div>
+
+    <!-- ─── MISCONCEPTIONS ─── -->
+    <div class="sec">
+      <div class="sec-title ar">ثلاث أفكار خاطئة — Slide 4</div>
+      <div class="sec-title en">Three Misconceptions — Slide 4</div>
+      <table class="tbl ar">
+        <tr><th>الفكرة الخاطئة</th><th>الحقيقة</th></tr>
+        <tr><td>المفتاح العام أكثر أماناً من المتماثل</td><td><span class="bd br">خطأ</span> — لكل منهما دوره</td></tr>
+        <tr><td>المفتاح العام أبطل التشفير المتماثل</td><td><span class="bd br">خطأ</span> — HTTPS يجمعهما معاً</td></tr>
+        <tr><td>توزيع المفاتيح سهل مع المفتاح العام</td><td><span class="bd br">خطأ</span> — يحتاج إدارة وتوثيق</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Misconception</th><th>Truth</th></tr>
+        <tr><td>Public-key is more secure than symmetric</td><td><span class="bd br">False</span> — each has its role</td></tr>
+        <tr><td>Public-key made symmetric encryption obsolete</td><td><span class="bd br">False</span> — HTTPS uses both together</td></tr>
+        <tr><td>Key distribution is trivial with public-key</td><td><span class="bd br">False</span> — still needs management and certificates</td></tr>
+      </table>
+    </div>
+
+    <!-- ─── 6 INGREDIENTS ─── -->
+    <div class="sec">
+      <div class="sec-title ar">المكوّنات الستة لنظام المفتاح العام — Slide 6</div>
+      <div class="sec-title en">6 Ingredients of Public-Key Systems — Slide 6</div>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>Plaintext</strong> — الرسالة الأصلية المُدخلة للنظام</p>
+          <p class="en"><strong>Plaintext</strong> — the original message input to the system</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Encryption Algorithm</strong> <span class="aw">(خوارزمية التشفير)</span> — تُجري تحويلات رياضية على الرسالة</p>
+          <p class="en"><strong>Encryption Algorithm</strong> — performs mathematical transformations on the plaintext</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Public Key (PU)</strong> — يُستخدم كمدخل للتشفير أو التحقق من التوقيع</p>
+          <p class="en"><strong>Public Key (PU)</strong> — used as input for encryption or signature verification</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Private Key (PR)</strong> — يُستخدم لفك التشفير أو إنشاء التوقيع</p>
+          <p class="en"><strong>Private Key (PR)</strong> — used for decryption or creating signatures</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Ciphertext</strong> — ناتج التشفير — يبدو عشوائياً لمن لا يملك المفتاح</p>
+          <p class="en"><strong>Ciphertext</strong> — encrypted output — appears random to anyone without the key</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Decryption Algorithm</strong> <span class="aw">(خوارزمية فك التشفير)</span> — تُعيد الرسالة الأصلية باستخدام المفتاح الخاص</p>
+          <p class="en"><strong>Decryption Algorithm</strong> — recovers the original plaintext using the private key</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- ─── SYM vs ASYM ─── -->
+    <div class="sec">
+      <div class="sec-title ar">المتماثل مقابل غير المتماثل — Slide 8</div>
+      <div class="sec-title en">Symmetric vs Asymmetric — Slide 8</div>
+      <table class="tbl ar">
+        <tr><th></th><th>Symmetric (متماثل)</th><th>Public-Key (غير متماثل)</th></tr>
+        <tr><td>المفاتيح</td><td>نفس المفتاح للتشفير وفك التشفير</td><td>مفتاحان مختلفان (PU, PR)</td></tr>
+        <tr><td>السرعة</td><td><span class="bd bg">سريع جداً</span></td><td><span class="bd br">بطيء نسبياً</span></td></tr>
+        <tr><td>توزيع المفاتيح</td><td>يحتاج قناة آمنة مسبقاً</td><td>المفتاح العام يُنشر بحرية</td></tr>
+        <tr><td>الاستخدام</td><td>تشفير كميات كبيرة من البيانات</td><td>تبادل مفاتيح، توقيع رقمي</td></tr>
+        <tr><td>أمثلة</td><td>AES, DES, 3DES</td><td>RSA, ElGamal, ECC</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th></th><th>Symmetric</th><th>Public-Key (Asymmetric)</th></tr>
+        <tr><td>Keys</td><td>Same key for encrypt &amp; decrypt</td><td>Two different keys (PU, PR)</td></tr>
+        <tr><td>Speed</td><td><span class="bd bg">Very fast</span></td><td><span class="bd br">Relatively slow</span></td></tr>
+        <tr><td>Key sharing</td><td>Needs a secure channel first</td><td>Public key shared freely</td></tr>
+        <tr><td>Use case</td><td>Bulk data encryption</td><td>Key exchange, digital signatures</td></tr>
+        <tr><td>Examples</td><td>AES, DES, 3DES</td><td>RSA, ElGamal, ECC</td></tr>
+      </table>
+    </div>
+
+    <!-- ─── FOUR FIGURES ─── -->
+    <div class="sec">
+      <div class="sec-title ar">الأشكال الأربعة — Slides 9–11 ⭐ الاختبار</div>
+      <div class="sec-title en">The Four Encryption Figures — Slides 9–11 ⭐ Exam</div>
+
+      <p class="ar" style="font-weight:600;color:var(--accent)">(a) تشفير متماثل — Confidentiality بمفتاح مشترك K</p>
+      <p class="en" style="font-weight:600;color:var(--accent)">(a) Symmetric — Confidentiality with shared key K</p>
+      <div class="drow">
+        <div class="dbox blue">M</div><span class="darr">→</span>
+        <div class="dbox amber">E(K,M)<small class="ar">تشفير بـ K</small><small class="en">Encrypt with K</small></div><span class="darr">→</span>
+        <div class="dbox">E(K,M)</div><span class="darr">→</span>
+        <div class="dbox green">D(K,C)<small class="ar">فك بـ K</small><small class="en">Decrypt with K</small></div><span class="darr">→</span>
+        <div class="dbox blue">M</div>
+      </div>
+      <p class="ar" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">سرية</span> فقط · نفس المفتاح K مشترك</p>
+      <p class="en" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">Confidentiality</span> only · Same key K shared between parties</p>
+
+      <p class="ar" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(b) تشفير بمفتاح عام — Confidentiality</p>
+      <p class="en" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(b) Public Key Encryption — Confidentiality only</p>
+      <div class="drow">
+        <div class="dbox blue">M</div><span class="darr">→</span>
+        <div class="dbox amber">E(PU<sub>b</sub>,M)<small class="ar">بمفتاح Bob العام</small><small class="en">Bob's public key</small></div><span class="darr">→</span>
+        <div class="dbox">C</div><span class="darr">→</span>
+        <div class="dbox green">D(PR<sub>b</sub>,C)<small class="ar">بمفتاح Bob الخاص</small><small class="en">Bob's private key</small></div><span class="darr">→</span>
+        <div class="dbox blue">M</div>
+      </div>
+      <p class="ar" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">سرية</span> — فقط Bob يفك · لا توقيع</p>
+      <p class="en" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">Confidentiality</span> — only Bob can decrypt · No authentication</p>
+
+      <p class="ar" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(c) تشفير بمفتاح خاص — Authentication + Digital Signature</p>
+      <p class="en" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(c) Private Key Encryption — Authentication + Digital Signature</p>
+      <div class="drow">
+        <div class="dbox blue">M</div><span class="darr">→</span>
+        <div class="dbox coral">E(PR<sub>a</sub>,M)<small class="ar">بمفتاح Alice الخاص</small><small class="en">Alice's private key</small></div><span class="darr">→</span>
+        <div class="dbox">C</div><span class="darr">→</span>
+        <div class="dbox green">D(PU<sub>a</sub>,C)<small class="ar">بمفتاح Alice العام</small><small class="en">Alice's public key</small></div><span class="darr">→</span>
+        <div class="dbox blue">M</div>
+      </div>
+      <p class="ar" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd ba">مصادقة</span> <span class="bd ba">توقيع</span> — لا سرية (الكل يقدر يفك)</p>
+      <p class="en" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd ba">Authentication</span> <span class="bd ba">Signature</span> — No confidentiality (anyone can decrypt)</p>
+
+      <p class="ar" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(d) تشفير مزدوج — الثلاثة معاً</p>
+      <p class="en" style="font-weight:600;color:var(--accent);margin-top:1.2rem">(d) Double Encryption — All Three Together</p>
+      <div class="drow">
+        <div class="dbox blue">M</div><span class="darr">→</span>
+        <div class="dbox coral">E(PR<sub>a</sub>)<small class="ar">خاص Alice</small><small class="en">Alice private</small></div><span class="darr">→</span>
+        <div class="dbox amber">E(PU<sub>b</sub>)<small class="ar">عام Bob</small><small class="en">Bob public</small></div><span class="darr">→</span>
+        <div class="dbox amber">D(PR<sub>b</sub>)<small class="ar">خاص Bob</small><small class="en">Bob private</small></div><span class="darr">→</span>
+        <div class="dbox green">D(PU<sub>a</sub>)<small class="ar">عام Alice</small><small class="en">Alice public</small></div><span class="darr">→</span>
+        <div class="dbox blue">M</div>
+      </div>
+      <p class="ar" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">سرية</span> ✓ <span class="bd ba">مصادقة</span> ✓ <span class="bd ba">توقيع</span></p>
+      <p class="en" style="font-size:.83rem;color:var(--muted)">✓ <span class="bd bg">Confidentiality</span> ✓ <span class="bd ba">Authentication</span> ✓ <span class="bd ba">Signature</span></p>
+
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ سؤال الاختبار الشائع</div>
+        <div class="c-head en">⚠️ Common Exam Question</div>
+        <p class="ar">أيّ الأشكال يوفر سرية فقط؟ → <strong>(b)</strong> · مصادقة فقط؟ → <strong>(c)</strong> · الثلاثة؟ → <strong>(d)</strong><br>
+        أيّ المفاتيح توفر ماذا؟ <code>PU<sub>b</sub></code> = سرية · <code>PR<sub>a</sub></code> = توقيع</p>
+        <p class="en">Which figure provides confidentiality only? → <strong>(b)</strong> · Authentication only? → <strong>(c)</strong> · All three? → <strong>(d)</strong><br>
+        Which key provides what? <code>PU<sub>b</sub></code> = confidentiality · <code>PR<sub>a</sub></code> = signature</p>
+      </div>
+    </div>
+
+    <!-- ─── APPLICATIONS ─── -->
+    <div class="sec">
+      <div class="sec-title ar">جدول التطبيقات — Slides 12–13 ⭐ MCQ</div>
+      <div class="sec-title en">Applications Table — Slides 12–13 ⭐ MCQ</div>
+      <table class="tbl">
+        <tr><th class="ar">الخوارزمية</th><th class="en">Algorithm</th>
+            <th class="ar">تشفير/فك</th><th class="en">Encryption</th>
+            <th class="ar">توقيع رقمي</th><th class="en">Digital Sig.</th>
+            <th class="ar">تبادل مفاتيح</th><th class="en">Key Exchange</th></tr>
+        <tr><td><strong>RSA</strong></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td></tr>
+        <tr><td><strong>Diffie-Hellman</strong></td><td><span class="bd br">✗</span></td><td><span class="bd br">✗</span></td><td><span class="bd bg">✓ فقط</span></td></tr>
+        <tr><td><strong>ElGamal</strong></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td></tr>
+        <tr><td><strong>DSS/DSA</strong></td><td><span class="bd br">✗</span></td><td><span class="bd bg">✓ فقط</span></td><td><span class="bd br">✗</span></td></tr>
+        <tr><td><strong>ECC</strong></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td><td><span class="bd bg">✓</span></td></tr>
+      </table>
+      <div class="callout danger">
+        <div class="c-head ar">🚨 احفظ — يجي كل مرة</div>
+        <div class="c-head en">🚨 Memorize — appears every exam</div>
+        <p class="ar">Diffie-Hellman <strong>لا يشفّر رسائل</strong> — تبادل مفاتيح فقط. DSS <strong>لا يشفّر</strong> — توقيع فقط.</p>
+        <p class="en">Diffie-Hellman <strong>cannot encrypt messages</strong> — key exchange only. DSS <strong>cannot encrypt</strong> — signature only.</p>
+      </div>
+    </div>
+
+    <!-- ─── RSA CORE ─── -->
+    <div class="sec">
+      <div class="sec-title ar">خوارزمية RSA — القلب — Slides 20–22</div>
+      <div class="sec-title en">The RSA Algorithm — Core — Slides 20–22</div>
+
+      <p class="ar">طوّرها <strong>Rivest, Shamir, Adleman</strong> في MIT عام ١٩٧٧. المعادلتان اللتان لازم تحفظهم:</p>
+      <p class="en">Developed by <strong>Rivest, Shamir, Adleman</strong> at MIT in 1977. The two equations you must memorize:</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 معادلة التشفير — Encryption</div>
+        <div class="f-label en">📐 Encryption Formula</div>
+        <div class="f-eq">C = M<sup><span class="v">e</span></sup> mod <span class="v">n</span></div>
+        <div class="f-eq" style="font-size:.8rem;color:var(--muted)">
+          C = Ciphertext &nbsp;|&nbsp; M = Message &nbsp;|&nbsp; e = public exponent &nbsp;|&nbsp; n = modulus
+        </div>
+      </div>
+      <div class="formula">
+        <div class="f-label ar">📐 معادلة فك التشفير — Decryption</div>
+        <div class="f-label en">📐 Decryption Formula</div>
+        <div class="f-eq">M = C<sup><span class="v">d</span></sup> mod <span class="v">n</span></div>
+        <div class="f-eq" style="font-size:.8rem;color:var(--muted)">
+          d = private exponent &nbsp;|&nbsp; proof: M<sup>ed</sup> mod n = M
+        </div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>الرمز</th><th>يمثّل</th><th>يعرفه</th></tr>
+        <tr><td><code>M</code></td><td>Plaintext — الرسالة (يجب M &lt; n)</td><td>المُرسل</td></tr>
+        <tr><td><code>C</code></td><td>Ciphertext — المشفّر</td><td>الجميع</td></tr>
+        <tr><td><code>e, n</code></td><td>المفتاح العام</td><td>الجميع</td></tr>
+        <tr><td><code>d, n</code></td><td>المفتاح الخاص</td><td>المستقبل فقط</td></tr>
+        <tr><td><code>n = p×q</code></td><td>Modulus</td><td>الجميع</td></tr>
+        <tr><td><code>φ(n)</code></td><td>(p−1)(q−1) — الـ Trapdoor السري</td><td>المُنشئ فقط</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Symbol</th><th>Represents</th><th>Known to</th></tr>
+        <tr><td><code>M</code></td><td>Plaintext — original message (must have M &lt; n)</td><td>Sender</td></tr>
+        <tr><td><code>C</code></td><td>Ciphertext — encrypted output</td><td>Everyone</td></tr>
+        <tr><td><code>e, n</code></td><td>Public Key</td><td>Everyone</td></tr>
+        <tr><td><code>d, n</code></td><td>Private Key</td><td>Receiver only</td></tr>
+        <tr><td><code>n = p×q</code></td><td>Modulus — product of two primes</td><td>Everyone</td></tr>
+        <tr><td><code>φ(n)</code></td><td>(p−1)(q−1) — the secret Trapdoor</td><td>Key generator only</td></tr>
+      </table>
+    </div>
+
+    <!-- ─── KEY SETUP FORMULA THEN APPLY ─── -->
+    <div class="sec">
+      <div class="sec-title ar">خطوات توليد المفاتيح — Key Setup ⭐</div>
+      <div class="sec-title en">Key Generation Steps ⭐</div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 القوانين المستخدمة في توليد المفاتيح</div>
+        <div class="f-label en">📐 Formulas Used in Key Generation</div>
+        <div class="f-eq"><span class="n">n</span> = p × q</div>
+        <div class="f-eq"><span class="n">φ(n)</span> = (p−1)(q−1)</div>
+        <div class="f-eq"><span class="n">e</span>: gcd(e, φ(n)) = 1 &nbsp;&amp;&nbsp; 1 &lt; e &lt; φ(n)</div>
+        <div class="f-eq"><span class="n">d</span>: d × e ≡ 1 mod φ(n)</div>
+      </div>
+
+      <ul class="steps">
+        <li><div>
+          <p class="ar">اختر عددين أوليين <span class="aw">(prime numbers)</span> كبيرين <code>p</code> و<code>q</code> — يبقيان سريين</p>
+          <p class="en">Choose two large prime numbers <code>p</code> and <code>q</code> — kept secret always</p>
+        </div></li>
+        <li><div>
+          <p class="ar">احسب <code>n = p × q</code> — هذا هو الـ <strong>Modulus</strong> <span class="aw">(المعامل)</span> — يُنشر للجميع</p>
+          <p class="en">Compute <code>n = p × q</code> — this is the <strong>Modulus</strong> — made public</p>
+        </div></li>
+        <li><div>
+          <p class="ar">احسب <code>φ(n) = (p−1)(q−1)</code> — دالة أويلر <span class="aw">(Euler's Totient)</span> — تُحفظ سراً ولا تُنشر أبداً</p>
+          <p class="en">Compute <code>φ(n) = (p−1)(q−1)</code> — Euler's Totient — kept completely secret</p>
+        </div></li>
+        <li><div>
+          <p class="ar">اختر <code>e</code> بحيث: <code>gcd(e, φ(n)) = 1</code> — يعني e وφ(n) لا يقسمهم عدد مشترك غير ١</p>
+          <p class="en">Choose <code>e</code> such that: <code>gcd(e, φ(n)) = 1</code> — meaning e and φ(n) share no common factor except 1</p>
+        </div></li>
+        <li><div>
+          <p class="ar">أوجد <code>d</code> بحيث: <code>d × e ≡ 1 mod φ(n)</code> — يعني d هو المعكوس الضربي لـ e</p>
+          <p class="en">Find <code>d</code> such that: <code>d × e ≡ 1 mod φ(n)</code> — meaning d is the multiplicative inverse of e</p>
+        </div></li>
+        <li><div>
+          <p class="ar">المفتاح العام = <code>{e, n}</code> — انشره للجميع</p>
+          <p class="en">Public Key = <code>{e, n}</code> — share openly with everyone</p>
+        </div></li>
+        <li><div>
+          <p class="ar">المفتاح الخاص = <code>{d, n}</code> — احتفظ به سراً تاماً</p>
+          <p class="en">Private Key = <code>{d, n}</code> — keep completely secret</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- ─── FULL WORKED EXAMPLE ─── -->
+    <div class="sec">
+      <div class="sec-title ar">مثال محلول كامل — p=17, q=11, e=7, M=88</div>
+      <div class="sec-title en">Complete Worked Example — p=17, q=11, e=7, M=88</div>
+
+      <p class="ar" style="color:var(--accent);font-weight:600">المرحلة الأولى: توليد المفاتيح</p>
+      <p class="en" style="color:var(--accent);font-weight:600">Phase 1: Key Generation</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ خطوة بخطوة — Key Setup</div>
+        <div class="sol-head en">✦ Step by Step — Key Setup</div>
+
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: n = p × q</div>
+            <div class="sol-rule en">Formula: n = p × q</div>
+            <div class="sol-calc">n = 17 × 11</div>
+            <div class="sol-result">n = 187</div>
+            <div class="sol-note ar">هذا هو الـ Modulus الذي يُنشر للجميع</div>
+            <div class="sol-note en">This is the Modulus — made public</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
+            <div class="sol-rule en">Formula: φ(n) = (p−1)(q−1)</div>
+            <div class="sol-calc">φ(187) = (17−1) × (11−1) = 16 × 10</div>
+            <div class="sol-result">φ(n) = 160</div>
+            <div class="sol-note ar">يبقى سراً — هو الـ Trapdoor</div>
+            <div class="sol-note en">Kept secret — this is the Trapdoor</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: gcd(e, φ(n)) = 1</div>
+            <div class="sol-rule en">Formula: gcd(e, φ(n)) = 1</div>
+            <div class="sol-calc">gcd(7, 160) = 1 ✓</div>
+            <div class="sol-result">e = 7 صالح / e = 7 is valid</div>
+            <div class="sol-note ar">7 و160 لا يقسمهم عدد مشترك غير 1</div>
+            <div class="sol-note en">7 and 160 share no common factor except 1</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: d × e ≡ 1 mod φ(n) — نبحث عن d</div>
+            <div class="sol-rule en">Formula: d × e ≡ 1 mod φ(n) — find d</div>
+            <div class="sol-calc">d × 7 ≡ 1 mod 160</div>
+            <div class="sol-calc">23 × 7 = 161 = (1 × 160) + 1</div>
+            <div class="sol-result">d = 23</div>
+            <div class="sol-note ar">لأن 161 mod 160 = 1 ✓</div>
+            <div class="sol-note en">Because 161 mod 160 = 1 ✓</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">النتيجة: المفتاحان</div>
+            <div class="sol-rule en">Result: Both Keys</div>
+            <div class="sol-calc">Public Key  PU = {e=7,  n=187} ← للجميع / public</div>
+            <div class="sol-result">Private Key PR = {d=23, n=187} ← سري / secret</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="ar" style="color:var(--accent);font-weight:600;margin-top:1.3rem">المرحلة الثانية: التشفير</p>
+      <p class="en" style="color:var(--accent);font-weight:600;margin-top:1.3rem">Phase 2: Encryption</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ تشفير M=88 باستخدام المفتاح العام {7, 187}</div>
+        <div class="sol-head en">✦ Encrypt M=88 using Public Key {7, 187}</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: C = Mᵉ mod n</div>
+            <div class="sol-rule en">Formula: C = Mᵉ mod n</div>
+            <div class="sol-calc">C = 88⁷ mod 187</div>
+            <div class="sol-result">C = 11</div>
+            <div class="sol-note ar">هذا هو الـ Ciphertext الذي يُرسل لـ Bob</div>
+            <div class="sol-note en">This is the Ciphertext sent to Bob</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="ar" style="color:var(--accent);font-weight:600;margin-top:1.3rem">المرحلة الثالثة: فك التشفير</p>
+      <p class="en" style="color:var(--accent);font-weight:600;margin-top:1.3rem">Phase 3: Decryption</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ فك تشفير C=11 باستخدام المفتاح الخاص {23, 187}</div>
+        <div class="sol-head en">✦ Decrypt C=11 using Private Key {23, 187}</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: M = Cᵈ mod n</div>
+            <div class="sol-rule en">Formula: M = Cᵈ mod n</div>
+            <div class="sol-calc">M = 11²³ mod 187</div>
+            <div class="sol-result">M = 88 ✓</div>
+            <div class="sol-note ar">رجعت الرسالة الأصلية — الخوارزمية تعمل بشكل صحيح</div>
+            <div class="sol-note en">Original message recovered — algorithm works correctly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── BRUTE FORCE ─── -->
+    <div class="sec">
+      <div class="sec-title ar">إيجاد d بالـ Brute Force — جاء في الاختبار</div>
+      <div class="sec-title en">Finding d by Brute Force — Appeared in Exams</div>
+
+      <p class="ar">لما يعطوك المفتاح العام <code>{e, n}</code> فقط ويطلبون إيجاد d:</p>
+      <p class="en">When given only the public key <code>{e, n}</code> and asked to find d:</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 الخطوات والقوانين</div>
+        <div class="f-label en">📐 Steps and Formulas</div>
+        <div class="f-eq"><span class="n">Step 1:</span> Factor n → find p and q</div>
+        <div class="f-eq"><span class="n">Step 2:</span> φ(n) = (p−1)(q−1)</div>
+        <div class="f-eq"><span class="n">Step 3:</span> Try d = 21, 22, 23 ... until d×e mod φ(n) = 1</div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ مثال: المفتاح العام {e=7, n=55} — أوجد d</div>
+        <div class="sol-head en">✦ Example: Public Key {e=7, n=55} — Find d</div>
+
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">حلّل n إلى عواملها الأولية</div>
+            <div class="sol-rule en">Factor n into its prime factors</div>
+            <div class="sol-calc">n = 55 = 5 × 11</div>
+            <div class="sol-result">p = 5 , q = 11</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
+            <div class="sol-rule en">Formula: φ(n) = (p−1)(q−1)</div>
+            <div class="sol-calc">φ(55) = (5−1) × (11−1) = 4 × 10</div>
+            <div class="sol-result">φ(n) = 40</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: d×e ≡ 1 mod φ(n) — جرّب d حتى تجد الناتج = 1</div>
+            <div class="sol-rule en">Formula: d×e ≡ 1 mod φ(n) — try d values until result = 1</div>
+            <div class="sol-calc">d=21: 21×7 = 147 → 147 mod 40 = 27 ✗</div>
+            <div class="sol-calc">d=22: 22×7 = 154 → 154 mod 40 = 34 ✗</div>
+            <div class="sol-calc">d=23: 23×7 = 161 → 161 mod 40 = 1 ✓</div>
+            <div class="sol-result">d = 23</div>
+            <div class="sol-note ar">Private Key = {23, 55}</div>
+            <div class="sol-note en">Private Key = {23, 55}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WORD ENCRYPTION ─── -->
+    <div class="sec">
+      <div class="sec-title ar">تشفير كلمة بحروف — جاء في الاختبار</div>
+      <div class="sec-title en">Encrypting a Word with Letter Codes — Appeared in Exams</div>
+
+      <p class="ar">كل حرف له رقم من جدول: A=00, B=01, C=02, ... Z=25. الحروف تُجمع في Blocks <span class="aw">(مجموعات)</span> بشرط أن كل block أصغر من n.</p>
+      <p class="en">Each letter has a code: A=00, B=01, C=02, ... Z=25. Letters are grouped into blocks, each must be smaller than n.</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 القانون المستخدم</div>
+        <div class="f-label en">📐 Formula Used</div>
+        <div class="f-eq">C<sub>i</sub> = M<sub>i</sub><sup><span class="v">e</span></sup> mod <span class="v">n</span> &nbsp;&nbsp;(for each block i)</div>
+        <div class="f-eq" style="font-size:.78rem;color:var(--muted)">Condition: every block M<sub>i</sub> must be &lt; n</div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ مثال: تشفير {ZOBGAC} — e=7, n=25121</div>
+        <div class="sol-head en">✦ Example: Encrypt {ZOBGAC} — e=7, n=25121</div>
+
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">حوّل الحروف لأرقام من الجدول</div>
+            <div class="sol-rule en">Convert letters to numbers using the table</div>
+            <div class="sol-calc">Z=25, O=14, B=01, G=06, A=00, C=02</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">قسّم إلى Blocks بحيث كل block أصغر من n=25121</div>
+            <div class="sol-rule en">Split into blocks where each block &lt; n=25121</div>
+            <div class="sol-calc">Block 1: ZOB → M₁ = 251401</div>
+            <div class="sol-calc">Block 2: GAC → M₂ = 060002</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">طبّق معادلة التشفير على كل block</div>
+            <div class="sol-rule en">Apply encryption formula to each block</div>
+            <div class="sol-calc">C₁ = 251401⁷ mod 25121</div>
+            <div class="sol-calc">C₂ = 060002⁷ mod 25121</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ لماذا لا نشفّر الكلمة كـ block واحد؟</div>
+        <div class="c-head en">⚠️ Why can't we encrypt as one single block?</div>
+        <p class="ar">لأن القانون يشترط <strong>M &lt; n</strong>. لو جمعنا كل الكلمة سيكون الرقم أكبر من 25121 مما يكسر الخوارزمية. <br>الحل: نقسّم الكلمة إلى blocks صغيرة.</p>
+        <p class="en">The rule requires <strong>M &lt; n</strong>. Combining the whole word gives a number larger than 25121, which breaks the algorithm.<br>Solution: split the word into smaller blocks.</p>
+      </div>
+    </div>
+
+    <!-- ─── SQUARE AND MULTIPLY ─── -->
+    <div class="sec">
+      <div class="sec-title ar">Square and Multiply — الطريقة السريعة — Slides 26–28</div>
+      <div class="sec-title en">Square and Multiply — Efficient Method — Slides 26–28</div>
+
+      <p class="ar">المشكلة: حساب 88⁷ مباشرة يُنتج رقماً ضخماً. الحل: نُقلّل بعد كل خطوة باستخدام <strong>خاصية الموديولار</strong>:</p>
+      <p class="en">Problem: computing 88⁷ directly gives an astronomically large number. Solution: reduce after each step using the <strong>modular property</strong>:</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 خاصية الموديولار الأساسية</div>
+        <div class="f-label en">📐 Core Modular Property</div>
+        <div class="f-eq">[ (a mod n) × (b mod n) ] mod n = (a × b) mod n</div>
+      </div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 قانون Square and Multiply</div>
+        <div class="f-label en">📐 Square and Multiply Rule</div>
+        <div class="f-eq"><span class="n">Bit = 0</span> → Square only:   c = c² mod n</div>
+        <div class="f-eq"><span class="v">Bit = 1</span> → Square + Multiply: c = (c² mod n) × M mod n</div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ مثال: 5¹¹ mod 209</div>
+        <div class="sol-head en">✦ Example: 5¹¹ mod 209</div>
+
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">حوّل الأس e=11 إلى ثنائي</div>
+            <div class="sol-rule en">Convert exponent e=11 to binary</div>
+            <div class="sol-calc">11 = 8+2+1 → binary: 1011</div>
+            <div class="sol-result">Bits: 1 → 0 → 1 → 1</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">بت 1 (الأول دائماً 1): ابدأ بـ c = M</div>
+            <div class="sol-rule en">Bit 1 (first bit always 1): start with c = M</div>
+            <div class="sol-calc">c = 5</div>
+            <div class="sol-result">c = 5</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">بت 0: رَبِّع فقط (Square only)</div>
+            <div class="sol-rule en">Bit 0: Square only</div>
+            <div class="sol-calc">c = c² mod n = 5² mod 209 = 25 mod 209</div>
+            <div class="sol-result">c = 25</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">بت 1: رَبِّع ثم اضرب في M (Square then Multiply)</div>
+            <div class="sol-rule en">Bit 1: Square then Multiply by M</div>
+            <div class="sol-calc">c² = 25² = 625 → 625 mod 209 = 207</div>
+            <div class="sol-calc">c = 207 × 5 = 1035 → 1035 mod 209 = 160</div>
+            <div class="sol-result">c = 160</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">بت 1: رَبِّع ثم اضرب في M (Square then Multiply)</div>
+            <div class="sol-rule en">Bit 1: Square then Multiply by M</div>
+            <div class="sol-calc">c² = 160² = 25600 → 25600 mod 209 = 82</div>
+            <div class="sol-calc">c = 82 × 5 = 410 → 410 mod 209 = 201</div>
+            <div class="sol-result">c = 201</div>
+            <div class="sol-note ar" style="color:var(--amber);font-size:.85rem">النتيجة النهائية: 5¹¹ mod 209 = 201</div>
+            <div class="sol-note en" style="color:var(--amber);font-size:.85rem">Final answer: 5¹¹ mod 209 = 201</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── TRAP-DOOR ─── -->
+    <div class="sec">
+      <div class="sec-title ar">الدالة أحادية الاتجاه والباب الخلفي — Slides 15–18</div>
+      <div class="sec-title en">One-Way &amp; Trap-door Functions — Slides 15–18</div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 One-Way Function — دالة أحادية الاتجاه</div>
+        <div class="f-label en">📐 One-Way Function</div>
+        <div class="f-eq">Y = f(<span class="v">X</span>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="n">Easy ✓</span></div>
+        <div class="f-eq">X = f⁻¹(<span class="v">Y</span>) <span class="r">without trapdoor</span> → <span class="r">Infeasible ✗</span></div>
+      </div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 Trap-door One-Way Function — مع الباب الخلفي k</div>
+        <div class="f-label en">📐 Trap-door One-Way Function — with secret k</div>
+        <div class="f-eq">Y = f<sub>k</sub>(<span class="v">X</span>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="n">Easy ✓ (k and X known)</span></div>
+        <div class="f-eq">X = f<sub>k</sub>⁻¹(<span class="v">Y</span>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="n">Easy ✓ (k known)</span></div>
+        <div class="f-eq">X = f<sub>k</sub>⁻¹(<span class="v">Y</span>) <span class="r">without k</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="r">Infeasible ✗</span></div>
+      </div>
+
+      <p class="ar"><strong>مثال ١ — مشكلة التحليل (Factorization):</strong></p>
+      <p class="en"><strong>Example 1 — Factorization Problem:</strong></p>
+      <div class="solution">
+        <div class="sol-head">✦ n = p × q</div>
+        <div class="sol-step">
+          <div class="sol-num">→</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">إذا عرفت p وq → حساب n سهل جداً</div>
+            <div class="sol-rule en">Given p and q → computing n is trivial</div>
+            <div class="sol-calc">p=11, q=13 → n = 11×13 = 143</div>
+            <div class="sol-result">Easy ✓</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">←</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">إذا عرفت n فقط → إيجاد p وq مستحيل إذا n كبير</div>
+            <div class="sol-rule en">Given only n → finding p and q is infeasible for large n</div>
+            <div class="sol-calc">n = 143 → find p and q = ???</div>
+            <div class="sol-result" style="color:var(--coral)">Infeasible for large n ✗</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="ar"><strong>مثال ٢ — اللوغاريتم المنفصل (Discrete Logarithm):</strong></p>
+      <p class="en"><strong>Example 2 — Discrete Logarithm Problem:</strong></p>
+      <div class="formula">
+        <div class="f-label ar">y = xᵏ mod n — سهل الحساب · إيجاد x من y صعب بدون k</div>
+        <div class="f-label en">y = xᵏ mod n — easy to compute · finding x from y is hard without k</div>
+        <div class="f-eq"><span class="n">Forward:</span>  y = x<sup>k</sup> mod n &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="n">Easy ✓</span></div>
+        <div class="f-eq"><span class="r">Reverse:</span>  x = y<sup>k'</sup> mod n <span class="r">(without k')</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="r">Infeasible ✗</span></div>
+        <div class="f-eq"><span class="n">Trapdoor:</span> x = y<sup>k'</sup> mod n <span class="n">(k'×k=1 mod f(n))</span> → <span class="n">Easy ✓</span></div>
+      </div>
+      <p class="ar">في RSA: <code>d</code> هو الـ Trapdoor لأن <code>d×e ≡ 1 mod φ(n)</code></p>
+      <p class="en">In RSA: <code>d</code> is the Trapdoor because <code>d×e ≡ 1 mod φ(n)</code></p>
+    </div>
+
+    <!-- ─── ATTACKS ─── -->
+    <div class="sec">
+      <div class="sec-title ar">الهجمات على RSA — Slides 33–41</div>
+      <div class="sec-title en">Attacks on RSA — Slides 33–41</div>
+
+      <p class="ar" style="font-weight:600">الهجمات الرياضية الثلاثة — Slide 34</p>
+      <p class="en" style="font-weight:600">Three Mathematical Attacks — Slide 34</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">حلّل n → احسب φ(n) → احسب d</p>
+          <p class="en">Factor n → compute φ(n) → compute d</p>
+        </div></li>
+        <li><div>
+          <p class="ar">أوجد φ(n) مباشرة بدون معرفة p وq → احسب d</p>
+          <p class="en">Find φ(n) directly without knowing p and q → compute d</p>
+        </div></li>
+        <li><div>
+          <p class="ar">أوجد d مباشرة بدون معرفة φ(n)</p>
+          <p class="en">Find d directly without knowing φ(n)</p>
+        </div></li>
+      </ul>
+      <div class="callout key">
+        <div class="c-head ar">🔑 لماذا كلها تفشل؟</div>
+        <div class="c-head en">🔑 Why do all three fail?</div>
+        <p class="ar">كل الهجمات تعتمد على تحليل n — وهذا مستحيل حسابياً لـ n كبير (1024 بت فأكثر). كلما زاد حجم n، زادت الصعوبة أضعافاً.</p>
+        <p class="en">All attacks ultimately rely on factoring n — computationally infeasible for large n (1024+ bits). Every extra bit roughly doubles the difficulty.</p>
+      </div>
+
+      <p class="ar" style="font-weight:600;margin-top:1.2rem">هجمات القنوات الجانبية — Slides 37–40</p>
+      <p class="en" style="font-weight:600;margin-top:1.2rem">Side-Channel Attacks — Slides 37–40</p>
+      <table class="tbl ar">
+        <tr><th>الهجوم</th><th>كيف يعمل</th><th>الحل</th></tr>
+        <tr><td><strong>Timing Attack</strong></td><td>يقيس وقت فك التشفير — البتات المختلفة تأخذ وقتاً مختلفاً فيكشف d. اكتشفه Paul Kocher 1996</td><td>أضف تأخيرات عشوائية</td></tr>
+        <tr><td><strong>Fault-Based</strong></td><td>يُقلل الطاقة للمعالج → توقيعات خاطئة → يحلل الأخطاء لاستعادة d. يحتاج وصولاً فيزيائياً</td><td>حماية فيزيائية</td></tr>
+        <tr><td><strong>CCA</strong> (Chosen Ciphertext)</td><td>يرسل ciphertexts مختارة ويحصل على plaintexts → يستغل خصائص RSA الرياضية</td><td>OAEP Padding</td></tr>
+        <tr><td><strong>Probable Message</strong></td><td>يُشفّر تخمينات ويقارن بالـ ciphertext المعلوم</td><td>أضف bits عشوائية</td></tr>
+        <tr><td><strong>Brute Force</strong></td><td>تجربة كل المفاتيح الممكنة</td><td>مفاتيح ≥ 2048 بت</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Attack</th><th>How it Works</th><th>Countermeasure</th></tr>
+        <tr><td><strong>Timing Attack</strong></td><td>Measures decryption time — different bits take different time, revealing d. Discovered by Paul Kocher 1996</td><td>Add random delays</td></tr>
+        <tr><td><strong>Fault-Based</strong></td><td>Reduces power to processor → faulty signatures → analyzes errors to recover d. Needs physical access</td><td>Physical security</td></tr>
+        <tr><td><strong>CCA</strong> (Chosen Ciphertext)</td><td>Sends chosen ciphertexts, gets plaintexts → exploits RSA mathematical properties</td><td>OAEP Padding</td></tr>
+        <tr><td><strong>Probable Message</strong></td><td>Encrypts guesses and compares to known ciphertext</td><td>Append random bits</td></tr>
+        <tr><td><strong>Brute Force</strong></td><td>Try all possible key values</td><td>Keys ≥ 2048 bits</td></tr>
+      </table>
+
+      <p class="ar" style="font-weight:600;margin-top:1.2rem">OAEP — الحل لهجوم CCA — Slide 41</p>
+      <p class="en" style="font-weight:600;margin-top:1.2rem">OAEP — Solution to CCA — Slide 41</p>
+      <div class="formula">
+        <div class="f-label ar">📐 كيف يعمل OAEP</div>
+        <div class="f-label en">📐 How OAEP Works</div>
+        <div class="f-eq"><span class="n">Step 1:</span> M' = Mix(M, random_bits_r)</div>
+        <div class="f-eq"><span class="n">Step 2:</span> C = (M')<sup>e</sup> mod n</div>
+        <div class="f-eq"><span class="r">Result:</span> Same M → Different C each time → CCA fails</div>
+      </div>
+    </div>
+
+    <!-- ─── MCQ ─── -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>φ(n) يساوي؟</td><td><code>(p−1)(q−1)</code></td></tr>
+        <tr><td>RSA يُستخدم لـ؟</td><td><span class="bd bg">All of the above</span> (تشفير + توقيع + تبادل مفاتيح)</td></tr>
+        <tr><td>المفتاح الخاص يحتفظ به؟</td><td>المستقبل (Receiver)</td></tr>
+        <tr><td>ECC مقارنة بـ RSA؟</td><td>أمان مساوٍ بمفتاح أصغر بكثير</td></tr>
+        <tr><td>حجم مفتاح RSA مقارنة بالمتماثل؟</td><td><span class="bd bb">Much greater</span></td></tr>
+        <tr><td>DH هل هو عرضة لـ MITM؟</td><td><span class="bd bg">True — نعم عرضة</span></td></tr>
+        <tr><td>هجوم H(M)=H(M') يُسمى؟</td><td><span class="bd bb">Birthday Attack</span></td></tr>
+        <tr><td>أفضل اختيار لـ e؟</td><td>65537 (2¹⁶+1)</td></tr>
+        <tr><td>الحل لهجوم CCA؟</td><td>OAEP Padding</td></tr>
+        <tr><td>ElGamal ciphertext يتكون من؟</td><td>عددين (C₁, C₂)</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>φ(n) equals?</td><td><code>(p−1)(q−1)</code></td></tr>
+        <tr><td>RSA can be used for?</td><td><span class="bd bg">All of the above</span> (encryption + signature + key exchange)</td></tr>
+        <tr><td>Private key is held by?</td><td>The receiver</td></tr>
+        <tr><td>ECC compared to RSA?</td><td>Equal security with much smaller key size</td></tr>
+        <tr><td>RSA key size vs symmetric?</td><td><span class="bd bb">Much greater</span></td></tr>
+        <tr><td>Is DH vulnerable to MITM?</td><td><span class="bd bg">True — yes it is</span></td></tr>
+        <tr><td>Attack finding H(M)=H(M')?</td><td><span class="bd bb">Birthday Attack</span></td></tr>
+        <tr><td>Most common choice for e?</td><td>65537 (2¹⁶+1)</td></tr>
+        <tr><td>Countermeasure for CCA?</td><td>OAEP Padding</td></tr>
+        <tr><td>ElGamal ciphertext consists of?</td><td>Two numbers (C₁, C₂)</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 10 ═══════════ -->
+<div class="chapter" id="ch10">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#0ea5a0,#22c55e)">10</div>
+    <div>
+      <div class="ch-title">Diffie-Hellman &amp; ElGamal</div>
+      <div class="ch-sub ar">تبادل المفاتيح والتشفير بـ ElGamal · Slides 2–27</div>
+      <div class="ch-sub en">Key Exchange and ElGamal Encryption · Slides 2–27</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- DH INTRO -->
+    <div class="sec">
+      <div class="sec-title ar">ما هو Diffie-Hellman؟ — Slides 2–3</div>
+      <div class="sec-title en">What is Diffie-Hellman? — Slides 2–3</div>
+      <p class="ar">أول خوارزمية مفتاح عام تُنشر للعموم. الهدف الوحيد: <strong>تمكين شخصين من الاتفاق على مفتاح مشترك عبر قناة غير آمنة</strong> دون أن يتقابلا مسبقاً.</p>
+      <p class="en">The first published public-key algorithm. Its only purpose: <strong>allow two parties to agree on a shared key over an insecure channel</strong> without meeting beforehand.</p>
+      <div class="callout danger">
+        <div class="c-head ar">🚨 أهم نقطة — يجي في كل اختبار</div>
+        <div class="c-head en">🚨 Most Important Point — appears every exam</div>
+        <p class="ar">DH <strong>لا يستطيع تشفير الرسائل</strong> — فقط تبادل مفاتيح. وهو <strong>عرضة لهجوم Man-in-the-Middle</strong>.</p>
+        <p class="en">DH <strong>cannot encrypt messages</strong> — key exchange only. It is also <strong>vulnerable to Man-in-the-Middle attacks</strong>.</p>
+      </div>
+      <table class="tbl ar"><tr><th>الخاصية</th><th>القيمة</th></tr>
+        <tr><td>الهدف</td><td>تبادل مفاتيح فقط</td></tr>
+        <tr><td>يشفّر رسائل؟</td><td><span class="bd br">لا</span></td></tr>
+        <tr><td>أمانه يعتمد على</td><td>صعوبة حساب اللوغاريتم المنفصل</td></tr>
+        <tr><td>عرضة لـ</td><td><span class="bd br">MITM Attack</span></td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Property</th><th>Value</th></tr>
+        <tr><td>Purpose</td><td>Key exchange only</td></tr>
+        <tr><td>Can encrypt messages?</td><td><span class="bd br">No</span></td></tr>
+        <tr><td>Security based on</td><td>Difficulty of the Discrete Logarithm problem</td></tr>
+        <tr><td>Vulnerable to</td><td><span class="bd br">MITM Attack</span></td></tr>
+      </table>
+    </div>
+
+    <!-- PRIMITIVE ROOT -->
+    <div class="sec">
+      <div class="sec-title ar">الجذر الأولي Primitive Root — Slide 4</div>
+      <div class="sec-title en">Primitive Root Background — Slide 4</div>
+      <p class="ar"><strong>Primitive Root</strong> <span class="aw">(الجذر الأولي)</span>: العدد α يكون جذراً أولياً للعدد الأولي q إذا أنتجت <code>Y = αˣ mod q</code> قيماً <strong>مختلفة</strong> لكل X من 1 إلى q−1.</p>
+      <p class="en"><strong>Primitive Root</strong>: α is a primitive root of prime q if <code>Y = αˣ mod q</code> produces a <strong>different</strong> value for every X from 1 to q−1.</p>
+      <div class="solution">
+        <div class="sol-head ar">✦ مثال: هل α=3 جذر أولي لـ q=5؟</div>
+        <div class="sol-head en">✦ Example: Is α=3 a primitive root of q=5?</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: احسب Y = 3ˣ mod 5 لكل X من 1 إلى 4</div>
+            <div class="sol-rule en">Formula: compute Y = 3ˣ mod 5 for each X from 1 to 4</div>
+            <div class="sol-calc">X=1 → 3¹ mod 5 = 3</div>
+            <div class="sol-calc">X=2 → 3² mod 5 = 9 mod 5 = 4</div>
+            <div class="sol-calc">X=3 → 3³ mod 5 = 27 mod 5 = 2</div>
+            <div class="sol-calc">X=4 → 3⁴ mod 5 = 81 mod 5 = 1</div>
+            <div class="sol-result">النواتج {1,2,3,4} — كلها مختلفة ✓</div>
+            <div class="sol-note ar">إذن α=3 هو جذر أولي لـ q=5</div>
+            <div class="sol-note en">Therefore α=3 is a primitive root of q=5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DH FORMULAS -->
+    <div class="sec">
+      <div class="sec-title ar">معادلات DH الأساسية — Slides 5 و 10</div>
+      <div class="sec-title en">DH Core Formulas — Slides 5 and 10</div>
+      <p class="ar">الكل يتفق على معاملين عامين: <code>q</code> عدد أولي كبير، و<code>α</code> جذر أولي لـ q.</p>
+      <p class="en">Everyone agrees on two public parameters: <code>q</code> a large prime, and <code>α</code> a primitive root of q.</p>
+      <div class="formula">
+        <div class="f-label ar">📐 توليد المفاتيح العامة</div>
+        <div class="f-label en">📐 Public Key Generation</div>
+        <div class="f-eq">Y<sub>A</sub> = α<sup>X<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;(Alice)</div>
+        <div class="f-eq">Y<sub>B</sub> = α<sup>X<sub>B</sub></sup> mod q &nbsp;&nbsp;&nbsp;(Bob)</div>
+      </div>
+      <div class="formula">
+        <div class="f-label ar">📐 حساب المفتاح المشترك</div>
+        <div class="f-label en">📐 Computing the Shared Key</div>
+        <div class="f-eq">K = Y<sub>B</sub><sup>X<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;← Alice تحسبه</div>
+        <div class="f-eq">K = Y<sub>A</sub><sup>X<sub>B</sub></sup> mod q &nbsp;&nbsp;&nbsp;← Bob يحسبه</div>
+        <div class="f-eq">K = α<sup>X<sub>A</sub>·X<sub>B</sub></sup> mod q &nbsp;&nbsp;← النتيجة واحدة للاثنين</div>
+      </div>
+      <table class="tbl ar"><tr><th>الرمز</th><th>يمثّل</th><th>يعرفه</th></tr>
+        <tr><td><code>q</code></td><td>عدد أولي كبير</td><td>الجميع</td></tr>
+        <tr><td><code>α</code></td><td>جذر أولي لـ q</td><td>الجميع</td></tr>
+        <tr><td><code>X<sub>A</sub>, X<sub>B</sub></code></td><td>المفاتيح الخاصة (Secret Keys)</td><td>كل طرف مفتاحه فقط</td></tr>
+        <tr><td><code>Y<sub>A</sub>, Y<sub>B</sub></code></td><td>المفاتيح العامة (Public Keys)</td><td>الجميع</td></tr>
+        <tr><td><code>K</code></td><td>المفتاح المشترك (Shared Session Key)</td><td>Alice وBob فقط</td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Symbol</th><th>Represents</th><th>Known to</th></tr>
+        <tr><td><code>q</code></td><td>Large prime — modulus</td><td>Everyone</td></tr>
+        <tr><td><code>α</code></td><td>Primitive root of q</td><td>Everyone</td></tr>
+        <tr><td><code>X<sub>A</sub>, X<sub>B</sub></code></td><td>Secret (private) keys</td><td>Each party knows only their own</td></tr>
+        <tr><td><code>Y<sub>A</sub>, Y<sub>B</sub></code></td><td>Public keys</td><td>Everyone</td></tr>
+        <tr><td><code>K</code></td><td>Shared session key</td><td>Alice and Bob only</td></tr>
+      </table>
+    </div>
+
+    <!-- DH EXAMPLE -->
+    <div class="sec">
+      <div class="sec-title ar">مثال DH محلول كامل — Slide 12</div>
+      <div class="sec-title en">DH Complete Worked Example — Slide 12</div>
+      <p class="ar">المعطيات: q=353 · α=3 · X<sub>A</sub>=97 · X<sub>B</sub>=233</p>
+      <p class="en">Given: q=353 · α=3 · X<sub>A</sub>=97 · X<sub>B</sub>=233</p>
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الأولى: كل طرف يحسب مفتاحه العام</div>
+        <div class="sol-head en">✦ Phase 1: Each party computes their public key</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: Y<sub>A</sub> = α^X<sub>A</sub> mod q</div>
+            <div class="sol-rule en">Formula: Y<sub>A</sub> = α^X<sub>A</sub> mod q</div>
+            <div class="sol-calc">Y<sub>A</sub> = 3<sup>97</sup> mod 353</div>
+            <div class="sol-result">Y<sub>A</sub> = 40</div>
+            <div class="sol-note ar">Alice تنشر الرقم 40 للجميع</div>
+            <div class="sol-note en">Alice publishes 40 publicly</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: Y<sub>B</sub> = α^X<sub>B</sub> mod q</div>
+            <div class="sol-rule en">Formula: Y<sub>B</sub> = α^X<sub>B</sub> mod q</div>
+            <div class="sol-calc">Y<sub>B</sub> = 3<sup>233</sup> mod 353</div>
+            <div class="sol-result">Y<sub>B</sub> = 248</div>
+            <div class="sol-note ar">Bob ينشر الرقم 248 للجميع</div>
+            <div class="sol-note en">Bob publishes 248 publicly</div>
+          </div>
+        </div>
+      </div>
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الثانية: كل طرف يحسب المفتاح المشترك</div>
+        <div class="sol-head en">✦ Phase 2: Each party computes the shared key</div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: K = Y<sub>B</sub>^X<sub>A</sub> mod q ← Alice تحسبه</div>
+            <div class="sol-rule en">Formula: K = Y<sub>B</sub>^X<sub>A</sub> mod q ← Alice computes</div>
+            <div class="sol-calc">K = 248<sup>97</sup> mod 353</div>
+            <div class="sol-result">K = 160</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: K = Y<sub>A</sub>^X<sub>B</sub> mod q ← Bob يحسبه</div>
+            <div class="sol-rule en">Formula: K = Y<sub>A</sub>^X<sub>B</sub> mod q ← Bob computes</div>
+            <div class="sol-calc">K = 40<sup>233</sup> mod 353</div>
+            <div class="sol-result">K = 160 ✓ نفس النتيجة بدون إرسالها على الشبكة</div>
+            <div class="sol-note ar">الاثنان وصلا لنفس K دون إرساله على الشبكة أبداً</div>
+            <div class="sol-note en">Both reached the same K without ever sending it over the network</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout tip">
+        <div class="c-head ar">💡 لماذا يعمل هذا رياضياً؟</div>
+        <div class="c-head en">💡 Why does this work mathematically?</div>
+        <p class="ar">لأن: (α^X<sub>B</sub>)^X<sub>A</sub> = α^(X<sub>A</sub>·X<sub>B</sub>) = (α^X<sub>A</sub>)^X<sub>B</sub></p>
+        <p class="en">Because: (α^X<sub>B</sub>)^X<sub>A</sub> = α^(X<sub>A</sub>·X<sub>B</sub>) = (α^X<sub>A</sub>)^X<sub>B</sub></p>
+        <p class="ar">المهاجم يعرف q وα وY<sub>A</sub> وY<sub>B</sub> — لكن إيجاد X<sub>A</sub> من Y<sub>A</sub> = مسألة اللوغاريتم المنفصل المستحيلة حسابياً.</p>
+        <p class="en">Attacker knows q, α, Y<sub>A</sub>, Y<sub>B</sub> — but finding X<sub>A</sub> from Y<sub>A</sub> is the computationally infeasible Discrete Logarithm problem.</p>
+      </div>
+    </div>
+
+    <!-- MITM -->
+    <div class="sec">
+      <div class="sec-title ar">هجوم Man-in-the-Middle على DH — Slides 13–16 ⭐</div>
+      <div class="sec-title en">Man-in-the-Middle Attack on DH — Slides 13–16 ⭐</div>
+      <p class="ar">DH لا يُوثّق الأطراف — فيستغل المهاجم (Darth) هذا الضعف. يُعدّ Darth <strong>مفتاحين خاصين</strong>:</p>
+      <p class="en">DH does not authenticate parties — the attacker (Darth) exploits this. Darth prepares <strong>two private/public key pairs</strong>:</p>
+      <div class="formula">
+        <div class="f-label ar">📐 مفاتيح Darth</div>
+        <div class="f-label en">📐 Darth's Keys</div>
+        <div class="f-eq">X<sub>D1</sub>, Y<sub>D1</sub> = α<sup>X<sub>D1</sub></sup> mod q &nbsp;&nbsp;← يستخدمه مع Alice</div>
+        <div class="f-eq">X<sub>D2</sub>, Y<sub>D2</sub> = α<sup>X<sub>D2</sub></sup> mod q &nbsp;&nbsp;← يستخدمه مع Bob</div>
+      </div>
+      <div class="solution">
+        <div class="sol-head ar">✦ خطوات الهجوم خطوة بخطوة</div>
+        <div class="sol-head en">✦ Attack Steps — Step by Step</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Alice ترسل Y<sub>A</sub> إلى Bob</div>
+            <div class="sol-rule en">Alice sends Y<sub>A</sub> to Bob</div>
+            <div class="sol-calc">Alice → [Y<sub>A</sub>] → Bob</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Darth يعترض Y<sub>A</sub> ويرسل Y<sub>D1</sub> إلى Bob بدلاً منه</div>
+            <div class="sol-rule en">Darth intercepts Y<sub>A</sub> and sends Y<sub>D1</sub> to Bob instead</div>
+            <div class="sol-calc">Alice → [Y<sub>A</sub>] → Darth → [Y<sub>D1</sub>] → Bob</div>
+            <div class="sol-note ar">Darth يحسب K<sub>AD</sub> = Y<sub>A</sub>^X<sub>D1</sub> mod q (مفتاح مشترك مع Alice)</div>
+            <div class="sol-note en">Darth computes K<sub>AD</sub> = Y<sub>A</sub>^X<sub>D1</sub> mod q (shared key with Alice)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Bob يستقبل Y<sub>D1</sub> ظاناً أنه Y<sub>A</sub> — يحسب مفتاحاً مع Darth</div>
+            <div class="sol-rule en">Bob receives Y<sub>D1</sub> thinking it's from Alice — computes key with Darth</div>
+            <div class="sol-calc">K<sub>BD</sub> = Y<sub>D1</sub>^X<sub>B</sub> mod q</div>
+            <div class="sol-note ar">Bob الآن متصل بـ Darth وهو لا يعلم!</div>
+            <div class="sol-note en">Bob is now connected to Darth without knowing it!</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Bob يرسل Y<sub>B</sub> إلى Alice</div>
+            <div class="sol-rule en">Bob sends Y<sub>B</sub> to Alice</div>
+            <div class="sol-calc">Bob → [Y<sub>B</sub>] → Alice</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Darth يعترض Y<sub>B</sub> ويرسل Y<sub>D2</sub> إلى Alice بدلاً منه</div>
+            <div class="sol-rule en">Darth intercepts Y<sub>B</sub> and sends Y<sub>D2</sub> to Alice instead</div>
+            <div class="sol-calc">Bob → [Y<sub>B</sub>] → Darth → [Y<sub>D2</sub>] → Alice</div>
+            <div class="sol-note ar">Darth يحسب K<sub>BD</sub> = Y<sub>B</sub>^X<sub>D2</sub> mod q (مفتاح مشترك مع Bob)</div>
+            <div class="sol-note en">Darth computes K<sub>BD</sub> = Y<sub>B</sub>^X<sub>D2</sub> mod q (shared key with Bob)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">6</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Alice تستقبل Y<sub>D2</sub> ظانةً أنه Y<sub>B</sub> — تحسب مفتاحاً مع Darth</div>
+            <div class="sol-rule en">Alice receives Y<sub>D2</sub> thinking it's from Bob — computes key with Darth</div>
+            <div class="sol-calc">K<sub>AD</sub> = Y<sub>D2</sub>^X<sub>A</sub> mod q</div>
+            <div class="sol-note ar">Alice الآن متصلة بـ Darth وهي لا تعلم!</div>
+            <div class="sol-note en">Alice is now connected to Darth without knowing it!</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">7</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">النتيجة: Darth في المنتصف يقرأ كل شيء</div>
+            <div class="sol-rule en">Result: Darth is in the middle reading everything</div>
+            <div class="sol-calc">Alice ↔ [K<sub>AD</sub>] ↔ Darth ↔ [K<sub>BD</sub>] ↔ Bob</div>
+            <div class="sol-note ar">Darth يفك تشفير كل رسالة ويُعيد تشفيرها بالمفتاح الآخر</div>
+            <div class="sol-note en">Darth decrypts every message and re-encrypts it with the other key</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ الحل الوحيد لـ MITM</div>
+        <div class="c-head en">⚠️ The Only Solution to MITM</div>
+        <p class="ar"><strong>توثيق المفاتيح العامة</strong> باستخدام شهادات رقمية (Digital Certificates) أو جهة موثوقة (Trusted Authority) — عندها لو حاول Darth يبدّل المفاتيح، المستخدم يكتشف التزوير.</p>
+        <p class="en"><strong>Authenticate the public keys</strong> using Digital Certificates or a Trusted Authority — if Darth tries to replace keys, the user detects the forgery.</p>
+      </div>
+    </div>
+
+    <!-- ELGAMAL KEY GEN -->
+    <div class="sec">
+      <div class="sec-title ar">ElGamal — توليد المفاتيح — Slide 17</div>
+      <div class="sec-title en">ElGamal — Key Generation — Slide 17</div>
+      <p class="ar">ElGamal مبنية على DH لكنها تستطيع <strong>تشفير الرسائل</strong> بعكس DH. الـ Ciphertext يتكون دائماً من <strong>زوج (C₁, C₂)</strong>.</p>
+      <p class="en">ElGamal is based on DH but it <strong>can encrypt messages</strong> unlike DH. The Ciphertext is always <strong>a pair (C₁, C₂)</strong>.</p>
+      <div class="formula">
+        <div class="f-label ar">📐 معادلات توليد مفاتيح ElGamal</div>
+        <div class="f-label en">📐 ElGamal Key Generation Formulas</div>
+        <div class="f-eq">المعاملات العامة: q (prime) , α (primitive root of q)</div>
+        <div class="f-eq">المفتاح الخاص:  x<sub>A</sub>  حيث  1 &lt; x<sub>A</sub> &lt; q</div>
+        <div class="f-eq">المفتاح العام:  y<sub>A</sub> = α<sup>x<sub>A</sub></sup> mod q</div>
+        <div class="f-eq">Public Key الكامل = {q , α , y<sub>A</sub>}</div>
+      </div>
+    </div>
+
+    <!-- ELGAMAL ENCRYPT -->
+    <div class="sec">
+      <div class="sec-title ar">ElGamal — التشفير وفك التشفير — Slide 18</div>
+      <div class="sec-title en">ElGamal — Encryption &amp; Decryption — Slide 18</div>
+      <div class="formula">
+        <div class="f-label ar">📐 معادلات التشفير — Bob يشفّر لـ Alice</div>
+        <div class="f-label en">📐 Encryption Formulas — Bob encrypts for Alice</div>
+        <div class="f-eq">الخطوة 1: اختر k عشوائياً حيث 1 ≤ k ≤ q-1</div>
+        <div class="f-eq">الخطوة 2: K = y<sub>A</sub><sup>k</sup> mod q &nbsp;&nbsp;&nbsp;&nbsp;← مفتاح مؤقت one-time key</div>
+        <div class="f-eq">الخطوة 3: C<sub>1</sub> = α<sup>k</sup> mod q</div>
+        <div class="f-eq">الخطوة 4: C<sub>2</sub> = K · M mod q</div>
+        <div class="f-eq">Ciphertext المُرسَل = (C<sub>1</sub> , C<sub>2</sub>)</div>
+      </div>
+      <div class="formula">
+        <div class="f-label ar">📐 معادلات فك التشفير — Alice تفك</div>
+        <div class="f-label en">📐 Decryption Formulas — Alice decrypts</div>
+        <div class="f-eq">الخطوة 1: K = C<sub>1</sub><sup>x<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;← استرجاع المفتاح المؤقت</div>
+        <div class="f-eq">الخطوة 2: M = C<sub>2</sub> · K<sup>-1</sup> mod q &nbsp;&nbsp;← فك التشفير</div>
+      </div>
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ قاعدة لا تُنسى</div>
+        <div class="c-head en">⚠️ Critical Rule</div>
+        <p class="ar">يجب استخدام <strong>k جديد لكل رسالة</strong>. إذا استُخدم نفس k مرتين يقدر المهاجم يكسر التشفير كاملاً.</p>
+        <p class="en">A <strong>unique k must be used for each message</strong>. Reusing the same k allows an attacker to completely break the encryption.</p>
+      </div>
+    </div>
+
+    <!-- ELGAMAL EXAMPLE -->
+    <div class="sec">
+      <div class="sec-title ar">مثال ElGamal محلول كامل — Slide 19</div>
+      <div class="sec-title en">ElGamal Complete Worked Example — Slide 19</div>
+      <p class="ar">المعطيات: q=19 · α=10 · x<sub>A</sub>=5 · M=17 · k=6</p>
+      <p class="en">Given: q=19 · α=10 · x<sub>A</sub>=5 · M=17 · k=6</p>
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الأولى: Alice تولّد مفاتيحها</div>
+        <div class="sol-head en">✦ Phase 1: Alice generates her keys</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: y<sub>A</sub> = α^x<sub>A</sub> mod q</div>
+            <div class="sol-rule en">Formula: y<sub>A</sub> = α^x<sub>A</sub> mod q</div>
+            <div class="sol-calc">y<sub>A</sub> = 10<sup>5</sup> mod 19 = 100000 mod 19</div>
+            <div class="sol-result">y<sub>A</sub> = 3</div>
+            <div class="sol-note ar">المفتاح العام لـ Alice: {q=19 , α=10 , y<sub>A</sub>=3}</div>
+            <div class="sol-note en">Alice's Public Key: {q=19 , α=10 , y<sub>A</sub>=3}</div>
+          </div>
+        </div>
+      </div>
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الثانية: Bob يشفّر M=17</div>
+        <div class="sol-head en">✦ Phase 2: Bob encrypts M=17</div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: K = y<sub>A</sub>^k mod q (المفتاح المؤقت)</div>
+            <div class="sol-rule en">Formula: K = y<sub>A</sub>^k mod q (one-time key)</div>
+            <div class="sol-calc">K = 3<sup>6</sup> mod 19 = 729 mod 19</div>
+            <div class="sol-result">K = 7</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: C<sub>1</sub> = α^k mod q</div>
+            <div class="sol-rule en">Formula: C<sub>1</sub> = α^k mod q</div>
+            <div class="sol-calc">C<sub>1</sub> = 10<sup>6</sup> mod 19 = 1000000 mod 19</div>
+            <div class="sol-result">C<sub>1</sub> = 11</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: C<sub>2</sub> = K × M mod q</div>
+            <div class="sol-rule en">Formula: C<sub>2</sub> = K × M mod q</div>
+            <div class="sol-calc">C<sub>2</sub> = 7 × 17 mod 19 = 119 mod 19</div>
+            <div class="sol-result">C<sub>2</sub> = 5</div>
+            <div class="sol-note ar">Bob يرسل: Ciphertext = (11 , 5)</div>
+            <div class="sol-note en">Bob sends: Ciphertext = (11 , 5)</div>
+          </div>
+        </div>
+      </div>
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الثالثة: Alice تفك التشفير</div>
+        <div class="sol-head en">✦ Phase 3: Alice decrypts</div>
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: K = C<sub>1</sub>^x<sub>A</sub> mod q (استرجاع K)</div>
+            <div class="sol-rule en">Formula: K = C<sub>1</sub>^x<sub>A</sub> mod q (recover K)</div>
+            <div class="sol-calc">K = 11<sup>5</sup> mod 19 = 161051 mod 19</div>
+            <div class="sol-result">K = 7 ✓ (نفس K الذي استخدمه Bob)</div>
+            <div class="sol-note ar">Alice استرجعت نفس المفتاح المؤقت بدون أن يُرسل</div>
+            <div class="sol-note en">Alice recovered the same one-time key without it being sent</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">6</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: أوجد K⁻¹ — المعكوس الضربي لـ K mod q</div>
+            <div class="sol-rule en">Formula: find K⁻¹ — multiplicative inverse of K mod q</div>
+            <div class="sol-calc">نبحث عن x: 7x ≡ 1 mod 19</div>
+            <div class="sol-calc">7 × 11 = 77 = 4×19 + 1 → 77 mod 19 = 1 ✓</div>
+            <div class="sol-result">K⁻¹ = 11</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">7</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: M = C<sub>2</sub> × K⁻¹ mod q</div>
+            <div class="sol-rule en">Formula: M = C<sub>2</sub> × K⁻¹ mod q</div>
+            <div class="sol-calc">M = 5 × 11 mod 19 = 55 mod 19</div>
+            <div class="sol-result">M = 17 ✓ رجعت الرسالة الأصلية!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECC -->
+    <div class="sec">
+      <div class="sec-title ar">ECC — Elliptic Curve Cryptography — Slides 20–22</div>
+      <div class="sec-title en">ECC — Elliptic Curve Cryptography — Slides 20–22</div>
+      <p class="ar">بديل أكثر كفاءة لـ RSA وDH — نفس الأمان بمفاتيح أصغر بكثير. مثالي للأجهزة المحدودة الموارد.</p>
+      <p class="en">A more efficient alternative to RSA and DH — same security with much smaller keys. Ideal for resource-constrained devices.</p>
+      <table class="tbl ar"><tr><th>Symmetric (بت)</th><th>ECC (بت)</th><th>RSA/DH (بت)</th></tr>
+        <tr><td>80</td><td>160</td><td>1024</td></tr>
+        <tr><td>112</td><td>224</td><td>2048</td></tr>
+        <tr><td>128</td><td>256</td><td>3072</td></tr>
+        <tr><td>192</td><td>384</td><td>7680</td></tr>
+        <tr><td>256</td><td>512</td><td>15360</td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Symmetric (bits)</th><th>ECC (bits)</th><th>RSA/DH (bits)</th></tr>
+        <tr><td>80</td><td>160</td><td>1024</td></tr>
+        <tr><td>112</td><td>224</td><td>2048</td></tr>
+        <tr><td>128</td><td>256</td><td>3072</td></tr>
+        <tr><td>192</td><td>384</td><td>7680</td></tr>
+        <tr><td>256</td><td>512</td><td>15360</td></tr>
+      </table>
+      <div class="callout key">
+        <div class="c-head ar">🔑 الفكرة الأساسية</div>
+        <div class="c-head en">🔑 Key Takeaway</div>
+        <p class="ar">ECC بـ <strong>256 بت</strong> = RSA بـ <strong>3072 بت</strong> في مستوى الأمان. هذا يوفر وقت معالجة وطاقة وذاكرة.</p>
+        <p class="en">ECC with <strong>256 bits</strong> = RSA with <strong>3072 bits</strong> in security level. This saves processing time, power, and memory.</p>
+      </div>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.10 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.10 ⭐</div>
+      <table class="tbl ar"><tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>DH يُستخدم لـ؟</td><td><span class="bd bg">تبادل مفاتيح فقط</span> — لا يشفّر رسائل</td></tr>
+        <tr><td>DH عرضة لـ MITM؟</td><td><span class="bd br">True — نعم عرضة</span></td></tr>
+        <tr><td>أمان DH يعتمد على؟</td><td>صعوبة حساب Discrete Logarithm</td></tr>
+        <tr><td>ElGamal Ciphertext = ؟</td><td>زوج من الأعداد <span class="bd bb">(C₁, C₂)</span></td></tr>
+        <tr><td>لماذا k يجب أن يكون فريداً في ElGamal؟</td><td>إعادة استخدامه تُمكّن المهاجم من كسر التشفير</td></tr>
+        <tr><td>ECC مقارنة بـ RSA؟</td><td>نفس الأمان بمفتاح أصغر بكثير</td></tr>
+        <tr><td>حل MITM في DH؟</td><td>توثيق المفاتيح بـ Digital Certificates</td></tr>
+        <tr><td>المهاجم يحتاج يحل إيش ليكسر DH؟</td><td>Discrete Logarithm — إيجاد X من Y=α^X mod q</td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>DH is used for?</td><td><span class="bd bg">Key exchange only</span> — cannot encrypt messages</td></tr>
+        <tr><td>Is DH vulnerable to MITM?</td><td><span class="bd br">True — Yes</span></td></tr>
+        <tr><td>DH security relies on?</td><td>Difficulty of Discrete Logarithm problem</td></tr>
+        <tr><td>ElGamal ciphertext = ?</td><td>A pair of numbers <span class="bd bb">(C₁, C₂)</span></td></tr>
+        <tr><td>Why must k be unique in ElGamal?</td><td>Reusing k lets the attacker break the encryption</td></tr>
+        <tr><td>ECC compared to RSA?</td><td>Same security with much smaller key size</td></tr>
+        <tr><td>Solution to MITM in DH?</td><td>Authenticate public keys using Digital Certificates</td></tr>
+        <tr><td>To break DH attacker must solve?</td><td>Discrete Logarithm — find X from Y=α^X mod q</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ CH 11 ═══════════ -->
+<div class="chapter" id="ch11">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)">11</div>
+    <div>
+      <div class="ch-title">Cryptographic Hash Functions</div>
+      <div class="ch-sub ar">دوال الـ Hash · Slides 3–33</div>
+      <div class="ch-sub en">Cryptographic Hash Functions · Slides 3–33</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- WHAT IS HASH -->
+    <div class="sec">
+      <div class="sec-title ar">ما هي دالة الـ Hash؟ — Slides 3–6</div>
+      <div class="sec-title en">What is a Hash Function? — Slides 3–6</div>
+      <p class="ar">دالة تأخذ رسالة بأي حجم وتُنتج قيمة ثابتة الحجم تُسمى <strong>Hash Value</strong> أو <strong>Message Digest</strong>. الهدف الأساسي: <strong>سلامة البيانات (Data Integrity)</strong>.</p>
+      <p class="en">A function that takes any-size message and produces a fixed-size output called a <strong>Hash Value</strong> or <strong>Message Digest</strong>. Primary purpose: <strong>Data Integrity</strong>.</p>
+      <div class="formula">
+        <div class="f-label ar">📐 المعادلة الأساسية</div>
+        <div class="f-label en">📐 Core Formula</div>
+        <div class="f-eq">h = H(M)</div>
+        <div class="f-eq" style="font-size:.8rem;color:var(--muted)">H = hash function · M = message (any size) · h = hash value (fixed size)</div>
+      </div>
+      <div class="callout key">
+        <div class="c-head ar">💡 خصائص Hash الأساسية</div>
+        <div class="c-head en">💡 Core Hash Properties</div>
+        <p class="ar">١- <strong>Variable input</strong>: تقبل أي حجم رسالة<br>
+        ٢- <strong>Fixed output</strong>: ناتجها دائماً نفس الحجم (مثلاً 256 بت في SHA-256)<br>
+        ٣- <strong>One-way</strong>: لا يمكن استرداد M من h<br>
+        ٤- <strong>Deterministic</strong>: نفس M تُعطي دائماً نفس h</p>
+        <p class="en">1- <strong>Variable input</strong>: accepts any message size<br>
+        2- <strong>Fixed output</strong>: always produces same size output (e.g. 256 bits in SHA-256)<br>
+        3- <strong>One-way</strong>: cannot recover M from h<br>
+        4- <strong>Deterministic</strong>: same M always gives same h</p>
+      </div>
+    </div>
+
+    <!-- USES -->
+    <div class="sec">
+      <div class="sec-title ar">استخدامات الـ Hash — Slides 7–10</div>
+      <div class="sec-title en">Hash Function Uses — Slides 7–10</div>
+      <table class="tbl ar"><tr><th>الاستخدام</th><th>كيف يعمل</th></tr>
+        <tr><td><strong>Message Authentication (MAC)</strong></td><td>يُشفَّر H مع مفتاح سري مشترك للتحقق من المصدر</td></tr>
+        <tr><td><strong>Digital Signature</strong></td><td>يُشفَّر H بالمفتاح الخاص — أسرع من تشفير الرسالة كاملة</td></tr>
+        <tr><td><strong>Password Storage</strong></td><td>تُخزَّن H(password) بدل كلمة المرور مباشرة</td></tr>
+        <tr><td><strong>Data Integrity</strong></td><td>مقارنة h قبل وبعد النقل — أي تغيير يغير h كلياً</td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Use</th><th>How it works</th></tr>
+        <tr><td><strong>Message Authentication (MAC)</strong></td><td>Hash encrypted with a shared secret key to verify the source</td></tr>
+        <tr><td><strong>Digital Signature</strong></td><td>Hash encrypted with private key — faster than encrypting the whole message</td></tr>
+        <tr><td><strong>Password Storage</strong></td><td>Store H(password) instead of the password itself</td></tr>
+        <tr><td><strong>Data Integrity</strong></td><td>Compare h before and after transfer — any change completely alters h</td></tr>
+      </table>
+    </div>
+
+    <!-- REQUIREMENTS -->
+    <div class="sec">
+      <div class="sec-title ar">متطلبات دالة الـ Hash — Table 11.1 — Slide 14 ⭐</div>
+      <div class="sec-title en">Hash Function Requirements — Table 11.1 — Slide 14 ⭐</div>
+      <p class="ar">سبعة متطلبات يجب أن تتوفر في أي دالة Hash مشفّرة. الثلاثة الأخيرة هي الأهم للاختبار:</p>
+      <p class="en">Seven requirements any cryptographic hash function must satisfy. The last three are most important for the exam:</p>
+      <table class="tbl ar"><tr><th>المتطلب</th><th>الشرح</th><th>مستوى الأهمية</th></tr>
+        <tr><td><strong>Variable input size</strong></td><td>تقبل أي حجم رسالة</td><td><span class="bd bb">أساسي</span></td></tr>
+        <tr><td><strong>Fixed output size</strong></td><td>الناتج دائماً نفس الحجم</td><td><span class="bd bb">أساسي</span></td></tr>
+        <tr><td><strong>Efficiency</strong></td><td>سهلة الحساب لأي رسالة</td><td><span class="bd bb">أساسي</span></td></tr>
+        <tr><td><strong>Preimage Resistant</strong> (One-way)</td><td>إذا عرفت h — مستحيل تجد M بحيث H(M)=h</td><td><span class="bd bg">⭐ مهم</span></td></tr>
+        <tr><td><strong>Second Preimage Resistant</strong> (Weak Collision)</td><td>إذا عرفت M — مستحيل تجد M'≠M بحيث H(M)=H(M')</td><td><span class="bd bg">⭐ مهم</span></td></tr>
+        <tr><td><strong>Collision Resistant</strong> (Strong Collision)</td><td>مستحيل تجد أي M وM' بحيث H(M)=H(M')</td><td><span class="bd bg">⭐⭐ الأهم</span></td></tr>
+        <tr><td><strong>Pseudorandomness</strong></td><td>الناتج يبدو عشوائياً تماماً</td><td><span class="bd bb">إضافي</span></td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Requirement</th><th>Explanation</th><th>Importance</th></tr>
+        <tr><td><strong>Variable input size</strong></td><td>Can be applied to any size block</td><td><span class="bd bb">Basic</span></td></tr>
+        <tr><td><strong>Fixed output size</strong></td><td>Always produces same size output</td><td><span class="bd bb">Basic</span></td></tr>
+        <tr><td><strong>Efficiency</strong></td><td>Easy to compute H(x) for any x</td><td><span class="bd bb">Basic</span></td></tr>
+        <tr><td><strong>Preimage Resistant</strong> (One-way)</td><td>Given h, infeasible to find M such that H(M)=h</td><td><span class="bd bg">⭐ Important</span></td></tr>
+        <tr><td><strong>Second Preimage Resistant</strong> (Weak Collision)</td><td>Given M, infeasible to find M'≠M such that H(M)=H(M')</td><td><span class="bd bg">⭐ Important</span></td></tr>
+        <tr><td><strong>Collision Resistant</strong> (Strong Collision)</td><td>Infeasible to find any M and M' such that H(M)=H(M')</td><td><span class="bd bg">⭐⭐ Most Important</span></td></tr>
+        <tr><td><strong>Pseudorandomness</strong></td><td>Output meets pseudorandomness tests</td><td><span class="bd bb">Additional</span></td></tr>
+      </table>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 الفرق بين Second Preimage وCollision — يجي في الاختبار</div>
+        <div class="c-head en">🔑 Second Preimage vs Collision — appears in exams</div>
+        <p class="ar"><strong>Second Preimage</strong>: عندك M محدد وتحاول تجد M' يعطي نفس الـ hash<br>
+        <strong>Collision</strong>: تختار M وM' بحرية وتحاول تجد أي زوج يعطي نفس الـ hash (أسهل)<br>
+        → Collision Resistant أقوى من Second Preimage Resistant</p>
+        <p class="en"><strong>Second Preimage</strong>: You have a specific M and try to find M' with the same hash<br>
+        <strong>Collision</strong>: You freely choose both M and M' and try to find any pair with same hash (easier)<br>
+        → Collision Resistant is stronger than Second Preimage Resistant</p>
+      </div>
+    </div>
+
+    <!-- ATTACKS -->
+    <div class="sec">
+      <div class="sec-title ar">الهجمات على دوال الـ Hash — Slides 17–18 ⭐</div>
+      <div class="sec-title en">Attacks on Hash Functions — Slides 17–18 ⭐</div>
+
+      <p class="ar" style="font-weight:600">١. هجوم القوة الغاشمة Brute-Force Attack</p>
+      <p class="en" style="font-weight:600">1. Brute-Force Attack</p>
+      <p class="ar">يجرّب قيماً عشوائية حتى يجد تصادماً. القوة تعتمد فقط على <strong>طول الـ hash بالبت</strong>.</p>
+      <p class="en">Tries random values until a collision is found. Strength depends only on the <strong>hash length in bits</strong>.</p>
+      <div class="formula">
+        <div class="f-label ar">📐 جهد البحث عن Collision — Birthday Paradox</div>
+        <div class="f-label en">📐 Collision Search Effort — Birthday Paradox</div>
+        <div class="f-eq">Collision needs ≈ 2<sup>n/2</sup> operations (n = hash bits)</div>
+        <div class="f-eq">Preimage needs ≈ 2<sup>n</sup> operations</div>
+        <div class="f-eq">Example: n=64 → collision ≈ 2<sup>32</sup> ≈ 4 billion tries</div>
+        <div class="f-eq">Example: n=256 → collision ≈ 2<sup>128</sup> → practically impossible</div>
+      </div>
+
+      <p class="ar" style="font-weight:600;margin-top:1.2rem">٢. Birthday Attack — Slides 18</p>
+      <p class="en" style="font-weight:600;margin-top:1.2rem">2. Birthday Attack — Slide 18</p>
+      <p class="ar">هجوم ذكي يستغل <strong>Birthday Paradox</strong> <span class="aw">(مفارقة عيد الميلاد)</span>: في غرفة فيها 23 شخص، احتمال أن اثنين لهم نفس يوم الميلاد هو 50٪. الفكرة: تجمع تنويعات من رسالتين وتبحث عن تطابق.</p>
+      <p class="en">A smart attack exploiting the <strong>Birthday Paradox</strong>: in a room of 23 people, there's a 50% chance two share a birthday. The idea: collect variations of two messages and search for a match.</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ خطوات Birthday Attack</div>
+        <div class="sol-head en">✦ Birthday Attack Steps</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة الأصلية x → يُخزّن hashها</div>
+            <div class="sol-rule en">Attacker prepares 2^(n/2) variations of legitimate message x → stores their hashes</div>
+            <div class="sol-calc">x, x', x'', ... → H(x), H(x'), H(x''), ...</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة المزوّرة y</div>
+            <div class="sol-rule en">Attacker prepares 2^(n/2) variations of fraudulent message y</div>
+            <div class="sol-calc">y, y', y'', ... → H(y), H(y'), H(y''), ...</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">يبحث عن x' وy' بحيث H(x') = H(y')</div>
+            <div class="sol-rule en">Finds x' and y' such that H(x') = H(y')</div>
+            <div class="sol-calc">H(x') = H(y') → collision found!</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">يُقدّم x' للضحية لتوقيعه (رسالة شرعية) ثم يستبدلها بـ y' (رسالة مزوّرة)</div>
+            <div class="sol-rule en">Presents x' to victim for signing (legitimate message) then replaces with y' (fraudulent)</div>
+            <div class="sol-calc">sign(x') = sign(y') → signature is valid on fraudulent message!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ لماذا هذا خطير؟</div>
+        <div class="c-head en">⚠️ Why is this dangerous?</div>
+        <p class="ar">لأن H(x') = H(y') فإن نفس التوقيع يعمل على الرسالتين — المهاجم يحصل على توقيع رسالة مزوّرة دون الحاجة لمعرفة المفتاح الخاص.</p>
+        <p class="en">Since H(x') = H(y'), the same signature works on both messages — attacker gets a valid signature on a fraudulent message without knowing the private key.</p>
+      </div>
+    </div>
+
+    <!-- SHA -->
+    <div class="sec">
+      <div class="sec-title ar">SHA — Secure Hash Algorithm — Slides 22–32</div>
+      <div class="sec-title en">SHA — Secure Hash Algorithm — Slides 22–32</div>
+      <p class="ar">SHA صمّمه NIST. ثلاثة إصدارات رئيسية:</p>
+      <p class="en">SHA was designed by NIST. Three main versions:</p>
+      <table class="tbl ar"><tr><th>الإصدار</th><th>سنة الإصدار</th><th>حجم الناتج</th><th>الحالة</th></tr>
+        <tr><td><strong>SHA-1</strong></td><td>1995</td><td>160 بت</td><td><span class="bd br">❌ مكسور (2017)</span></td></tr>
+        <tr><td><strong>SHA-2</strong> (SHA-256, SHA-512)</td><td>2001</td><td>224/256/384/512 بت</td><td><span class="bd bg">✅ آمن — الأكثر استخداماً</span></td></tr>
+        <tr><td><strong>SHA-3</strong></td><td>2015</td><td>224/256/384/512 بت</td><td><span class="bd bg">✅ آمن — مستقبلي</span></td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Version</th><th>Year</th><th>Output Size</th><th>Status</th></tr>
+        <tr><td><strong>SHA-1</strong></td><td>1995</td><td>160 bits</td><td><span class="bd br">❌ Broken (2017)</span></td></tr>
+        <tr><td><strong>SHA-2</strong> (SHA-256, SHA-512)</td><td>2001</td><td>224/256/384/512 bits</td><td><span class="bd bg">✅ Secure — most widely used</span></td></tr>
+        <tr><td><strong>SHA-3</strong></td><td>2015</td><td>224/256/384/512 bits</td><td><span class="bd bg">✅ Secure — future-proof</span></td></tr>
+      </table>
+      <div class="callout tip">
+        <div class="c-head ar">💡 الفرق الجوهري بين SHA-2 وSHA-3 — Slide 32</div>
+        <div class="c-head en">💡 Key Difference Between SHA-2 and SHA-3 — Slide 32</div>
+        <p class="ar">SHA-2 يستخدم <strong>Merkle-Damgård construction</strong> · SHA-3 يستخدم <strong>Sponge construction</strong> — بنية مختلفة كلياً تجعله محصّناً ضد هجمات length extension التي تؤثر على SHA-2.</p>
+        <p class="en">SHA-2 uses <strong>Merkle-Damgård construction</strong> · SHA-3 uses <strong>Sponge construction</strong> — a completely different structure that makes it immune to length extension attacks that affect SHA-2.</p>
+      </div>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.11 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.11 ⭐</div>
+      <table class="tbl ar"><tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>الهدف الأساسي لدالة الـ Hash؟</td><td>Data Integrity — سلامة البيانات</td></tr>
+        <tr><td>خاصية أن يستحيل إيجاد تصادم؟</td><td><span class="bd bg">Collision Resistant</span></td></tr>
+        <tr><td>خاصية أن يستحيل إيجاد M من h؟</td><td><span class="bd bg">Preimage Resistant (One-way)</span></td></tr>
+        <tr><td>كم عملية تحتاج لـ Collision في n-bit hash؟</td><td>2^(n/2) عملية — Birthday Paradox</td></tr>
+        <tr><td>Collision Resistant أقوى من Second Preimage؟</td><td><span class="bd bg">True ✓</span></td></tr>
+        <tr><td>SHA-1 آمن؟</td><td><span class="bd br">False — مكسور منذ 2017</span></td></tr>
+        <tr><td>أكثر SHA استخداماً حالياً؟</td><td>SHA-2 (SHA-256/SHA-512)</td></tr>
+        <tr><td>SHA-3 يستخدم؟</td><td>Sponge construction</td></tr>
+        <tr><td>الهجوم اللي يبحث عن H(M)=H(M')؟</td><td><span class="bd bb">Birthday Attack</span></td></tr>
+        <tr><td>SHA-256 ناتجه كم بت؟</td><td>256 بت</td></tr>
+      </table>
+      <table class="tbl en"><tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Primary purpose of a hash function?</td><td>Data Integrity</td></tr>
+        <tr><td>Property making it infeasible to find a collision?</td><td><span class="bd bg">Collision Resistant</span></td></tr>
+        <tr><td>Property making it infeasible to find M from h?</td><td><span class="bd bg">Preimage Resistant (One-way)</span></td></tr>
+        <tr><td>Operations needed for collision in n-bit hash?</td><td>2^(n/2) — Birthday Paradox</td></tr>
+        <tr><td>Collision Resistant stronger than Second Preimage?</td><td><span class="bd bg">True ✓</span></td></tr>
+        <tr><td>Is SHA-1 secure?</td><td><span class="bd br">False — broken since 2017</span></td></tr>
+        <tr><td>Most widely used SHA today?</td><td>SHA-2 (SHA-256/SHA-512)</td></tr>
+        <tr><td>SHA-3 uses which construction?</td><td>Sponge construction</td></tr>
+        <tr><td>Attack looking for H(M)=H(M')?</td><td><span class="bd bb">Birthday Attack</span></td></tr>
+        <tr><td>SHA-256 output size?</td><td>256 bits</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:.8rem;padding:2rem 0">
+  <span class="ar">سيتم إضافة الشابترات القادمة تباعاً · CPIT-425 Spring 2026</span>
+  <span class="en">More chapters will be added as we study · CPIT-425 Spring 2026</span>
+</div>
+
+</div>
+
+<script>
+function setLang(l){
+  document.body.className=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang-btn button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-btn button[onclick="setLang('${l}')"]`).classList.add('active');
+}
+function tog(h){
+  h.classList.toggle('open');
+  h.nextElementSibling.classList.toggle('open');
+}
+</script>
+</body>
+</html>
