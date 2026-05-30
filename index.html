@@ -193,6 +193,24 @@ body.en .tbl th{text-align:left}
 
 code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
   background:rgba(165,243,252,.08);padding:1px 5px;border-radius:3px}
+
+/* ── BIDI FIX ── */
+body.ar p, body.ar li, body.ar .sol-rule, body.ar .sol-note,
+body.ar .callout, body.ar .c-head {
+  unicode-bidi: plaintext;
+}
+body.ar .f-eq, body.ar .sol-calc, body.ar .sol-result {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: normal;
+}
+/* inline LTR islands inside RTL text */
+body.ar code, body.ar strong code {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
+
 </style>
 </head>
 <body class="ar">
@@ -203,11 +221,11 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
     <a href="#ch9" class="active">Ch.9 RSA</a>
     <a href="#ch10">Ch.10 DH/ElGamal</a>
     <a href="#ch11">Ch.11 Hash</a>
-    <a class="dim">Ch.12 MAC</a>
-    <a class="dim">Ch.13 Digital Sig</a>
-    <a class="dim">Ch.14 Key Dist</a>
-    <a class="dim">Ch.16 SSL/TLS</a>
-    <a class="dim">Ch.22 Firewalls</a>
+    <a href="#ch12">Ch.12 MAC</a>
+    <a href="#ch13">Ch.13 Digital Sig</a>
+    <a href="#ch14">Ch.14 Key Dist</a>
+    <a href="#ch16">Ch.16 SSL/TLS</a>
+    <a href="#ch22">Ch.22 Firewalls</a>
   </div>
   <div class="lang-btn">
     <button class="active" onclick="setLang('ar')">AR</button>
@@ -228,11 +246,11 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
     <a href="#ch9">Ch.9 — RSA</a>
     <a href="#ch10">Ch.10 — DH/ElGamal</a>
     <a href="#ch11">Ch.11 — Hash</a>
-    <a class="dim">Ch.12 — MAC</a>
-    <a class="dim">Ch.13 — Digital Signatures</a>
-    <a class="dim">Ch.14 — Key Distribution</a>
-    <a class="dim">Ch.16 — SSL/TLS</a>
-    <a class="dim">Ch.22 — Firewalls</a>
+    <a href="#ch12">Ch.12 — MAC</a>
+    <a href="#ch13">Ch.13 — Digital Signatures</a>
+    <a href="#ch14">Ch.14 — Key Distribution</a>
+    <a href="#ch16">Ch.16 — SSL/TLS</a>
+    <a href="#ch22">Ch.22 — Firewalls</a>
   </div>
 </div>
 
@@ -251,7 +269,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── WHY ─── -->
     <div class="sec">
-      <div class="sec-title ar">لماذا ظهر التشفير بالمفتاح العام؟ — Slides 3–5</div>
+      <div class="sec-title ar">لماذا ظهر التشفير بالمفتاح العام؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 3–5</span></div>
       <div class="sec-title en">Why Public-Key Cryptography? — Slides 3–5</div>
 
       <p class="ar">قبل عام ١٩٧٦، كل التشفير كان <strong>Symmetric</strong> <span class="aw">(متماثل)</span> — يعني نفس المفتاح للتشفير وفك التشفير. هذا سبّب مشكلتين كبيرتين:</p>
@@ -287,7 +305,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── TERMINOLOGY ─── -->
     <div class="sec">
-      <div class="sec-title ar">المصطلحات الأساسية — Slide 3</div>
+      <div class="sec-title ar">المصطلحات الأساسية — <span style="direction:ltr;unicode-bidi:embed">Slide 3</span></div>
       <div class="sec-title en">Key Terminology — Slide 3</div>
       <table class="tbl ar">
         <tr><th>المصطلح</th><th>التعريف</th></tr>
@@ -313,7 +331,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── MISCONCEPTIONS ─── -->
     <div class="sec">
-      <div class="sec-title ar">ثلاث أفكار خاطئة — Slide 4</div>
+      <div class="sec-title ar">ثلاث أفكار خاطئة — <span style="direction:ltr;unicode-bidi:embed">Slide 4</span></div>
       <div class="sec-title en">Three Misconceptions — Slide 4</div>
       <table class="tbl ar">
         <tr><th>الفكرة الخاطئة</th><th>الحقيقة</th></tr>
@@ -331,7 +349,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── 6 INGREDIENTS ─── -->
     <div class="sec">
-      <div class="sec-title ar">المكوّنات الستة لنظام المفتاح العام — Slide 6</div>
+      <div class="sec-title ar">المكوّنات الستة لنظام المفتاح العام — <span style="direction:ltr;unicode-bidi:embed">Slide 6</span></div>
       <div class="sec-title en">6 Ingredients of Public-Key Systems — Slide 6</div>
       <ul class="steps">
         <li><div>
@@ -363,7 +381,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── SYM vs ASYM ─── -->
     <div class="sec">
-      <div class="sec-title ar">المتماثل مقابل غير المتماثل — Slide 8</div>
+      <div class="sec-title ar">المتماثل مقابل غير المتماثل — <span style="direction:ltr;unicode-bidi:embed">Slide 8</span></div>
       <div class="sec-title en">Symmetric vs Asymmetric — Slide 8</div>
       <table class="tbl ar">
         <tr><th></th><th>Symmetric (متماثل)</th><th>Public-Key (غير متماثل)</th></tr>
@@ -385,7 +403,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── FOUR FIGURES ─── -->
     <div class="sec">
-      <div class="sec-title ar">الأشكال الأربعة — Slides 9–11 ⭐ الاختبار</div>
+      <div class="sec-title ar">الأشكال الأربعة — <span style="direction:ltr;unicode-bidi:embed">Slides 9–11</span> ⭐ الاختبار</div>
       <div class="sec-title en">The Four Encryption Figures — Slides 9–11 ⭐ Exam</div>
 
       <p class="ar" style="font-weight:600;color:var(--accent)">(a) تشفير متماثل — Confidentiality بمفتاح مشترك K</p>
@@ -440,8 +458,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
       <div class="callout warn">
         <div class="c-head ar">⚠️ سؤال الاختبار الشائع</div>
         <div class="c-head en">⚠️ Common Exam Question</div>
-        <p class="ar">أيّ الأشكال يوفر سرية فقط؟ → <strong>(b)</strong> · مصادقة فقط؟ → <strong>(c)</strong> · الثلاثة؟ → <strong>(d)</strong><br>
-        أيّ المفاتيح توفر ماذا؟ <code>PU<sub>b</sub></code> = سرية · <code>PR<sub>a</sub></code> = توقيع</p>
+        <p class="ar">سرية فقط: <strong>(b)</strong> · مصادقة وتوقيع فقط: <strong>(c)</strong> · الثلاثة معاً: <strong>(d)</strong><br>أيّ المفاتيح توفر ماذا؟ <code>PU<sub>b</sub></code> = سرية · <code>PR<sub>a</sub></code> = توقيع</p>
         <p class="en">Which figure provides confidentiality only? → <strong>(b)</strong> · Authentication only? → <strong>(c)</strong> · All three? → <strong>(d)</strong><br>
         Which key provides what? <code>PU<sub>b</sub></code> = confidentiality · <code>PR<sub>a</sub></code> = signature</p>
       </div>
@@ -449,7 +466,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── APPLICATIONS ─── -->
     <div class="sec">
-      <div class="sec-title ar">جدول التطبيقات — Slides 12–13 ⭐ MCQ</div>
+      <div class="sec-title ar">جدول التطبيقات — <span style="direction:ltr;unicode-bidi:embed">Slides 12–13</span> ⭐ MCQ</div>
       <div class="sec-title en">Applications Table — Slides 12–13 ⭐ MCQ</div>
       <table class="tbl">
         <tr><th class="ar">الخوارزمية</th><th class="en">Algorithm</th>
@@ -472,7 +489,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── RSA CORE ─── -->
     <div class="sec">
-      <div class="sec-title ar">خوارزمية RSA — القلب — Slides 20–22</div>
+      <div class="sec-title ar">خوارزمية RSA — القلب — <span style="direction:ltr;unicode-bidi:embed">Slides 20–22</span></div>
       <div class="sec-title en">The RSA Algorithm — Core — Slides 20–22</div>
 
       <p class="ar">طوّرها <strong>Rivest, Shamir, Adleman</strong> في MIT عام ١٩٧٧. المعادلتان اللتان لازم تحفظهم:</p>
@@ -580,7 +597,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: n = p × q</div>
             <div class="sol-calc">n = 17 × 11</div>
             <div class="sol-result">n = 187</div>
-            <div class="sol-note ar">هذا هو الـ Modulus الذي يُنشر للجميع</div>
+            <div class="sol-note ar">هذا هو المعامل (Modulus) الذي يُنشر للجميع</div>
             <div class="sol-note en">This is the Modulus — made public</div>
           </div>
         </div>
@@ -592,7 +609,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: φ(n) = (p−1)(q−1)</div>
             <div class="sol-calc">φ(187) = (17−1) × (11−1) = 16 × 10</div>
             <div class="sol-result">φ(n) = 160</div>
-            <div class="sol-note ar">يبقى سراً — هو الـ Trapdoor</div>
+            <div class="sol-note ar">يبقى سراً — هو الباب الخلفي (Trapdoor)</div>
             <div class="sol-note en">Kept secret — this is the Trapdoor</div>
           </div>
         </div>
@@ -603,7 +620,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule ar">القانون: gcd(e, φ(n)) = 1</div>
             <div class="sol-rule en">Formula: gcd(e, φ(n)) = 1</div>
             <div class="sol-calc">gcd(7, 160) = 1 ✓</div>
-            <div class="sol-result">e = 7 صالح / e = 7 is valid</div>
+            <div class="sol-result">e = 7 ← صالح ✓</div>
             <div class="sol-note ar">7 و160 لا يقسمهم عدد مشترك غير 1</div>
             <div class="sol-note en">7 and 160 share no common factor except 1</div>
           </div>
@@ -627,8 +644,8 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
           <div class="sol-content">
             <div class="sol-rule ar">النتيجة: المفتاحان</div>
             <div class="sol-rule en">Result: Both Keys</div>
-            <div class="sol-calc">Public Key  PU = {e=7,  n=187} ← للجميع / public</div>
-            <div class="sol-result">Private Key PR = {d=23, n=187} ← سري / secret</div>
+            <div class="sol-calc">Public Key &nbsp; PU = {e=7,  n=187}</div>
+            <div class="sol-result">Private Key PR = {d=23, n=187}</div>
           </div>
         </div>
       </div>
@@ -646,7 +663,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: C = Mᵉ mod n</div>
             <div class="sol-calc">C = 88⁷ mod 187</div>
             <div class="sol-result">C = 11</div>
-            <div class="sol-note ar">هذا هو الـ Ciphertext الذي يُرسل لـ Bob</div>
+            <div class="sol-note ar">هذا هو النص المشفّر الذي يُرسل</div>
             <div class="sol-note en">This is the Ciphertext sent to Bob</div>
           </div>
         </div>
@@ -721,8 +738,8 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-calc">d=22: 22×7 = 154 → 154 mod 40 = 34 ✗</div>
             <div class="sol-calc">d=23: 23×7 = 161 → 161 mod 40 = 1 ✓</div>
             <div class="sol-result">d = 23</div>
-            <div class="sol-note ar">Private Key = {23, 55}</div>
-            <div class="sol-note en">Private Key = {23, 55}</div>
+            <div class="sol-note ar">المفتاح الخاص = {d=23, n=55}</div>
+            <div class="sol-note en">Private Key = {d=23, n=55}</div>
           </div>
         </div>
       </div>
@@ -787,7 +804,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── SQUARE AND MULTIPLY ─── -->
     <div class="sec">
-      <div class="sec-title ar">Square and Multiply — الطريقة السريعة — Slides 26–28</div>
+      <div class="sec-title ar">Square and Multiply — الطريقة السريعة — <span style="direction:ltr;unicode-bidi:embed">Slides 26–28</span></div>
       <div class="sec-title en">Square and Multiply — Efficient Method — Slides 26–28</div>
 
       <p class="ar">المشكلة: حساب 88⁷ مباشرة يُنتج رقماً ضخماً. الحل: نُقلّل بعد كل خطوة باستخدام <strong>خاصية الموديولار</strong>:</p>
@@ -823,7 +840,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">2</div>
           <div class="sol-content">
-            <div class="sol-rule ar">بت 1 (الأول دائماً 1): ابدأ بـ c = M</div>
+            <div class="sol-rule ar">بت <strong>1</strong> (الأول دائماً 1): ابدأ بـ c = الرسالة M</div>
             <div class="sol-rule en">Bit 1 (first bit always 1): start with c = M</div>
             <div class="sol-calc">c = 5</div>
             <div class="sol-result">c = 5</div>
@@ -833,7 +850,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">3</div>
           <div class="sol-content">
-            <div class="sol-rule ar">بت 0: رَبِّع فقط (Square only)</div>
+            <div class="sol-rule ar">بت <strong>0</strong>: رَبِّع فقط</div>
             <div class="sol-rule en">Bit 0: Square only</div>
             <div class="sol-calc">c = c² mod n = 5² mod 209 = 25 mod 209</div>
             <div class="sol-result">c = 25</div>
@@ -843,7 +860,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">4</div>
           <div class="sol-content">
-            <div class="sol-rule ar">بت 1: رَبِّع ثم اضرب في M (Square then Multiply)</div>
+            <div class="sol-rule ar">بت <strong>1</strong>: رَبِّع ثم اضرب بـ M</div>
             <div class="sol-rule en">Bit 1: Square then Multiply by M</div>
             <div class="sol-calc">c² = 25² = 625 → 625 mod 209 = 207</div>
             <div class="sol-calc">c = 207 × 5 = 1035 → 1035 mod 209 = 160</div>
@@ -854,7 +871,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">5</div>
           <div class="sol-content">
-            <div class="sol-rule ar">بت 1: رَبِّع ثم اضرب في M (Square then Multiply)</div>
+            <div class="sol-rule ar">بت <strong>1</strong>: رَبِّع ثم اضرب بـ M</div>
             <div class="sol-rule en">Bit 1: Square then Multiply by M</div>
             <div class="sol-calc">c² = 160² = 25600 → 25600 mod 209 = 82</div>
             <div class="sol-calc">c = 82 × 5 = 410 → 410 mod 209 = 201</div>
@@ -868,7 +885,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── TRAP-DOOR ─── -->
     <div class="sec">
-      <div class="sec-title ar">الدالة أحادية الاتجاه والباب الخلفي — Slides 15–18</div>
+      <div class="sec-title ar">الدالة أحادية الاتجاه والباب الخلفي — <span style="direction:ltr;unicode-bidi:embed">Slides 15–18</span></div>
       <div class="sec-title en">One-Way &amp; Trap-door Functions — Slides 15–18</div>
 
       <div class="formula">
@@ -893,7 +910,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">→</div>
           <div class="sol-content">
-            <div class="sol-rule ar">إذا عرفت p وq → حساب n سهل جداً</div>
+            <div class="sol-rule ar">إذا عرفت p وq: حساب n سهل</div>
             <div class="sol-rule en">Given p and q → computing n is trivial</div>
             <div class="sol-calc">p=11, q=13 → n = 11×13 = 143</div>
             <div class="sol-result">Easy ✓</div>
@@ -902,7 +919,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">←</div>
           <div class="sol-content">
-            <div class="sol-rule ar">إذا عرفت n فقط → إيجاد p وq مستحيل إذا n كبير</div>
+            <div class="sol-rule ar">إذا عرفت n فقط: إيجاد p وq مستحيل</div>
             <div class="sol-rule en">Given only n → finding p and q is infeasible for large n</div>
             <div class="sol-calc">n = 143 → find p and q = ???</div>
             <div class="sol-result" style="color:var(--coral)">Infeasible for large n ✗</div>
@@ -925,18 +942,18 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ─── ATTACKS ─── -->
     <div class="sec">
-      <div class="sec-title ar">الهجمات على RSA — Slides 33–41</div>
+      <div class="sec-title ar">الهجمات على RSA — <span style="direction:ltr;unicode-bidi:embed">Slides 33–41</span></div>
       <div class="sec-title en">Attacks on RSA — Slides 33–41</div>
 
       <p class="ar" style="font-weight:600">الهجمات الرياضية الثلاثة — Slide 34</p>
       <p class="en" style="font-weight:600">Three Mathematical Attacks — Slide 34</p>
       <ul class="steps">
         <li><div>
-          <p class="ar">حلّل n → احسب φ(n) → احسب d</p>
+          <p class="ar">حلّل n ثم احسب φ(n) ثم احسب d</p>
           <p class="en">Factor n → compute φ(n) → compute d</p>
         </div></li>
         <li><div>
-          <p class="ar">أوجد φ(n) مباشرة بدون معرفة p وq → احسب d</p>
+          <p class="ar">أوجد φ(n) مباشرة بدون معرفة p وq، ثم احسب d</p>
           <p class="en">Find φ(n) directly without knowing p and q → compute d</p>
         </div></li>
         <li><div>
@@ -1032,7 +1049,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- DH INTRO -->
     <div class="sec">
-      <div class="sec-title ar">ما هو Diffie-Hellman؟ — Slides 2–3</div>
+      <div class="sec-title ar">ما هو Diffie-Hellman؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 2–3</span></div>
       <div class="sec-title en">What is Diffie-Hellman? — Slides 2–3</div>
       <p class="ar">أول خوارزمية مفتاح عام تُنشر للعموم. الهدف الوحيد: <strong>تمكين شخصين من الاتفاق على مفتاح مشترك عبر قناة غير آمنة</strong> دون أن يتقابلا مسبقاً.</p>
       <p class="en">The first published public-key algorithm. Its only purpose: <strong>allow two parties to agree on a shared key over an insecure channel</strong> without meeting beforehand.</p>
@@ -1058,7 +1075,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- PRIMITIVE ROOT -->
     <div class="sec">
-      <div class="sec-title ar">الجذر الأولي Primitive Root — Slide 4</div>
+      <div class="sec-title ar">الجذر الأولي Primitive Root — <span style="direction:ltr;unicode-bidi:embed">Slide 4</span></div>
       <div class="sec-title en">Primitive Root Background — Slide 4</div>
       <p class="ar"><strong>Primitive Root</strong> <span class="aw">(الجذر الأولي)</span>: العدد α يكون جذراً أولياً للعدد الأولي q إذا أنتجت <code>Y = αˣ mod q</code> قيماً <strong>مختلفة</strong> لكل X من 1 إلى q−1.</p>
       <p class="en"><strong>Primitive Root</strong>: α is a primitive root of prime q if <code>Y = αˣ mod q</code> produces a <strong>different</strong> value for every X from 1 to q−1.</p>
@@ -1084,22 +1101,22 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- DH FORMULAS -->
     <div class="sec">
-      <div class="sec-title ar">معادلات DH الأساسية — Slides 5 و 10</div>
+      <div class="sec-title ar">معادلات DH الأساسية — <span style="direction:ltr;unicode-bidi:embed">Slides 5</span> و 10</div>
       <div class="sec-title en">DH Core Formulas — Slides 5 and 10</div>
       <p class="ar">الكل يتفق على معاملين عامين: <code>q</code> عدد أولي كبير، و<code>α</code> جذر أولي لـ q.</p>
       <p class="en">Everyone agrees on two public parameters: <code>q</code> a large prime, and <code>α</code> a primitive root of q.</p>
       <div class="formula">
-        <div class="f-label ar">📐 توليد المفاتيح العامة</div>
+        <div class="f-label ar">📐 توليد المفاتيح العامة (Public Key Generation)</div>
         <div class="f-label en">📐 Public Key Generation</div>
-        <div class="f-eq">Y<sub>A</sub> = α<sup>X<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;(Alice)</div>
-        <div class="f-eq">Y<sub>B</sub> = α<sup>X<sub>B</sub></sup> mod q &nbsp;&nbsp;&nbsp;(Bob)</div>
+        <div class="f-eq">Y<sub>A</sub> = α<sup>X<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;<span style="color:var(--teal)">(Alice)</span></div>
+        <div class="f-eq">Y<sub>B</sub> = α<sup>X<sub>B</sub></sup> mod q &nbsp;&nbsp;&nbsp;<span style="color:var(--amber)">(Bob)</span></div>
       </div>
       <div class="formula">
-        <div class="f-label ar">📐 حساب المفتاح المشترك</div>
+        <div class="f-label ar">📐 حساب المفتاح المشترك (Shared Key)</div>
         <div class="f-label en">📐 Computing the Shared Key</div>
-        <div class="f-eq">K = Y<sub>B</sub><sup>X<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;← Alice تحسبه</div>
-        <div class="f-eq">K = Y<sub>A</sub><sup>X<sub>B</sub></sup> mod q &nbsp;&nbsp;&nbsp;← Bob يحسبه</div>
-        <div class="f-eq">K = α<sup>X<sub>A</sub>·X<sub>B</sub></sup> mod q &nbsp;&nbsp;← النتيجة واحدة للاثنين</div>
+        <div class="f-eq">K = Y<sub>B</sub><sup>X<sub>A</sub></sup> mod q</div><div class="f-eq" style="font-size:.78rem;color:var(--teal)">← Alice computes this</div>
+        <div class="f-eq">K = Y<sub>A</sub><sup>X<sub>B</sub></sup> mod q</div><div class="f-eq" style="font-size:.78rem;color:var(--teal)">← Bob computes this</div>
+        <div class="f-eq">K = α<sup>X<sub>A</sub>·X<sub>B</sub></sup> mod q</div><div class="f-eq" style="font-size:.78rem;color:var(--amber)">← same result for both</div>
       </div>
       <table class="tbl ar"><tr><th>الرمز</th><th>يمثّل</th><th>يعرفه</th></tr>
         <tr><td><code>q</code></td><td>عدد أولي كبير</td><td>الجميع</td></tr>
@@ -1119,7 +1136,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- DH EXAMPLE -->
     <div class="sec">
-      <div class="sec-title ar">مثال DH محلول كامل — Slide 12</div>
+      <div class="sec-title ar">مثال DH محلول كامل — <span style="direction:ltr;unicode-bidi:embed">Slide 12</span></div>
       <div class="sec-title en">DH Complete Worked Example — Slide 12</div>
       <p class="ar">المعطيات: q=353 · α=3 · X<sub>A</sub>=97 · X<sub>B</sub>=233</p>
       <p class="en">Given: q=353 · α=3 · X<sub>A</sub>=97 · X<sub>B</sub>=233</p>
@@ -1133,7 +1150,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: Y<sub>A</sub> = α^X<sub>A</sub> mod q</div>
             <div class="sol-calc">Y<sub>A</sub> = 3<sup>97</sup> mod 353</div>
             <div class="sol-result">Y<sub>A</sub> = 40</div>
-            <div class="sol-note ar">Alice تنشر الرقم 40 للجميع</div>
+            <div class="sol-note ar">تُنشر القيمة Y<sub>A</sub>=40 للجميع</div>
             <div class="sol-note en">Alice publishes 40 publicly</div>
           </div>
         </div>
@@ -1144,7 +1161,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: Y<sub>B</sub> = α^X<sub>B</sub> mod q</div>
             <div class="sol-calc">Y<sub>B</sub> = 3<sup>233</sup> mod 353</div>
             <div class="sol-result">Y<sub>B</sub> = 248</div>
-            <div class="sol-note ar">Bob ينشر الرقم 248 للجميع</div>
+            <div class="sol-note ar">تُنشر القيمة Y<sub>B</sub>=248 للجميع</div>
             <div class="sol-note en">Bob publishes 248 publicly</div>
           </div>
         </div>
@@ -1167,7 +1184,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule ar">القانون: K = Y<sub>A</sub>^X<sub>B</sub> mod q ← Bob يحسبه</div>
             <div class="sol-rule en">Formula: K = Y<sub>A</sub>^X<sub>B</sub> mod q ← Bob computes</div>
             <div class="sol-calc">K = 40<sup>233</sup> mod 353</div>
-            <div class="sol-result">K = 160 ✓ نفس النتيجة بدون إرسالها على الشبكة</div>
+            <div class="sol-result">K = 160 ✓</div>
             <div class="sol-note ar">الاثنان وصلا لنفس K دون إرساله على الشبكة أبداً</div>
             <div class="sol-note en">Both reached the same K without ever sending it over the network</div>
           </div>
@@ -1185,15 +1202,15 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- MITM -->
     <div class="sec">
-      <div class="sec-title ar">هجوم Man-in-the-Middle على DH — Slides 13–16 ⭐</div>
+      <div class="sec-title ar">هجوم Man-in-the-Middle على DH — <span style="direction:ltr;unicode-bidi:embed">Slides 13–16</span> ⭐</div>
       <div class="sec-title en">Man-in-the-Middle Attack on DH — Slides 13–16 ⭐</div>
       <p class="ar">DH لا يُوثّق الأطراف — فيستغل المهاجم (Darth) هذا الضعف. يُعدّ Darth <strong>مفتاحين خاصين</strong>:</p>
       <p class="en">DH does not authenticate parties — the attacker (Darth) exploits this. Darth prepares <strong>two private/public key pairs</strong>:</p>
       <div class="formula">
         <div class="f-label ar">📐 مفاتيح Darth</div>
         <div class="f-label en">📐 Darth's Keys</div>
-        <div class="f-eq">X<sub>D1</sub>, Y<sub>D1</sub> = α<sup>X<sub>D1</sub></sup> mod q &nbsp;&nbsp;← يستخدمه مع Alice</div>
-        <div class="f-eq">X<sub>D2</sub>, Y<sub>D2</sub> = α<sup>X<sub>D2</sub></sup> mod q &nbsp;&nbsp;← يستخدمه مع Bob</div>
+        <div class="f-eq">X<sub>D1</sub>, Y<sub>D1</sub> = α<sup>X<sub>D1</sub></sup> mod q &nbsp;&nbsp;<span style="color:var(--teal)">(used with Alice)</span></div>
+        <div class="f-eq">X<sub>D2</sub>, Y<sub>D2</sub> = α<sup>X<sub>D2</sub></sup> mod q &nbsp;&nbsp;<span style="color:var(--amber)">(used with Bob)</span></div>
       </div>
       <div class="solution">
         <div class="sol-head ar">✦ خطوات الهجوم خطوة بخطوة</div>
@@ -1201,7 +1218,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">1</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Alice ترسل Y<sub>A</sub> إلى Bob</div>
+            <div class="sol-rule ar">ترسل Alice قيمتها العامة Y<sub>A</sub> إلى Bob</div>
             <div class="sol-rule en">Alice sends Y<sub>A</sub> to Bob</div>
             <div class="sol-calc">Alice → [Y<sub>A</sub>] → Bob</div>
           </div>
@@ -1209,27 +1226,27 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">2</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Darth يعترض Y<sub>A</sub> ويرسل Y<sub>D1</sub> إلى Bob بدلاً منه</div>
+            <div class="sol-rule ar">يعترض Darth القيمة Y<sub>A</sub> ويرسل Y<sub>D1</sub> إلى Bob</div>
             <div class="sol-rule en">Darth intercepts Y<sub>A</sub> and sends Y<sub>D1</sub> to Bob instead</div>
             <div class="sol-calc">Alice → [Y<sub>A</sub>] → Darth → [Y<sub>D1</sub>] → Bob</div>
-            <div class="sol-note ar">Darth يحسب K<sub>AD</sub> = Y<sub>A</sub>^X<sub>D1</sub> mod q (مفتاح مشترك مع Alice)</div>
+            <div class="sol-note ar">يحسب Darth مفتاحاً مشتركاً مع Alice: K<sub>AD</sub></div>
             <div class="sol-note en">Darth computes K<sub>AD</sub> = Y<sub>A</sub>^X<sub>D1</sub> mod q (shared key with Alice)</div>
           </div>
         </div>
         <div class="sol-step">
           <div class="sol-num">3</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Bob يستقبل Y<sub>D1</sub> ظاناً أنه Y<sub>A</sub> — يحسب مفتاحاً مع Darth</div>
+            <div class="sol-rule ar">يستقبل Bob القيمة Y<sub>D1</sub> ظاناً أنها من Alice — يحسب مفتاحاً مع Darth</div>
             <div class="sol-rule en">Bob receives Y<sub>D1</sub> thinking it's from Alice — computes key with Darth</div>
             <div class="sol-calc">K<sub>BD</sub> = Y<sub>D1</sub>^X<sub>B</sub> mod q</div>
-            <div class="sol-note ar">Bob الآن متصل بـ Darth وهو لا يعلم!</div>
+            <div class="sol-note ar">أصبح Bob متصلاً بـ Darth دون أن يعلم!</div>
             <div class="sol-note en">Bob is now connected to Darth without knowing it!</div>
           </div>
         </div>
         <div class="sol-step">
           <div class="sol-num">4</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Bob يرسل Y<sub>B</sub> إلى Alice</div>
+            <div class="sol-rule ar">يرسل Bob قيمته العامة Y<sub>B</sub> إلى Alice</div>
             <div class="sol-rule en">Bob sends Y<sub>B</sub> to Alice</div>
             <div class="sol-calc">Bob → [Y<sub>B</sub>] → Alice</div>
           </div>
@@ -1237,20 +1254,20 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">5</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Darth يعترض Y<sub>B</sub> ويرسل Y<sub>D2</sub> إلى Alice بدلاً منه</div>
+            <div class="sol-rule ar">يعترض Darth القيمة Y<sub>B</sub> ويرسل Y<sub>D2</sub> إلى Alice</div>
             <div class="sol-rule en">Darth intercepts Y<sub>B</sub> and sends Y<sub>D2</sub> to Alice instead</div>
             <div class="sol-calc">Bob → [Y<sub>B</sub>] → Darth → [Y<sub>D2</sub>] → Alice</div>
-            <div class="sol-note ar">Darth يحسب K<sub>BD</sub> = Y<sub>B</sub>^X<sub>D2</sub> mod q (مفتاح مشترك مع Bob)</div>
+            <div class="sol-note ar">يحسب Darth مفتاحاً مشتركاً مع Bob: K<sub>BD</sub></div>
             <div class="sol-note en">Darth computes K<sub>BD</sub> = Y<sub>B</sub>^X<sub>D2</sub> mod q (shared key with Bob)</div>
           </div>
         </div>
         <div class="sol-step">
           <div class="sol-num">6</div>
           <div class="sol-content">
-            <div class="sol-rule ar">Alice تستقبل Y<sub>D2</sub> ظانةً أنه Y<sub>B</sub> — تحسب مفتاحاً مع Darth</div>
+            <div class="sol-rule ar">تستقبل Alice القيمة Y<sub>D2</sub> ظانةً أنها من Bob — تحسب مفتاحاً مع Darth</div>
             <div class="sol-rule en">Alice receives Y<sub>D2</sub> thinking it's from Bob — computes key with Darth</div>
             <div class="sol-calc">K<sub>AD</sub> = Y<sub>D2</sub>^X<sub>A</sub> mod q</div>
-            <div class="sol-note ar">Alice الآن متصلة بـ Darth وهي لا تعلم!</div>
+            <div class="sol-note ar">أصبحت Alice متصلةً بـ Darth دون أن تعلم!</div>
             <div class="sol-note en">Alice is now connected to Darth without knowing it!</div>
           </div>
         </div>
@@ -1260,7 +1277,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule ar">النتيجة: Darth في المنتصف يقرأ كل شيء</div>
             <div class="sol-rule en">Result: Darth is in the middle reading everything</div>
             <div class="sol-calc">Alice ↔ [K<sub>AD</sub>] ↔ Darth ↔ [K<sub>BD</sub>] ↔ Bob</div>
-            <div class="sol-note ar">Darth يفك تشفير كل رسالة ويُعيد تشفيرها بالمفتاح الآخر</div>
+            <div class="sol-note ar">يفكّ Darth تشفير كل رسالة ويُعيد تشفيرها بالمفتاح الآخر</div>
             <div class="sol-note en">Darth decrypts every message and re-encrypts it with the other key</div>
           </div>
         </div>
@@ -1275,38 +1292,38 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ELGAMAL KEY GEN -->
     <div class="sec">
-      <div class="sec-title ar">ElGamal — توليد المفاتيح — Slide 17</div>
+      <div class="sec-title ar">ElGamal — توليد المفاتيح — <span style="direction:ltr;unicode-bidi:embed">Slide 17</span></div>
       <div class="sec-title en">ElGamal — Key Generation — Slide 17</div>
       <p class="ar">ElGamal مبنية على DH لكنها تستطيع <strong>تشفير الرسائل</strong> بعكس DH. الـ Ciphertext يتكون دائماً من <strong>زوج (C₁, C₂)</strong>.</p>
       <p class="en">ElGamal is based on DH but it <strong>can encrypt messages</strong> unlike DH. The Ciphertext is always <strong>a pair (C₁, C₂)</strong>.</p>
       <div class="formula">
         <div class="f-label ar">📐 معادلات توليد مفاتيح ElGamal</div>
         <div class="f-label en">📐 ElGamal Key Generation Formulas</div>
-        <div class="f-eq">المعاملات العامة: q (prime) , α (primitive root of q)</div>
-        <div class="f-eq">المفتاح الخاص:  x<sub>A</sub>  حيث  1 &lt; x<sub>A</sub> &lt; q</div>
-        <div class="f-eq">المفتاح العام:  y<sub>A</sub> = α<sup>x<sub>A</sub></sup> mod q</div>
-        <div class="f-eq">Public Key الكامل = {q , α , y<sub>A</sub>}</div>
+        <div class="f-eq">q = prime number &nbsp;,&nbsp; α = primitive root of q</div>
+        <div class="f-eq">x<sub>A</sub> = private key &nbsp;&nbsp;&nbsp;(1 &lt; x<sub>A</sub> &lt; q)</div>
+        <div class="f-eq">y<sub>A</sub> = α<sup>x<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;<span style="color:var(--teal)">(public key)</span></div>
+        <div class="f-eq">Full Public Key = {q , α , y<sub>A</sub>}</div>
       </div>
     </div>
 
     <!-- ELGAMAL ENCRYPT -->
     <div class="sec">
-      <div class="sec-title ar">ElGamal — التشفير وفك التشفير — Slide 18</div>
+      <div class="sec-title ar">ElGamal — التشفير وفك التشفير — <span style="direction:ltr;unicode-bidi:embed">Slide 18</span></div>
       <div class="sec-title en">ElGamal — Encryption &amp; Decryption — Slide 18</div>
       <div class="formula">
         <div class="f-label ar">📐 معادلات التشفير — Bob يشفّر لـ Alice</div>
         <div class="f-label en">📐 Encryption Formulas — Bob encrypts for Alice</div>
-        <div class="f-eq">الخطوة 1: اختر k عشوائياً حيث 1 ≤ k ≤ q-1</div>
-        <div class="f-eq">الخطوة 2: K = y<sub>A</sub><sup>k</sup> mod q &nbsp;&nbsp;&nbsp;&nbsp;← مفتاح مؤقت one-time key</div>
-        <div class="f-eq">الخطوة 3: C<sub>1</sub> = α<sup>k</sup> mod q</div>
-        <div class="f-eq">الخطوة 4: C<sub>2</sub> = K · M mod q</div>
-        <div class="f-eq">Ciphertext المُرسَل = (C<sub>1</sub> , C<sub>2</sub>)</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 1:</span> choose random k &nbsp;(1 ≤ k ≤ q-1)</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 2:</span> K = y<sub>A</sub><sup>k</sup> mod q &nbsp;&nbsp;&nbsp;<span style="color:var(--teal)">(one-time key)</span></div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 3:</span> C<sub>1</sub> = α<sup>k</sup> mod q</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 4:</span> C<sub>2</sub> = K · M mod q</div>
+        <div class="f-eq" style="color:var(--amber)">Ciphertext = (C<sub>1</sub> , C<sub>2</sub>)</div>
       </div>
       <div class="formula">
         <div class="f-label ar">📐 معادلات فك التشفير — Alice تفك</div>
         <div class="f-label en">📐 Decryption Formulas — Alice decrypts</div>
-        <div class="f-eq">الخطوة 1: K = C<sub>1</sub><sup>x<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;← استرجاع المفتاح المؤقت</div>
-        <div class="f-eq">الخطوة 2: M = C<sub>2</sub> · K<sup>-1</sup> mod q &nbsp;&nbsp;← فك التشفير</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 1:</span> K = C<sub>1</sub><sup>x<sub>A</sub></sup> mod q &nbsp;&nbsp;<span style="color:var(--teal)">(recover one-time key)</span></div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 2:</span> M = C<sub>2</sub> · K<sup>-1</sup> mod q</div>
       </div>
       <div class="callout warn">
         <div class="c-head ar">⚠️ قاعدة لا تُنسى</div>
@@ -1318,7 +1335,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ELGAMAL EXAMPLE -->
     <div class="sec">
-      <div class="sec-title ar">مثال ElGamal محلول كامل — Slide 19</div>
+      <div class="sec-title ar">مثال ElGamal محلول كامل — <span style="direction:ltr;unicode-bidi:embed">Slide 19</span></div>
       <div class="sec-title en">ElGamal Complete Worked Example — Slide 19</div>
       <p class="ar">المعطيات: q=19 · α=10 · x<sub>A</sub>=5 · M=17 · k=6</p>
       <p class="en">Given: q=19 · α=10 · x<sub>A</sub>=5 · M=17 · k=6</p>
@@ -1332,7 +1349,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: y<sub>A</sub> = α^x<sub>A</sub> mod q</div>
             <div class="sol-calc">y<sub>A</sub> = 10<sup>5</sup> mod 19 = 100000 mod 19</div>
             <div class="sol-result">y<sub>A</sub> = 3</div>
-            <div class="sol-note ar">المفتاح العام لـ Alice: {q=19 , α=10 , y<sub>A</sub>=3}</div>
+            <div class="sol-note ar">المفتاح العام: {q=19 , α=10 , y=3}</div>
             <div class="sol-note en">Alice's Public Key: {q=19 , α=10 , y<sub>A</sub>=3}</div>
           </div>
         </div>
@@ -1365,7 +1382,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: C<sub>2</sub> = K × M mod q</div>
             <div class="sol-calc">C<sub>2</sub> = 7 × 17 mod 19 = 119 mod 19</div>
             <div class="sol-result">C<sub>2</sub> = 5</div>
-            <div class="sol-note ar">Bob يرسل: Ciphertext = (11 , 5)</div>
+            <div class="sol-note ar">يرسل Bob: Ciphertext = (11 , 5)</div>
             <div class="sol-note en">Bob sends: Ciphertext = (11 , 5)</div>
           </div>
         </div>
@@ -1380,7 +1397,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
             <div class="sol-rule en">Formula: K = C<sub>1</sub>^x<sub>A</sub> mod q (recover K)</div>
             <div class="sol-calc">K = 11<sup>5</sup> mod 19 = 161051 mod 19</div>
             <div class="sol-result">K = 7 ✓ (نفس K الذي استخدمه Bob)</div>
-            <div class="sol-note ar">Alice استرجعت نفس المفتاح المؤقت بدون أن يُرسل</div>
+            <div class="sol-note ar">استرجعت نفس المفتاح المؤقت دون إرساله على الشبكة</div>
             <div class="sol-note en">Alice recovered the same one-time key without it being sent</div>
           </div>
         </div>
@@ -1408,7 +1425,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ECC -->
     <div class="sec">
-      <div class="sec-title ar">ECC — Elliptic Curve Cryptography — Slides 20–22</div>
+      <div class="sec-title ar">ECC — Elliptic Curve Cryptography — <span style="direction:ltr;unicode-bidi:embed">Slides 20–22</span></div>
       <div class="sec-title en">ECC — Elliptic Curve Cryptography — Slides 20–22</div>
       <p class="ar">بديل أكثر كفاءة لـ RSA وDH — نفس الأمان بمفاتيح أصغر بكثير. مثالي للأجهزة المحدودة الموارد.</p>
       <p class="en">A more efficient alternative to RSA and DH — same security with much smaller keys. Ideal for resource-constrained devices.</p>
@@ -1478,7 +1495,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- WHAT IS HASH -->
     <div class="sec">
-      <div class="sec-title ar">ما هي دالة الـ Hash؟ — Slides 3–6</div>
+      <div class="sec-title ar">ما هي دالة الـ Hash؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 3–6</span></div>
       <div class="sec-title en">What is a Hash Function? — Slides 3–6</div>
       <p class="ar">دالة تأخذ رسالة بأي حجم وتُنتج قيمة ثابتة الحجم تُسمى <strong>Hash Value</strong> أو <strong>Message Digest</strong>. الهدف الأساسي: <strong>سلامة البيانات (Data Integrity)</strong>.</p>
       <p class="en">A function that takes any-size message and produces a fixed-size output called a <strong>Hash Value</strong> or <strong>Message Digest</strong>. Primary purpose: <strong>Data Integrity</strong>.</p>
@@ -1504,7 +1521,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- USES -->
     <div class="sec">
-      <div class="sec-title ar">استخدامات الـ Hash — Slides 7–10</div>
+      <div class="sec-title ar">استخدامات الـ Hash — <span style="direction:ltr;unicode-bidi:embed">Slides 7–10</span></div>
       <div class="sec-title en">Hash Function Uses — Slides 7–10</div>
       <table class="tbl ar"><tr><th>الاستخدام</th><th>كيف يعمل</th></tr>
         <tr><td><strong>Message Authentication (MAC)</strong></td><td>يُشفَّر H مع مفتاح سري مشترك للتحقق من المصدر</td></tr>
@@ -1522,7 +1539,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- REQUIREMENTS -->
     <div class="sec">
-      <div class="sec-title ar">متطلبات دالة الـ Hash — Table 11.1 — Slide 14 ⭐</div>
+      <div class="sec-title ar">متطلبات دالة الـ Hash — Table 11.1 — <span style="direction:ltr;unicode-bidi:embed">Slide 14</span> ⭐</div>
       <div class="sec-title en">Hash Function Requirements — Table 11.1 — Slide 14 ⭐</div>
       <p class="ar">سبعة متطلبات يجب أن تتوفر في أي دالة Hash مشفّرة. الثلاثة الأخيرة هي الأهم للاختبار:</p>
       <p class="en">Seven requirements any cryptographic hash function must satisfy. The last three are most important for the exam:</p>
@@ -1559,7 +1576,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- ATTACKS -->
     <div class="sec">
-      <div class="sec-title ar">الهجمات على دوال الـ Hash — Slides 17–18 ⭐</div>
+      <div class="sec-title ar">الهجمات على دوال الـ Hash — <span style="direction:ltr;unicode-bidi:embed">Slides 17–18</span> ⭐</div>
       <div class="sec-title en">Attacks on Hash Functions — Slides 17–18 ⭐</div>
 
       <p class="ar" style="font-weight:600">١. هجوم القوة الغاشمة Brute-Force Attack</p>
@@ -1586,7 +1603,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <div class="sol-step">
           <div class="sol-num">1</div>
           <div class="sol-content">
-            <div class="sol-rule ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة الأصلية x → يُخزّن hashها</div>
+            <div class="sol-rule ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة x ويُخزّن قيم الـ hash</div>
             <div class="sol-rule en">Attacker prepares 2^(n/2) variations of legitimate message x → stores their hashes</div>
             <div class="sol-calc">x, x', x'', ... → H(x), H(x'), H(x''), ...</div>
           </div>
@@ -1627,7 +1644,7 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
 
     <!-- SHA -->
     <div class="sec">
-      <div class="sec-title ar">SHA — Secure Hash Algorithm — Slides 22–32</div>
+      <div class="sec-title ar">SHA — Secure Hash Algorithm — <span style="direction:ltr;unicode-bidi:embed">Slides 22–32</span></div>
       <div class="sec-title en">SHA — Secure Hash Algorithm — Slides 22–32</div>
       <p class="ar">SHA صمّمه NIST. ثلاثة إصدارات رئيسية:</p>
       <p class="en">SHA was designed by NIST. Three main versions:</p>
@@ -1676,6 +1693,1820 @@ code{font-family:var(--mono);color:#a5f3fc;font-size:.86em;
         <tr><td>SHA-3 uses which construction?</td><td>Sponge construction</td></tr>
         <tr><td>Attack looking for H(M)=H(M')?</td><td><span class="bd bb">Birthday Attack</span></td></tr>
         <tr><td>SHA-256 output size?</td><td>256 bits</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 12 ═══════════ -->
+<div class="chapter" id="ch12">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f43f5e,#7c3aed)">12</div>
+    <div>
+      <div class="ch-title">Message Authentication Code (MAC)</div>
+      <div class="ch-sub ar">مصادقة الرسائل · Slides 2–32</div>
+      <div class="ch-sub en">Message Authentication · Slides 2–32</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- WHAT IS MAC -->
+    <div class="sec">
+      <div class="sec-title ar">ما هي مصادقة الرسائل؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 2–3</span></div>
+      <div class="sec-title en">What is Message Authentication? — Slides 2–3</div>
+      <p class="ar">مصادقة الرسائل تهدف لثلاثة أشياء:</p>
+      <p class="en">Message authentication aims to achieve three things:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>Integrity</strong> <span class="aw">(سلامة البيانات)</span>: التأكد أن الرسالة لم تُعدَّل أثناء الإرسال</p>
+          <p class="en"><strong>Integrity</strong>: Ensure the message was not altered during transmission</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Authentication</strong> <span class="aw">(التحقق من المصدر)</span>: التأكد أن الرسالة جاءت من المُرسل الصحيح</p>
+          <p class="en"><strong>Authentication</strong>: Verify the message came from the claimed sender</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Non-repudiation</strong> <span class="aw">(عدم الإنكار)</span>: منع المُرسل من إنكار إرسال الرسالة لاحقاً</p>
+          <p class="en"><strong>Non-repudiation</strong>: Prevent the sender from later denying they sent the message</p>
+        </div></li>
+      </ul>
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ MAC لا يوفر Non-repudiation — يجي في كل اختبار</div>
+        <div class="c-head en">⚠️ MAC does NOT provide Non-repudiation — appears every exam</div>
+        <p class="ar">لأن MAC يعتمد على مفتاح سري مشترك بين الطرفين — كلاهما يقدر ينشئ نفس الـ MAC، فلا يمكن إثبات من أنشأه أمام طرف ثالث. التوقيع الرقمي فقط يوفر non-repudiation.</p>
+        <p class="en">Because MAC uses a shared secret key — both parties can create the same MAC, so you cannot prove to a third party who created it. Only Digital Signatures provide non-repudiation.</p>
+      </div>
+    </div>
+
+    <!-- HOW MAC WORKS -->
+    <div class="sec">
+      <div class="sec-title ar">كيف يعمل الـ MAC؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 8–12</span></div>
+      <div class="sec-title en">How MAC Works — Slides 8–12</div>
+      <p class="ar">الـ MAC هو كتلة بيانات صغيرة ثابتة الحجم تُنتَج من الرسالة والمفتاح السري معاً، وتُلحق بالرسالة كتوقيع.</p>
+      <p class="en">A MAC is a small fixed-size data block generated from both the message and a secret key, appended to the message as a signature.</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 معادلة الـ MAC الأساسية</div>
+        <div class="f-label en">📐 Core MAC Formula</div>
+        <div class="f-eq">MAC = C(K, M)</div>
+        <div class="f-eq" style="font-size:.8rem;color:var(--muted)">C = MAC algorithm &nbsp;|&nbsp; K = secret key &nbsp;|&nbsp; M = message</div>
+      </div>
+
+      <p class="ar">خطوات الإرسال والاستقبال:</p>
+      <p class="en">Send and receive steps:</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ المُرسِل (Alice) — خطوات الإرسال</div>
+        <div class="sol-head en">✦ Sender (Alice) — Sending Steps</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">تمتلك المُرسِلة المفتاح السري المشترك K والرسالة M</div>
+            <div class="sol-rule en">Sender has the shared secret key K and message M</div>
+            <div class="sol-calc">Given: K (shared secret), M (message)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: احسب MAC = C(K, M)</div>
+            <div class="sol-rule en">Formula: compute MAC = C(K, M)</div>
+            <div class="sol-calc">MAC = C(K, M)</div>
+            <div class="sol-note ar">تُطبَّق خوارزمية الـ MAC على المفتاح والرسالة معاً</div>
+            <div class="sol-note en">Apply the MAC algorithm to both key and message</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">أرسل الرسالة مع الـ MAC ملحقاً بها</div>
+            <div class="sol-rule en">Send the message with the MAC appended</div>
+            <div class="sol-calc">Transmit: M || MAC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ المُستقبِل (Bob) — خطوات التحقق</div>
+        <div class="sol-head en">✦ Receiver (Bob) — Verification Steps</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">يستقبل M' والـ MAC المُرسَل</div>
+            <div class="sol-rule en">Receives M' and the transmitted MAC</div>
+            <div class="sol-calc">Received: M' || MAC_received</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: احسب MAC جديد من الرسالة المُستقبَلة بنفس المفتاح</div>
+            <div class="sol-rule en">Formula: compute new MAC from received message using same key</div>
+            <div class="sol-calc">MAC_new = C(K, M')</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">قارن الـ MACs</div>
+            <div class="sol-rule en">Compare the MACs</div>
+            <div class="sol-calc">if MAC_new == MAC_received → message is authentic ✓</div>
+            <div class="sol-calc">if MAC_new != MAC_received → message was tampered ✗</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 متى يُستخدم الـ MAC؟</div>
+        <div class="c-head en">🔑 When to Use MAC?</div>
+        <p class="ar">عندما تحتاج مصادقة فقط دون سرية، أو عندما تحتاج المصادقة لتستمر أطول من التشفير (مثلاً الأرشفة). الـ MAC أسرع من التوقيع الرقمي لأنه يستخدم مفتاح متماثل.</p>
+        <p class="en">When you need authentication only without secrecy, or when authentication must persist longer than encryption (e.g. archival). MAC is faster than digital signatures because it uses symmetric keys.</p>
+      </div>
+    </div>
+
+    <!-- MAC vs DIGITAL SIGNATURE -->
+    <div class="sec">
+      <div class="sec-title ar">MAC مقابل التوقيع الرقمي — <span style="direction:ltr;unicode-bidi:embed">Slide 12</span></div>
+      <div class="sec-title en">MAC vs Digital Signature — Slide 12</div>
+      <table class="tbl ar">
+        <tr><th>الخاصية</th><th>MAC</th><th>Digital Signature</th></tr>
+        <tr><td>المفتاح المستخدم</td><td>مفتاح سري مشترك (Symmetric)</td><td>مفتاح خاص (Asymmetric)</td></tr>
+        <tr><td>من يمكنه التحقق؟</td><td>من يملك المفتاح المشترك فقط</td><td>أي شخص يملك المفتاح العام</td></tr>
+        <tr><td>Non-repudiation</td><td><span class="bd br">لا — كلا الطرفين يملك المفتاح</span></td><td><span class="bd bg">نعم — المفتاح الخاص فريد</span></td></tr>
+        <tr><td>السرعة</td><td><span class="bd bg">أسرع</span></td><td><span class="bd br">أبطأ</span></td></tr>
+        <tr><td>الاستخدام</td><td>تواصل بين طرفين يثقان ببعض</td><td>يُثبت الهوية لطرف ثالث</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Property</th><th>MAC</th><th>Digital Signature</th></tr>
+        <tr><td>Key type</td><td>Shared secret key (Symmetric)</td><td>Private key (Asymmetric)</td></tr>
+        <tr><td>Who can verify?</td><td>Only those with the shared key</td><td>Anyone with the public key</td></tr>
+        <tr><td>Non-repudiation</td><td><span class="bd br">No — both parties have the key</span></td><td><span class="bd bg">Yes — private key is unique</span></td></tr>
+        <tr><td>Speed</td><td><span class="bd bg">Faster</span></td><td><span class="bd br">Slower</span></td></tr>
+        <tr><td>Use case</td><td>Communication between trusted parties</td><td>Proving identity to a third party</td></tr>
+      </table>
+    </div>
+
+    <!-- MAC REQUIREMENTS -->
+    <div class="sec">
+      <div class="sec-title ar">متطلبات الـ MAC — <span style="direction:ltr;unicode-bidi:embed">Slides 14–16</span></div>
+      <div class="sec-title en">MAC Requirements — Slides 14–16</div>
+      <p class="ar">الـ MAC هو دالة تجزئة مشفّرة <span class="aw">(cryptographic checksum)</span>. ثلاثة متطلبات أساسية:</p>
+      <p class="en">A MAC is a cryptographic checksum. Three core requirements:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>متطلب 1</strong>: إذا عرف المهاجم رسالة وMAC الخاص بها — يجب أن يكون من المستحيل إيجاد رسالة أخرى لها نفس الـ MAC</p>
+          <p class="en"><strong>Req 1</strong>: Knowing a message and its MAC — must be infeasible to find another message with the same MAC</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>متطلب 2</strong>: قيم الـ MAC يجب أن تكون موزعة بشكل منتظم <span class="aw">(uniformly distributed)</span></p>
+          <p class="en"><strong>Req 2</strong>: MAC values should be uniformly distributed — no pattern</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>متطلب 3</strong>: الـ MAC يجب أن يعتمد على جميع بتات الرسالة بالتساوي — أي تغيير في أي بت يغير الـ MAC</p>
+          <p class="en"><strong>Req 3</strong>: MAC must depend equally on all bits of the message — any changed bit must change the MAC</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- HMAC -->
+    <div class="sec">
+      <div class="sec-title ar">HMAC — الـ MAC المبني على Hash — <span style="direction:ltr;unicode-bidi:embed">Slides 19–24</span></div>
+      <div class="sec-title en">HMAC — Hash-Based MAC — Slides 19–24</div>
+      <p class="ar">HMAC هو معيار إنترنت <span class="aw">(RFC 2104)</span> يُنشئ MAC باستخدام دالة Hash. الأسباب التي دفعت لتطوير HMAC:</p>
+      <p class="en">HMAC is an Internet standard (RFC 2104) that creates a MAC using a Hash function. Reasons for developing HMAC:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">دوال الـ Hash أسرع من خوارزميات التشفير</p>
+          <p class="en">Hash functions are generally faster than block ciphers</p>
+        </div></li>
+        <li><div>
+          <p class="ar">كود دوال الـ Hash متاح ومُختبَر على نطاق واسع</p>
+          <p class="en">Hash function code is widely available and well-tested</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يمكن تغيير دالة الـ Hash المستخدمة بسهولة دون تغيير بقية النظام</p>
+          <p class="en">The embedded hash function can be replaced easily without changing the rest of the system</p>
+        </div></li>
+      </ul>
+
+      <div class="formula">
+        <div class="f-label ar">📐 معادلة HMAC</div>
+        <div class="f-label en">📐 HMAC Formula</div>
+        <div class="f-eq">HMAC<sub>K</sub>(M) = Hash[ (K<sup>+</sup> XOR opad) || Hash[ (K<sup>+</sup> XOR ipad) || M ] ]</div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>الرمز</th><th>يمثّل</th></tr>
+        <tr><td><code>K<sup>+</sup></code></td><td>المفتاح K بعد إضافة حشو حتى يصل لحجم الـ block</td></tr>
+        <tr><td><code>ipad</code></td><td>ثابت داخلي = 0x36 مكرر (inner padding)</td></tr>
+        <tr><td><code>opad</code></td><td>ثابت خارجي = 0x5C مكرر (outer padding)</td></tr>
+        <tr><td><code>||</code></td><td>عملية ضم (concatenation)</td></tr>
+        <tr><td><code>XOR</code></td><td>عملية XOR بت بت</td></tr>
+        <tr><td><code>Hash</code></td><td>أي دالة hash: MD5, SHA-1, SHA-256</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Symbol</th><th>Represents</th></tr>
+        <tr><td><code>K<sup>+</sup></code></td><td>Key K padded to block size</td></tr>
+        <tr><td><code>ipad</code></td><td>Inner padding constant = 0x36 repeated</td></tr>
+        <tr><td><code>opad</code></td><td>Outer padding constant = 0x5C repeated</td></tr>
+        <tr><td><code>||</code></td><td>Concatenation operation</td></tr>
+        <tr><td><code>XOR</code></td><td>Bitwise XOR operation</td></tr>
+        <tr><td><code>Hash</code></td><td>Any hash function: MD5, SHA-1, SHA-256</td></tr>
+      </table>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ كيف يعمل HMAC خطوة بخطوة</div>
+        <div class="sol-head en">✦ How HMAC Works Step by Step</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المفتاح K يُحشى حتى يصل لحجم الـ block</div>
+            <div class="sol-rule en">Key K is padded to the block size</div>
+            <div class="sol-calc">K+ = pad(K) to block size</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الحساب الداخلي (inner hash): K+ XOR ipad ثم ضمه مع M ثم تطبيق Hash</div>
+            <div class="sol-rule en">Inner computation: K+ XOR ipad, concatenate with M, apply Hash</div>
+            <div class="sol-calc">inner = Hash[ (K+ XOR ipad) || M ]</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الحساب الخارجي (outer hash): K+ XOR opad ثم ضمه مع الناتج الداخلي ثم تطبيق Hash</div>
+            <div class="sol-rule en">Outer computation: K+ XOR opad, concatenate with inner result, apply Hash</div>
+            <div class="sol-calc">HMAC = Hash[ (K+ XOR opad) || inner ]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="c-head ar">💡 أمان HMAC</div>
+        <div class="c-head en">💡 HMAC Security</div>
+        <p class="ar">أمان HMAC مرتبط بأمان دالة الـ Hash المستخدمة. كسر HMAC يتطلب إما هجوم brute-force على المفتاح، أو birthday attack — لكن الأخير يحتاج عدداً هائلاً من الرسائل بسبب وجود المفتاح السري.</p>
+        <p class="en">HMAC security is tied to the underlying hash function. Breaking HMAC requires either a brute-force attack on the key, or a birthday attack — but the latter requires observing an enormous number of messages due to the secret key.</p>
+      </div>
+    </div>
+
+    <!-- CMAC -->
+    <div class="sec">
+      <div class="sec-title ar">CMAC — الـ MAC المبني على Block Cipher — <span style="direction:ltr;unicode-bidi:embed">Slides 27–28</span></div>
+      <div class="sec-title en">CMAC — Cipher-Based MAC — Slides 27–28</div>
+      <p class="ar">CMAC طوّره NIST (SP800-38B) لتجاوز قيود DAA/CBC-MAC. يستخدم مفتاحين وحشواً للتغلب على مشكلة حجم الرسالة.</p>
+      <p class="en">CMAC was developed by NIST (SP800-38B) to overcome limitations of DAA/CBC-MAC. Uses two keys and padding to overcome the message size limitation.</p>
+      <div class="callout key">
+        <div class="c-head ar">🔑 DAA مقابل CMAC</div>
+        <div class="c-head en">🔑 DAA vs CMAC</div>
+        <p class="ar"><strong>DAA (CBC-MAC)</strong>: MAC مبني على DES-CBC — مقبول لكن فيه قيود على حجم الرسالة وأصبح ضعيفاً.<br>
+        <strong>CMAC</strong>: حلّ مشكلة الحجم باستخدام مفتاحين K1 وK2 مع حشو خاص — معتمد للحكومة والصناعة.</p>
+        <p class="en"><strong>DAA (CBC-MAC)</strong>: MAC based on DES-CBC — acceptable but has message size limitation and became weak.<br>
+        <strong>CMAC</strong>: Solved the size problem using two keys K1 and K2 with special padding — adopted for government and industry.</p>
+      </div>
+    </div>
+
+    <!-- AUTHENTICATED ENCRYPTION -->
+    <div class="sec">
+      <div class="sec-title ar">التشفير المصادَق — Authenticated Encryption — <span style="direction:ltr;unicode-bidi:embed">Slide 29</span> ⭐</div>
+      <div class="sec-title en">Authenticated Encryption — Slide 29 ⭐</div>
+      <p class="ar">كيف نجمع السرية والمصادقة معاً؟ أربعة أساليب — الاختبار يسأل عنها:</p>
+      <p class="en">How to achieve confidentiality AND authentication together? Four approaches — the exam asks about these:</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الأول: Hash-then-Encrypt</div>
+        <div class="sol-head en">✦ Approach 1: Hash-then-Encrypt</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون</div>
+            <div class="sol-rule en">Formula</div>
+            <div class="sol-calc">E(K, M || H(M))</div>
+            <div class="sol-note ar">احسب Hash للرسالة، ثم شفّر الرسالة مع الـ Hash معاً</div>
+            <div class="sol-note en">Compute hash of message, then encrypt message and hash together</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الثاني: MAC-then-Encrypt</div>
+        <div class="sol-head en">✦ Approach 2: MAC-then-Encrypt</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون</div>
+            <div class="sol-rule en">Formula</div>
+            <div class="sol-calc">E(K2, M || MAC(K1, M))</div>
+            <div class="sol-note ar">احسب MAC للرسالة، ثم شفّر الرسالة مع الـ MAC</div>
+            <div class="sol-note en">Compute MAC of message, then encrypt both message and MAC together</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الثالث: Encrypt-then-MAC ← الأفضل ⭐</div>
+        <div class="sol-head en">✦ Approach 3: Encrypt-then-MAC ← Best ⭐</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون</div>
+            <div class="sol-rule en">Formula</div>
+            <div class="sol-calc">C = E(K2, M) &nbsp;&nbsp;&nbsp; T = MAC(K1, C)</div>
+            <div class="sol-note ar">شفّر الرسالة أولاً، ثم احسب MAC على النص المشفّر</div>
+            <div class="sol-note en">Encrypt the message first, then compute MAC over the ciphertext</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الرابع: Encrypt-and-MAC</div>
+        <div class="sol-head en">✦ Approach 4: Encrypt-and-MAC</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون</div>
+            <div class="sol-rule en">Formula</div>
+            <div class="sol-calc">C = E(K2, M) &nbsp;&nbsp;&nbsp; T = MAC(K1, M)</div>
+            <div class="sol-note ar">شفّر الرسالة واحسب MAC على النص الأصلي بشكل مستقل</div>
+            <div class="sol-note en">Encrypt message and compute MAC on original plaintext independently</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>الأسلوب</th><th>الأمان</th><th>السبب</th></tr>
+        <tr><td>Hash-then-Encrypt</td><td><span class="bd ba">متوسط</span></td><td>يمكن كشف بعض الضعف إذا كُسر التشفير</td></tr>
+        <tr><td>MAC-then-Encrypt</td><td><span class="bd ba">متوسط</span></td><td>يسمح ببعض هجمات padding oracle</td></tr>
+        <tr><td><strong>Encrypt-then-MAC</strong></td><td><span class="bd bg">الأفضل ✓</span></td><td>المُستقبِل يتحقق من الـ MAC قبل فك التشفير — يمنع هجمات CCA</td></tr>
+        <tr><td>Encrypt-and-MAC</td><td><span class="bd br">الأضعف</span></td><td>الـ MAC على النص الأصلي قد يُسرّب معلومات</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Approach</th><th>Security</th><th>Reason</th></tr>
+        <tr><td>Hash-then-Encrypt</td><td><span class="bd ba">Medium</span></td><td>Some weakness if encryption is broken</td></tr>
+        <tr><td>MAC-then-Encrypt</td><td><span class="bd ba">Medium</span></td><td>Susceptible to padding oracle attacks</td></tr>
+        <tr><td><strong>Encrypt-then-MAC</strong></td><td><span class="bd bg">Best ✓</span></td><td>Receiver verifies MAC before decrypting — prevents CCA attacks</td></tr>
+        <tr><td>Encrypt-and-MAC</td><td><span class="bd br">Weakest</span></td><td>MAC on plaintext may leak information</td></tr>
+      </table>
+
+      <div class="callout danger">
+        <div class="c-head ar">🚨 الأفضل دائماً: Encrypt-then-MAC</div>
+        <div class="c-head en">🚨 Always Best: Encrypt-then-MAC</div>
+        <p class="ar">لأن التحقق يحدث قبل فك التشفير — إذا كان الـ MAC خاطئاً يُرفض الـ ciphertext فوراً دون محاولة فكه. هذا يمنع هجمات Chosen Ciphertext (CCA).</p>
+        <p class="en">Because verification happens before decryption — if MAC is wrong, ciphertext is rejected immediately without attempting decryption. This prevents Chosen Ciphertext Attacks (CCA).</p>
+      </div>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.12 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.12 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>MAC = ؟</td><td><code>C(K, M)</code> — يعتمد على المفتاح والرسالة معاً</td></tr>
+        <tr><td>MAC يوفر Non-repudiation؟</td><td><span class="bd br">لا — كلا الطرفين يملك المفتاح المشترك</span></td></tr>
+        <tr><td>لماذا MAC ليس توقيعاً رقمياً؟</td><td>لأنه لا يمكن إثبات من أنشأه لطرف ثالث</td></tr>
+        <tr><td>أفضل أسلوب للتشفير مع المصادقة؟</td><td><span class="bd bg">Encrypt-then-MAC</span></td></tr>
+        <tr><td>HMAC يستخدم؟</td><td>دالة Hash مع مفتاح سري (ipad و opad)</td></tr>
+        <tr><td>HMAC يُعطي؟</td><td>مصادقة فقط — لا سرية</td></tr>
+        <tr><td>CMAC يعتمد على؟</td><td>Block Cipher (AES) مع مفتاحين K1, K2</td></tr>
+        <tr><td>ما الفرق بين HMAC وCMAC؟</td><td>HMAC يستخدم Hash · CMAC يستخدم Block Cipher</td></tr>
+        <tr><td>MAC يعتمد على السرية؟</td><td><span class="bd br">لا — يوفر مصادقة فقط</span></td></tr>
+        <tr><td>MAC قبل أم بعد التشفير أفضل؟</td><td>الـ MAC قبل التشفير أفضل — المهاجم يحتاج يكسر التشفير أولاً</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>MAC = ?</td><td><code>C(K, M)</code> — depends on both key and message</td></tr>
+        <tr><td>Does MAC provide Non-repudiation?</td><td><span class="bd br">No — both parties share the same key</span></td></tr>
+        <tr><td>Why is MAC not a digital signature?</td><td>Cannot prove to a third party who created it</td></tr>
+        <tr><td>Best approach for encryption + authentication?</td><td><span class="bd bg">Encrypt-then-MAC</span></td></tr>
+        <tr><td>HMAC uses?</td><td>Hash function with a secret key (ipad and opad)</td></tr>
+        <tr><td>HMAC provides?</td><td>Authentication only — no confidentiality</td></tr>
+        <tr><td>CMAC is based on?</td><td>Block Cipher (AES) with two keys K1, K2</td></tr>
+        <tr><td>Difference between HMAC and CMAC?</td><td>HMAC uses Hash · CMAC uses Block Cipher</td></tr>
+        <tr><td>Does MAC provide confidentiality?</td><td><span class="bd br">No — authentication only</span></td></tr>
+        <tr><td>MAC before or after encryption?</td><td>MAC before encryption is better — attacker must break encryption first</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 13 ═══════════ -->
+<div class="chapter" id="ch13">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#4f8ef7,#0ea5a0)">13</div>
+    <div>
+      <div class="ch-title">Digital Signatures</div>
+      <div class="ch-sub ar">التوقيع الرقمي · Slides 3–18</div>
+      <div class="ch-sub en">Digital Signatures · Slides 3–18</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- WHAT IS DS -->
+    <div class="sec">
+      <div class="sec-title ar">ما هو التوقيع الرقمي؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 3–5</span></div>
+      <div class="sec-title en">What is a Digital Signature? — Slides 3–5</div>
+      <p class="ar">التوقيع الرقمي يُشفَّر hash الرسالة بالمفتاح الخاص للمُرسِل. أي شخص يملك المفتاح العام يقدر يتحقق من صحة التوقيع.</p>
+      <p class="en">A digital signature encrypts the message hash using the sender's private key. Anyone with the public key can verify the signature.</p>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 الفرق الجوهري بين MAC والتوقيع الرقمي</div>
+        <div class="c-head en">🔑 Core Difference: MAC vs Digital Signature</div>
+        <table class="tbl ar" style="margin-top:.6rem">
+          <tr><th>الخاصية</th><th>MAC</th><th>Digital Signature</th></tr>
+          <tr><td>المفتاح</td><td>متماثل — مشترك بين الطرفين</td><td>خاص — فريد للمُرسِل</td></tr>
+          <tr><td>Non-repudiation</td><td><span class="bd br">لا</span></td><td><span class="bd bg">نعم</span></td></tr>
+          <tr><td>التحقق</td><td>من يملك المفتاح المشترك فقط</td><td>أي شخص بالمفتاح العام</td></tr>
+        </table>
+        <table class="tbl en" style="margin-top:.6rem">
+          <tr><th>Property</th><th>MAC</th><th>Digital Signature</th></tr>
+          <tr><td>Key type</td><td>Symmetric — shared between parties</td><td>Private — unique to sender</td></tr>
+          <tr><td>Non-repudiation</td><td><span class="bd br">No</span></td><td><span class="bd bg">Yes</span></td></tr>
+          <tr><td>Verification</td><td>Only those with shared key</td><td>Anyone with the public key</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- REQUIREMENTS -->
+    <div class="sec">
+      <div class="sec-title ar">متطلبات التوقيع الرقمي — <span style="direction:ltr;unicode-bidi:embed">Slide 8</span></div>
+      <div class="sec-title en">Digital Signature Requirements — Slide 8</div>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">التوقيع يجب أن يعتمد على الرسالة نفسها — نمط بتات مرتبط بالمحتوى</p>
+          <p class="en">Signature must be a bit pattern that depends on the message being signed</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يجب أن يستخدم معلومة فريدة للمُرسِل لمنع التزوير والإنكار</p>
+          <p class="en">Must use information unique to the sender to prevent both forgery and denial</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يجب أن يكون سهل الإنشاء نسبياً</p>
+          <p class="en">Must be relatively easy to produce</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يجب أن يكون سهل التعرف عليه والتحقق منه</p>
+          <p class="en">Must be relatively easy to recognize and verify</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يجب أن يكون من المستحيل حسابياً تزوير التوقيع — سواء بإنشاء رسالة جديدة لتوقيع موجود أو العكس</p>
+          <p class="en">Must be computationally infeasible to forge — either constructing new message for existing signature or vice versa</p>
+        </div></li>
+        <li><div>
+          <p class="ar">يجب أن يكون من العملي الاحتفاظ بنسخة من التوقيع في التخزين</p>
+          <p class="en">Must be practical to retain a copy in storage</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- ATTACKS & FORGERIES -->
+    <div class="sec">
+      <div class="sec-title ar">الهجمات والتزويرات — <span style="direction:ltr;unicode-bidi:embed">Slides 6–7</span> ⭐</div>
+      <div class="sec-title en">Attacks and Forgeries — Slides 6–7 ⭐</div>
+
+      <p class="ar" style="font-weight:600">أنواع الهجمات على التوقيع الرقمي:</p>
+      <p class="en" style="font-weight:600">Types of Attacks on Digital Signatures:</p>
+      <table class="tbl ar">
+        <tr><th>نوع الهجوم</th><th>ما يملكه المهاجم</th></tr>
+        <tr><td><strong>Key-only attack</strong></td><td>المفتاح العام للضحية فقط</td></tr>
+        <tr><td><strong>Known message attack</strong></td><td>مجموعة من الرسائل وتوقيعاتها</td></tr>
+        <tr><td><strong>Generic chosen message</strong></td><td>يختار رسائل ويحصل على توقيعاتها — بدون استهداف الضحية</td></tr>
+        <tr><td><strong>Directed chosen message</strong></td><td>يختار رسائل مستهدفة لضحية بعينها</td></tr>
+        <tr><td><strong>Adaptive chosen message</strong></td><td>يختار رسائل بناءً على نتائج التوقيعات السابقة — الأخطر</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Attack Type</th><th>What the Attacker Has</th></tr>
+        <tr><td><strong>Key-only attack</strong></td><td>Only the victim's public key</td></tr>
+        <tr><td><strong>Known message attack</strong></td><td>Set of messages and their signatures</td></tr>
+        <tr><td><strong>Generic chosen message</strong></td><td>Chooses messages and gets signatures — without targeting victim</td></tr>
+        <tr><td><strong>Directed chosen message</strong></td><td>Chooses targeted messages for a specific victim</td></tr>
+        <tr><td><strong>Adaptive chosen message</strong></td><td>Chooses messages based on previous signatures — most dangerous</td></tr>
+      </table>
+
+      <p class="ar" style="font-weight:600;margin-top:1.2rem">أنواع التزوير — Forgeries: (A = الضحية، C = المهاجم)</p>
+      <p class="en" style="font-weight:600;margin-top:1.2rem">Types of Forgery: (A = victim, C = attacker)</p>
+      <table class="tbl ar">
+        <tr><th>نوع التزوير</th><th>الشرح</th><th>الخطورة</th></tr>
+        <tr><td><strong>Total Break</strong></td><td>يكتشف C المفتاح الخاص لـ A — يقدر يوقّع أي شيء</td><td><span class="bd br">الأخطر</span></td></tr>
+        <tr><td><strong>Universal Forgery</strong></td><td>يجد C خوارزمية تُنشئ توقيعاً صالحاً لأي رسالة دون معرفة المفتاح الخاص</td><td><span class="bd br">خطير جداً</span></td></tr>
+        <tr><td><strong>Selective Forgery</strong></td><td>يزوّر C توقيعاً لرسالة معينة يختارها هو</td><td><span class="bd ba">خطير</span></td></tr>
+        <tr><td><strong>Existential Forgery</strong></td><td>يزوّر C توقيعاً لرسالة واحدة على الأقل — لا يختار الرسالة بنفسه</td><td><span class="bd bb">الأضعف</span></td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Forgery Type</th><th>Explanation</th><th>Severity</th></tr>
+        <tr><td><strong>Total Break</strong></td><td>C discovers A's private key — can sign anything</td><td><span class="bd br">Most dangerous</span></td></tr>
+        <tr><td><strong>Universal Forgery</strong></td><td>C finds an algorithm to produce valid signatures on any message without knowing private key</td><td><span class="bd br">Very dangerous</span></td></tr>
+        <tr><td><strong>Selective Forgery</strong></td><td>C forges a signature for a specific chosen message</td><td><span class="bd ba">Dangerous</span></td></tr>
+        <tr><td><strong>Existential Forgery</strong></td><td>C forges a signature for at least one message — doesn't choose which</td><td><span class="bd bb">Weakest</span></td></tr>
+      </table>
+    </div>
+
+    <!-- RSA vs DSS APPROACH -->
+    <div class="sec">
+      <div class="sec-title ar">نهج RSA مقابل نهج DSS — <span style="direction:ltr;unicode-bidi:embed">Slides 9 و 14–16</span> ⭐</div>
+      <div class="sec-title en">RSA Approach vs DSS Approach — Slides 9 and 14–16 ⭐</div>
+
+      <p class="ar" style="font-weight:600">نهج RSA في التوقيع:</p>
+      <p class="en" style="font-weight:600">RSA Signing Approach:</p>
+      <div class="formula">
+        <div class="f-label ar">📐 الإنشاء والتحقق — RSA Approach</div>
+        <div class="f-label en">📐 Sign and Verify — RSA Approach</div>
+        <div class="f-eq"><span style="color:var(--teal)">Sign:</span> &nbsp;&nbsp; S = E(PR<sub>a</sub>, H(M)) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← encrypt hash with private key</div>
+        <div class="f-eq"><span style="color:var(--amber)">Verify:</span> H(M) == D(PU<sub>a</sub>, S) &nbsp;&nbsp;← decrypt with public key, compare</div>
+      </div>
+
+      <p class="ar" style="font-weight:600;margin-top:1rem">نهج DSS/DSA في التوقيع:</p>
+      <p class="en" style="font-weight:600;margin-top:1rem">DSS/DSA Signing Approach:</p>
+      <div class="formula">
+        <div class="f-label ar">📐 الإنشاء والتحقق — DSS Approach</div>
+        <div class="f-label en">📐 Sign and Verify — DSS Approach</div>
+        <div class="f-eq"><span style="color:var(--teal)">Sign:</span> &nbsp;&nbsp; uses H(M) + PR<sub>a</sub> + k (random) → signature (r, s)</div>
+        <div class="f-eq"><span style="color:var(--amber)">Verify:</span> uses H(M) + PU<sub>G</sub> + PU<sub>a</sub> → verification value v</div>
+        <div class="f-eq"><span style="color:var(--green)">Valid if:</span> v == r</div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>الخاصية</th><th>RSA Approach</th><th>DSS Approach</th></tr>
+        <tr><td>خوارزمية الـ Hash</td><td>أي hash</td><td>SHA إلزامي</td></tr>
+        <tr><td>ناتج التوقيع</td><td>عدد واحد S</td><td>زوج من الأعداد (r, s)</td></tr>
+        <tr><td>السرعة</td><td><span class="bd ba">أبطأ نسبياً</span></td><td><span class="bd bg">أسرع</span></td></tr>
+        <tr><td>المعيار</td><td>واسع الانتشار</td><td>FIPS 186 — المعيار الفيدرالي الأمريكي</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Property</th><th>RSA Approach</th><th>DSS Approach</th></tr>
+        <tr><td>Hash Algorithm</td><td>Any hash</td><td>SHA required</td></tr>
+        <tr><td>Signature output</td><td>Single number S</td><td>Pair of numbers (r, s)</td></tr>
+        <tr><td>Speed</td><td><span class="bd ba">Relatively slower</span></td><td><span class="bd bg">Faster</span></td></tr>
+        <tr><td>Standard</td><td>Widely used</td><td>FIPS 186 — US Federal Standard</td></tr>
+      </table>
+    </div>
+
+    <!-- ELGAMAL DS FORMULAS -->
+    <div class="sec">
+      <div class="sec-title ar">التوقيع الرقمي بـ ElGamal — المعادلات — <span style="direction:ltr;unicode-bidi:embed">Slides 10–12</span> ⭐</div>
+      <div class="sec-title en">ElGamal Digital Signature — Formulas — Slides 10–12 ⭐</div>
+      <p class="ar">ElGamal يستخدم المفتاح الخاص للتوقيع والمفتاح العام للتحقق — عكس التشفير.</p>
+      <p class="en">ElGamal uses the private key for signing and public key for verification — opposite of encryption.</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 توليد المفاتيح — نفس ElGamal التشفير</div>
+        <div class="f-label en">📐 Key Generation — same as ElGamal Encryption</div>
+        <div class="f-eq">y<sub>A</sub> = α<sup>x<sub>A</sub></sup> mod q &nbsp;&nbsp;&nbsp;<span style="color:var(--teal)">(public key)</span></div>
+        <div class="f-eq">x<sub>A</sub> = secret key &nbsp;(1 &lt; x<sub>A</sub> &lt; q-1)</div>
+      </div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 معادلات التوقيع — Signing</div>
+        <div class="f-label en">📐 Signing Formulas</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 1:</span> m = H(M) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← hash the message</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 2:</span> choose random K &nbsp;(gcd(K, q-1) = 1)</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 3:</span> S<sub>1</sub> = α<sup>K</sup> mod q</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 4:</span> S<sub>2</sub> = K<sup>-1</sup>(m - x<sub>A</sub>·S<sub>1</sub>) mod (q-1)</div>
+        <div class="f-eq" style="color:var(--amber)">Signature = (S<sub>1</sub>, S<sub>2</sub>)</div>
+      </div>
+
+      <div class="formula">
+        <div class="f-label ar">📐 معادلات التحقق — Verification</div>
+        <div class="f-label en">📐 Verification Formulas</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 1:</span> V<sub>1</sub> = α<sup>m</sup> mod q</div>
+        <div class="f-eq"><span style="color:var(--muted)">Step 2:</span> V<sub>2</sub> = y<sub>A</sub><sup>S<sub>1</sub></sup> · S<sub>1</sub><sup>S<sub>2</sub></sup> mod q</div>
+        <div class="f-eq" style="color:var(--green)">Valid if V<sub>1</sub> == V<sub>2</sub></div>
+      </div>
+    </div>
+
+    <!-- ELGAMAL EXAMPLE -->
+    <div class="sec">
+      <div class="sec-title ar">مثال ElGamal للتوقيع محلول كامل — <span style="direction:ltr;unicode-bidi:embed">Slide 13</span></div>
+      <div class="sec-title en">ElGamal Signature Complete Example — Slide 13</div>
+      <p class="ar">المعطيات: q=19 · α=10 · x<sub>A</sub>=16 · m=14 · K=5</p>
+      <p class="en">Given: q=19 · α=10 · x<sub>A</sub>=16 · m=14 · K=5</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الأولى: توليد مفاتيح المُوقِّع</div>
+        <div class="sol-head en">✦ Phase 1: Signer Key Generation</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: y<sub>A</sub> = α^x<sub>A</sub> mod q</div>
+            <div class="sol-rule en">Formula: y<sub>A</sub> = α^x<sub>A</sub> mod q</div>
+            <div class="sol-calc">y<sub>A</sub> = 10<sup>16</sup> mod 19</div>
+            <div class="sol-result">y<sub>A</sub> = 4</div>
+            <div class="sol-note ar">المفتاح العام = {q=19, α=10, y<sub>A</sub>=4}</div>
+            <div class="sol-note en">Public Key = {q=19, α=10, y<sub>A</sub>=4}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الثانية: التوقيع على الرسالة</div>
+        <div class="sol-head en">✦ Phase 2: Signing the Message</div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: S<sub>1</sub> = α^K mod q</div>
+            <div class="sol-rule en">Formula: S<sub>1</sub> = α^K mod q</div>
+            <div class="sol-calc">S<sub>1</sub> = 10<sup>5</sup> mod 19 = 100000 mod 19</div>
+            <div class="sol-result">S<sub>1</sub> = 3</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: أوجد K⁻¹ mod (q-1)</div>
+            <div class="sol-rule en">Formula: find K⁻¹ mod (q-1)</div>
+            <div class="sol-calc">K<sup>-1</sup> = 5<sup>-1</sup> mod 18</div>
+            <div class="sol-calc">5 × 11 = 55 = 3×18 + 1 → 55 mod 18 = 1 ✓</div>
+            <div class="sol-result">K<sup>-1</sup> = 11</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: S<sub>2</sub> = K⁻¹ × (m - x<sub>A</sub>·S<sub>1</sub>) mod (q-1)</div>
+            <div class="sol-rule en">Formula: S<sub>2</sub> = K⁻¹ × (m - x<sub>A</sub>·S<sub>1</sub>) mod (q-1)</div>
+            <div class="sol-calc">S<sub>2</sub> = 11 × (14 - 16×3) mod 18</div>
+            <div class="sol-calc">= 11 × (14 - 48) mod 18</div>
+            <div class="sol-calc">= 11 × (-34) mod 18</div>
+            <div class="sol-calc">= -374 mod 18 = 4</div>
+            <div class="sol-result">S<sub>2</sub> = 4</div>
+            <div class="sol-note ar">التوقيع النهائي = (S<sub>1</sub>=3, S<sub>2</sub>=4)</div>
+            <div class="sol-note en">Final Signature = (S<sub>1</sub>=3, S<sub>2</sub>=4)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ المرحلة الثالثة: التحقق من التوقيع</div>
+        <div class="sol-head en">✦ Phase 3: Signature Verification</div>
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: V<sub>1</sub> = α^m mod q</div>
+            <div class="sol-rule en">Formula: V<sub>1</sub> = α^m mod q</div>
+            <div class="sol-calc">V<sub>1</sub> = 10<sup>14</sup> mod 19</div>
+            <div class="sol-result">V<sub>1</sub> = 16</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">6</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">القانون: V<sub>2</sub> = y<sub>A</sub>^S<sub>1</sub> × S<sub>1</sub>^S<sub>2</sub> mod q</div>
+            <div class="sol-rule en">Formula: V<sub>2</sub> = y<sub>A</sub>^S<sub>1</sub> × S<sub>1</sub>^S<sub>2</sub> mod q</div>
+            <div class="sol-calc">V<sub>2</sub> = 4<sup>3</sup> × 3<sup>4</sup> mod 19</div>
+            <div class="sol-calc">= 64 × 81 mod 19</div>
+            <div class="sol-calc">= 5184 mod 19</div>
+            <div class="sol-result">V<sub>2</sub> = 16</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">7</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المقارنة: V<sub>1</sub> == V<sub>2</sub>؟</div>
+            <div class="sol-rule en">Compare: V<sub>1</sub> == V<sub>2</sub>?</div>
+            <div class="sol-calc">V<sub>1</sub> = 16 &nbsp;&nbsp; V<sub>2</sub> = 16</div>
+            <div class="sol-result" style="color:var(--green)">16 == 16 ✓ — التوقيع صالح!</div>
+            <div class="sol-note ar">التوقيع مُتحقق — الرسالة حقيقية ولم تُعدَّل</div>
+            <div class="sol-note en">Signature verified — message is authentic and unaltered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DSA -->
+    <div class="sec">
+      <div class="sec-title ar">DSA — خوارزمية NIST للتوقيع الرقمي — <span style="direction:ltr;unicode-bidi:embed">Slide 14</span></div>
+      <div class="sec-title en">DSA — NIST Digital Signature Algorithm — Slide 14</div>
+      <p class="ar">DSA هو المعيار الفيدرالي الأمريكي (FIPS 186) للتوقيع الرقمي. يستخدم SHA إلزامياً ويُنتج توقيعاً من 320 بت (r, s).</p>
+      <p class="en">DSA is the US Federal Standard (FIPS 186) for digital signatures. Requires SHA and produces a 320-bit signature (r, s).</p>
+      <div class="callout tip">
+        <div class="c-head ar">💡 الفرق بين DSA وElGamal</div>
+        <div class="c-head en">💡 DSA vs ElGamal Difference</div>
+        <p class="ar">كلاهما يُنتج توقيعاً من زوجين (S1, S2) أو (r, s)، لكن DSA يعتمد على SHA ويُعتبر أقوى وأكثر كفاءة. ElGamal هو الأساس النظري لـ DSA.</p>
+        <p class="en">Both produce a two-number signature (S1, S2) or (r, s), but DSA requires SHA and is considered stronger and more efficient. ElGamal is the theoretical basis for DSA.</p>
+      </div>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.13 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.13 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>التوقيع الرقمي يستخدم؟</td><td>المفتاح الخاص للتوقيع، المفتاح العام للتحقق</td></tr>
+        <tr><td>التوقيع الرقمي يوفر Non-repudiation؟</td><td><span class="bd bg">نعم — المفتاح الخاص فريد للمُرسِل</span></td></tr>
+        <tr><td>أخطر نوع تزوير؟</td><td><span class="bd br">Total Break — اكتشاف المفتاح الخاص</span></td></tr>
+        <tr><td>أضعف نوع تزوير؟</td><td>Existential Forgery — توقيع رسالة واحدة لا يختارها</td></tr>
+        <tr><td>DSA يستخدم hash نوع؟</td><td>SHA — إلزامي</td></tr>
+        <tr><td>ناتج التوقيع في DSA؟</td><td>زوج (r, s) — 320 بت</td></tr>
+        <tr><td>التحقق في ElGamal — الشرط؟</td><td>V<sub>1</sub> == V<sub>2</sub></td></tr>
+        <tr><td>معادلة V<sub>1</sub>؟</td><td>V<sub>1</sub> = α<sup>m</sup> mod q</td></tr>
+        <tr><td>معادلة V<sub>2</sub>؟</td><td>V<sub>2</sub> = y<sub>A</sub><sup>S<sub>1</sub></sup> · S<sub>1</sub><sup>S<sub>2</sub></sup> mod q</td></tr>
+        <tr><td>معادلة S<sub>1</sub>؟</td><td>S<sub>1</sub> = α<sup>K</sup> mod q</td></tr>
+        <tr><td>معادلة S<sub>2</sub>؟</td><td>S<sub>2</sub> = K<sup>-1</sup>(m - x<sub>A</sub>·S<sub>1</sub>) mod (q-1)</td></tr>
+        <tr><td>RSA Approach — التوقيع؟</td><td>E(PR<sub>a</sub>, H(M))</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Digital signature uses?</td><td>Private key to sign, public key to verify</td></tr>
+        <tr><td>Digital signature provides Non-repudiation?</td><td><span class="bd bg">Yes — private key is unique to sender</span></td></tr>
+        <tr><td>Most dangerous forgery type?</td><td><span class="bd br">Total Break — discovering the private key</span></td></tr>
+        <tr><td>Weakest forgery type?</td><td>Existential Forgery — sign one message, can't choose which</td></tr>
+        <tr><td>DSA uses which hash?</td><td>SHA — mandatory</td></tr>
+        <tr><td>DSA signature output?</td><td>Pair (r, s) — 320 bits</td></tr>
+        <tr><td>ElGamal verification condition?</td><td>V<sub>1</sub> == V<sub>2</sub></td></tr>
+        <tr><td>V<sub>1</sub> formula?</td><td>V<sub>1</sub> = α<sup>m</sup> mod q</td></tr>
+        <tr><td>V<sub>2</sub> formula?</td><td>V<sub>2</sub> = y<sub>A</sub><sup>S<sub>1</sub></sup> · S<sub>1</sub><sup>S<sub>2</sub></sup> mod q</td></tr>
+        <tr><td>S<sub>1</sub> formula?</td><td>S<sub>1</sub> = α<sup>K</sup> mod q</td></tr>
+        <tr><td>S<sub>2</sub> formula?</td><td>S<sub>2</sub> = K<sup>-1</sup>(m - x<sub>A</sub>·S<sub>1</sub>) mod (q-1)</td></tr>
+        <tr><td>RSA Approach — signing?</td><td>E(PR<sub>a</sub>, H(M))</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 14 ═══════════ -->
+<div class="chapter" id="ch14">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#22c55e,#4f8ef7)">14</div>
+    <div>
+      <div class="ch-title">Key Management &amp; Distribution</div>
+      <div class="ch-sub ar">إدارة وتوزيع المفاتيح · Slides 3–42</div>
+      <div class="ch-sub en">Key Management &amp; Distribution · Slides 3–42</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- KEY HIERARCHY -->
+    <div class="sec">
+      <div class="sec-title ar">تسلسل المفاتيح — Key Hierarchy — <span style="direction:ltr;unicode-bidi:embed">Slide 6</span></div>
+      <div class="sec-title en">Key Hierarchy — Slide 6</div>
+      <p class="ar">الأنظمة الآمنة تستخدم تسلسلاً من المفاتيح بدلاً من مفتاح واحد لكل شيء:</p>
+      <p class="en">Secure systems use a hierarchy of keys rather than a single key for everything:</p>
+      <table class="tbl ar">
+        <tr><th>نوع المفتاح</th><th>الاستخدام</th><th>العمر</th></tr>
+        <tr><td><strong>Session Key</strong> <span class="aw">(مفتاح الجلسة)</span></td><td>تشفير البيانات بين المستخدمين في جلسة واحدة</td><td><span class="bd br">مؤقت — يُحذف بعد الجلسة</span></td></tr>
+        <tr><td><strong>Master Key</strong> <span class="aw">(المفتاح الرئيسي)</span></td><td>تشفير مفاتيح الجلسة — مشترك بين المستخدم والـ KDC</td><td><span class="bd bg">طويل الأمد</span></td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Key Type</th><th>Use</th><th>Lifetime</th></tr>
+        <tr><td><strong>Session Key</strong></td><td>Encrypts data between users for one logical session</td><td><span class="bd br">Temporary — discarded after session</span></td></tr>
+        <tr><td><strong>Master Key</strong></td><td>Encrypts session keys — shared between user and KDC</td><td><span class="bd bg">Long-term</span></td></tr>
+      </table>
+      <div class="callout key">
+        <div class="c-head ar">🔑 لماذا نفصل بينهما؟</div>
+        <div class="c-head en">🔑 Why separate them?</div>
+        <p class="ar">إذا اختُرق مفتاح الجلسة، تكون الخسارة محدودة بتلك الجلسة فقط. تغيير مفاتيح الجلسة بشكل متكرر يُقلّل من حجم البيانات المُعرَّضة للخطر.</p>
+        <p class="en">If a session key is compromised, the damage is limited to that session only. Frequent session key changes limit the amount of data compromised if a key is discovered.</p>
+      </div>
+    </div>
+
+    <!-- KDC SCENARIO -->
+    <div class="sec">
+      <div class="sec-title ar">مركز توزيع المفاتيح KDC — Figure 14.3 — <span style="direction:ltr;unicode-bidi:embed">Slides 4–5</span> ⭐</div>
+      <div class="sec-title en">Key Distribution Center (KDC) — Figure 14.3 — Slides 4–5 ⭐</div>
+      <p class="ar">الـ KDC وسيط موثوق يشارك مفتاح رئيسي سري مع كل مستخدم. يُستخدم لتوزيع مفاتيح الجلسة بأمان.</p>
+      <p class="en">The KDC is a trusted intermediary that shares a secret master key with each user. Used to securely distribute session keys.</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 الخطوات الخمس — Figure 14.3</div>
+        <div class="f-label en">📐 Five Steps — Figure 14.3</div>
+        <div class="f-eq"><span style="color:var(--teal)">(1)</span> A → KDC : ID<sub>A</sub> || ID<sub>B</sub> || N<sub>1</sub></div>
+        <div class="f-eq"><span style="color:var(--teal)">(2)</span> KDC → A : E(K<sub>a</sub>, [K<sub>s</sub> || ID<sub>B</sub> || N<sub>1</sub>]) || E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>])</div>
+        <div class="f-eq"><span style="color:var(--teal)">(3)</span> A → B &nbsp;: E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>])</div>
+        <div class="f-eq"><span style="color:var(--amber)">(4)</span> B → A &nbsp;: E(K<sub>s</sub>, N<sub>2</sub>)</div>
+        <div class="f-eq"><span style="color:var(--amber)">(5)</span> A → B &nbsp;: E(K<sub>s</sub>, f(N<sub>2</sub>))</div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ شرح كل خطوة بالتفصيل</div>
+        <div class="sol-head en">✦ Detailed Explanation of Each Step</div>
+
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">طلب مفتاح جلسة — A ترسل للـ KDC</div>
+            <div class="sol-rule en">Session key request — A sends to KDC</div>
+            <div class="sol-calc">A → KDC : ID<sub>A</sub> || ID<sub>B</sub> || N<sub>1</sub></div>
+            <div class="sol-note ar">ترسل A هويتها وهوية B ورقماً عشوائياً N1 (nonce) لمنع إعادة الإرسال</div>
+            <div class="sol-note en">A sends its ID, B's ID, and a random nonce N1 to prevent replay attacks</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">رد الـ KDC — يُرسل مفتاح الجلسة مشفّراً مرتين</div>
+            <div class="sol-rule en">KDC response — sends session key encrypted twice</div>
+            <div class="sol-calc">E(K<sub>a</sub>, [K<sub>s</sub> || ID<sub>B</sub> || N<sub>1</sub>]) &nbsp;← لـ A مشفّر بمفتاح A</div>
+            <div class="sol-calc">E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>]) &nbsp;&nbsp;&nbsp;&nbsp;← لـ B مشفّر بمفتاح B (التذكرة)</div>
+            <div class="sol-note ar">الجزء الأول: يتحقق A منه (يثبت أن الرد من الـ KDC). الجزء الثاني: التذكرة التي تُرسل لـ B</div>
+            <div class="sol-note en">First part: A verifies it (proves response is from KDC). Second part: the ticket to forward to B</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">ترسل A التذكرة إلى B</div>
+            <div class="sol-rule en">A forwards the ticket to B</div>
+            <div class="sol-calc">A → B : E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>])</div>
+            <div class="sol-note ar">يفك B تشفير التذكرة بمفتاحه الرئيسي ويحصل على K<sub>s</sub> وهوية A</div>
+            <div class="sol-note en">B decrypts the ticket with its master key to obtain K<sub>s</sub> and A's identity</div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">خطوة المصادقة — B يتحقق من A</div>
+            <div class="sol-rule en">Authentication step — B challenges A</div>
+            <div class="sol-calc">B → A : E(K<sub>s</sub>, N<sub>2</sub>)</div>
+            <div class="sol-note ar">يرسل B رقماً عشوائياً N2 مشفّراً بمفتاح الجلسة — تحدٍّ لـ A لإثبات أنه يملك K<sub>s</sub></div>
+            <div class="sol-note en">B sends random nonce N2 encrypted with session key — challenges A to prove it has K<sub>s</sub></div>
+          </div>
+        </div>
+
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">A يرد على التحدي بدالة على N2</div>
+            <div class="sol-rule en">A responds to challenge with a function of N2</div>
+            <div class="sol-calc">A → B : E(K<sub>s</sub>, f(N<sub>2</sub>))</div>
+            <div class="sol-note ar">f(N2) هي دالة بسيطة مثل N2+1. هذا يثبت أن A يملك K<sub>s</sub> الصحيح دون إعادة إرسال N2 نفسه</div>
+            <div class="sol-note en">f(N2) is a simple function like N2+1. This proves A has the correct K<sub>s</sub> without simply replaying N2</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="c-head ar">⚠️ أسئلة الاختبار الثلاثة عن الـ KDC</div>
+        <div class="c-head en">⚠️ The Three Exam Questions About KDC</div>
+        <p class="ar"><strong>س: كيف تتحقق A أن الرد جاء فعلاً من الـ KDC؟</strong><br>
+        ج: لأن الرد مشفّر بـ K<sub>a</sub> (المفتاح الرئيسي لـ A) — فقط الـ KDC يعرف K<sub>a</sub>. وجود N1 يمنع إعادة إرسال رسالة قديمة.<br><br>
+        <strong>س: كيف يتحقق B أن الطرف الآخر هو A وليس منتحلاً؟</strong><br>
+        ج: التذكرة E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>]) صنعها الـ KDC وتحتوي على هوية A — B يفك التشفير بمفتاحه ويرى ID<sub>A</sub> بشكل موثوق.<br><br>
+        <strong>س: ما الغرض من الـ Nonces (N1, N2)؟</strong><br>
+        ج: منع هجمات إعادة الإرسال (Replay Attacks) — كل nonce فريد لكل جلسة.</p>
+        <p class="en"><strong>Q: How can A be sure the response is from the KDC?</strong><br>
+        A: Because the response is encrypted with K<sub>a</sub> (A's master key) — only the KDC knows K<sub>a</sub>. N1 prevents replay of old messages.<br><br>
+        <strong>Q: How does B know the other party is really A and not an impersonator?</strong><br>
+        A: The ticket E(K<sub>b</sub>, [K<sub>s</sub> || ID<sub>A</sub>]) was created by the KDC and contains A's identity — B decrypts with its master key and sees ID<sub>A</sub> reliably.<br><br>
+        <strong>Q: What is the purpose of Nonces (N1, N2)?</strong><br>
+        A: Prevent Replay Attacks — each nonce is unique per session, so old messages cannot be reused.</p>
+      </div>
+    </div>
+
+    <!-- PUBLIC KEY DISTRIBUTION -->
+    <div class="sec">
+      <div class="sec-title ar">توزيع المفاتيح العامة — الأربعة أساليب — <span style="direction:ltr;unicode-bidi:embed">Slides 21–27</span> ⭐</div>
+      <div class="sec-title en">Public Key Distribution — Four Schemes — Slides 21–27 ⭐</div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الأول: Public Announcement</div>
+        <div class="sol-head en">✦ Scheme 1: Public Announcement</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: كل مستخدم ينشر مفتاحه العام مباشرة (بريد، منتديات، إلخ)</div>
+            <div class="sol-rule en">Idea: users distribute their public keys directly (email, forums, etc.)</div>
+            <div class="sol-calc">User A → broadcast(PU<sub>A</sub>) → everyone</div>
+            <div class="sol-note ar">الميزة: بسيط جداً. الضعف: أي شخص يقدر ينشر مفتاحاً مدّعياً أنه A (تزوير سهل)</div>
+            <div class="sol-note en">Advantage: very simple. Weakness: anyone can publish a key claiming to be A (easy forgery)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الثاني: Publicly Available Directory</div>
+        <div class="sol-head en">✦ Scheme 2: Publicly Available Directory</div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: دليل عام موثوق يحتوي مدخلات {اسم، مفتاح عام}</div>
+            <div class="sol-rule en">Idea: trusted public directory containing {name, public-key} entries</div>
+            <div class="sol-calc">Directory: {ID_A : PU_A}, {ID_B : PU_B}, ...</div>
+            <div class="sol-note ar">أفضل من الأول لكن لا يزال عرضة للتلاعب إذا اختُرق الدليل</div>
+            <div class="sol-note en">Better than announcement but still vulnerable if the directory is compromised</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الثالث: Public-Key Authority</div>
+        <div class="sol-head en">✦ Scheme 3: Public-Key Authority</div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: جهة موثوقة تُوزّع المفاتيح العامة عند الطلب في الوقت الفعلي</div>
+            <div class="sol-rule en">Idea: trusted authority distributes public keys on-demand in real time</div>
+            <div class="sol-calc">A → Authority: "give me PU_B"</div>
+            <div class="sol-calc">Authority → A: E(PR_auth, [PU_B || Request || T])</div>
+            <div class="sol-note ar">أكثر أماناً لكن يتطلب وصولاً فورياً للجهة الموثوقة في كل مرة</div>
+            <div class="sol-note en">More secure but requires real-time access to the authority every time</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ الأسلوب الرابع: Public-Key Certificates — الأفضل ⭐</div>
+        <div class="sol-head en">✦ Scheme 4: Public-Key Certificates — Best ⭐</div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: شهادة رقمية تربط هوية المستخدم بمفتاحه العام وتُوقَّع من جهة موثوقة (CA)</div>
+            <div class="sol-rule en">Idea: digital certificate binds user identity to public key, signed by a trusted CA</div>
+            <div class="sol-calc">Certificate = {ID_A, PU_A, validity, ...} signed by CA's private key</div>
+            <div class="sol-calc">Anyone verifies using CA's public key — no real-time access needed</div>
+            <div class="sol-note ar">الميزة: لا يحتاج وصولاً فورياً للجهة الموثوقة. يمكن تداول الشهادات بحرية</div>
+            <div class="sol-note en">Advantage: no real-time access to authority needed. Certificates can be freely distributed</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>الأسلوب</th><th>الأمان</th><th>العيب الرئيسي</th></tr>
+        <tr><td>Public Announcement</td><td><span class="bd br">ضعيف</span></td><td>سهل التزوير</td></tr>
+        <tr><td>Publicly Available Directory</td><td><span class="bd ba">متوسط</span></td><td>يُمكن اختراق الدليل</td></tr>
+        <tr><td>Public-Key Authority</td><td><span class="bd bg">جيد</span></td><td>يتطلب وصولاً فورياً دائماً</td></tr>
+        <tr><td><strong>Public-Key Certificates</strong></td><td><span class="bd bg">الأفضل ✓</span></td><td>يحتاج إدارة الشهادات والإلغاء</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Scheme</th><th>Security</th><th>Main Weakness</th></tr>
+        <tr><td>Public Announcement</td><td><span class="bd br">Weak</span></td><td>Easy to forge</td></tr>
+        <tr><td>Publicly Available Directory</td><td><span class="bd ba">Medium</span></td><td>Directory can be compromised</td></tr>
+        <tr><td>Public-Key Authority</td><td><span class="bd bg">Good</span></td><td>Requires real-time access always</td></tr>
+        <tr><td><strong>Public-Key Certificates</strong></td><td><span class="bd bg">Best ✓</span></td><td>Requires certificate management and revocation</td></tr>
+      </table>
+    </div>
+
+    <!-- X.509 -->
+    <div class="sec">
+      <div class="sec-title ar">شهادات X.509 — <span style="direction:ltr;unicode-bidi:embed">Slides 29–36</span></div>
+      <div class="sec-title en">X.509 Certificates — Slides 29–36</div>
+      <p class="ar">X.509 معيار دولي يُعرّف بنية الشهادة الرقمية وبروتوكولات المصادقة. يعتمد على التشفير بالمفتاح العام والتوقيع الرقمي.</p>
+      <p class="en">X.509 is an international standard defining the digital certificate structure and authentication protocols. Based on public-key cryptography and digital signatures.</p>
+
+      <p class="ar" style="font-weight:600">حقول شهادة X.509 — <span style="direction:ltr;unicode-bidi:embed">Slide 31</span>:</p>
+      <p class="en" style="font-weight:600">X.509 Certificate Fields — Slide 31:</p>
+      <table class="tbl ar">
+        <tr><th>الحقل</th><th>الوصف</th></tr>
+        <tr><td><strong>Version</strong></td><td>إصدار الشهادة (1, 2, أو 3)</td></tr>
+        <tr><td><strong>Serial Number</strong></td><td>رقم تسلسلي فريد من الـ CA</td></tr>
+        <tr><td><strong>Signature Algorithm ID</strong></td><td>الخوارزمية المستخدمة في التوقيع (مثلاً SHA-256 with RSA)</td></tr>
+        <tr><td><strong>Issuer Name</strong></td><td>اسم الجهة المصدِرة للشهادة (CA)</td></tr>
+        <tr><td><strong>Period of Validity</strong></td><td>تاريخ البداية والانتهاء</td></tr>
+        <tr><td><strong>Subject Name</strong></td><td>اسم صاحب الشهادة</td></tr>
+        <tr><td><strong>Subject's Public Key</strong></td><td>المفتاح العام للمستخدم + اسم الخوارزمية</td></tr>
+        <tr><td><strong>Extensions</strong></td><td>حقول إضافية (في الإصدار 3)</td></tr>
+        <tr><td><strong>Signature</strong></td><td>توقيع الـ CA على كل المحتوى</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Field</th><th>Description</th></tr>
+        <tr><td><strong>Version</strong></td><td>Certificate version (1, 2, or 3)</td></tr>
+        <tr><td><strong>Serial Number</strong></td><td>Unique serial number from the CA</td></tr>
+        <tr><td><strong>Signature Algorithm ID</strong></td><td>Algorithm used for signing (e.g., SHA-256 with RSA)</td></tr>
+        <tr><td><strong>Issuer Name</strong></td><td>Name of the issuing certificate authority (CA)</td></tr>
+        <tr><td><strong>Period of Validity</strong></td><td>Start and end dates</td></tr>
+        <tr><td><strong>Subject Name</strong></td><td>Name of the certificate owner</td></tr>
+        <tr><td><strong>Subject's Public Key</strong></td><td>User's public key + algorithm name</td></tr>
+        <tr><td><strong>Extensions</strong></td><td>Additional fields (in version 3)</td></tr>
+        <tr><td><strong>Signature</strong></td><td>CA's signature over all content</td></tr>
+      </table>
+
+      <div class="callout tip">
+        <div class="c-head ar">💡 إلغاء الشهادة — Certificate Revocation — <span style="direction:ltr;unicode-bidi:embed">Slide 35</span></div>
+        <div class="c-head en">💡 Certificate Revocation — Slide 35</div>
+        <p class="ar">يُلغى الشهادة قبل انتهائها في حالات: اختراق المفتاح الخاص، انتهاء ارتباط المستخدم بالـ CA، أو اختراق الـ CA نفسه. كل CA تحتفظ بقائمة الشهادات الملغاة (CRL — Certificate Revocation List).</p>
+        <p class="en">A certificate is revoked before expiry if: private key is compromised, user is no longer certified by the CA, or the CA's own certificate is compromised. Each CA maintains a Certificate Revocation List (CRL).</p>
+      </div>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.14 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.14 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>Session Key مقابل Master Key؟</td><td>Session = مؤقت للبيانات · Master = دائم لتشفير Session Keys</td></tr>
+        <tr><td>الخطوة 4 في KDC تفعل؟</td><td>B يرسل E(Ks, N2) — تحدٍّ للتحقق من A</td></tr>
+        <tr><td>الخطوة 5 في KDC تفعل؟</td><td>يرد بـ E(Ks, f(N2)) — يثبت امتلاك Ks</td></tr>
+        <tr><td>الغرض من الـ Nonces؟</td><td>منع Replay Attacks — كل nonce فريد لكل جلسة</td></tr>
+        <tr><td>كيف تتحقق A أن الرد من الـ KDC؟</td><td>الرد مشفّر بـ Ka — فقط الـ KDC يعرف Ka</td></tr>
+        <tr><td>أفضل أسلوب لتوزيع المفاتيح العامة؟</td><td><span class="bd bg">Public-Key Certificates</span></td></tr>
+        <tr><td>ميزة الـ Certificates على Public-Key Authority؟</td><td>لا تحتاج وصولاً فورياً للجهة الموثوقة</td></tr>
+        <tr><td>X.509 يوصي بأي خوارزمية؟</td><td>RSA — لكن لا يُلزم بها</td></tr>
+        <tr><td>CRL تعني؟</td><td>Certificate Revocation List — قائمة الشهادات الملغاة</td></tr>
+        <tr><td>ضعف Public Announcement؟</td><td>سهل التزوير — أي شخص يدّعي أنه أي مستخدم</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Session Key vs Master Key?</td><td>Session = temporary for data · Master = long-term for encrypting session keys</td></tr>
+        <tr><td>What does KDC Step 4 do?</td><td>B sends E(Ks, N2) — challenges A to verify it has Ks</td></tr>
+        <tr><td>What does KDC Step 5 do?</td><td>A responds with E(Ks, f(N2)) — proves possession of Ks</td></tr>
+        <tr><td>Purpose of Nonces?</td><td>Prevent Replay Attacks — each nonce is unique per session</td></tr>
+        <tr><td>How can A verify response is from KDC?</td><td>Response encrypted with Ka — only KDC knows Ka</td></tr>
+        <tr><td>Best public key distribution scheme?</td><td><span class="bd bg">Public-Key Certificates</span></td></tr>
+        <tr><td>Advantage of Certificates over Authority?</td><td>No real-time access to authority needed</td></tr>
+        <tr><td>X.509 recommends which algorithm?</td><td>RSA — but does not mandate it</td></tr>
+        <tr><td>CRL stands for?</td><td>Certificate Revocation List</td></tr>
+        <tr><td>Weakness of Public Announcement?</td><td>Easy forgery — anyone can claim to be any user</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 16 ═══════════ -->
+<div class="chapter" id="ch16">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f59e0b,#22c55e)">16</div>
+    <div>
+      <div class="ch-title">SSL / TLS &amp; HTTPS &amp; SSH</div>
+      <div class="ch-sub ar">أمان طبقة النقل · Slides 4–41</div>
+      <div class="ch-sub en">Transport Layer Security · Slides 4–41</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- SSL OVERVIEW -->
+    <div class="sec">
+      <div class="sec-title ar">ما هو SSL/TLS؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 4–5</span></div>
+      <div class="sec-title en">What is SSL/TLS? — Slides 4–5</div>
+      <p class="ar"><strong>SSL (Secure Socket Layer)</strong>: طوّرته Netscape لتأمين اتصالات الويب. الإصدار 3 أصبح معيار إنترنت يُعرف بـ <strong>TLS (Transport Layer Security)</strong>. يعمل فوق TCP لتوفير خدمة موثوقة ومشفّرة.</p>
+      <p class="en"><strong>SSL (Secure Socket Layer)</strong>: Developed by Netscape for web security. Version 3 became the Internet standard known as <strong>TLS (Transport Layer Security)</strong>. Runs over TCP to provide a reliable end-to-end encrypted service.</p>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 SSL له طبقتان من البروتوكولات</div>
+        <div class="c-head en">🔑 SSL has Two Layers of Protocols</div>
+        <div class="formula" style="margin-top:.5rem">
+          <div class="f-eq">Upper Layer: &nbsp;Handshake | Change Cipher Spec | Alert | HTTP</div>
+          <div class="f-eq">Lower Layer: &nbsp;SSL Record Protocol</div>
+          <div class="f-eq">─────────────────────────────────────────</div>
+          <div class="f-eq">TCP</div>
+          <div class="f-eq">IP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SESSION vs CONNECTION -->
+    <div class="sec">
+      <div class="sec-title ar">Session مقابل Connection — <span style="direction:ltr;unicode-bidi:embed">Slides 7–9</span> ⭐</div>
+      <div class="sec-title en">Session vs Connection — Slides 7–9 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>الخاصية</th><th>SSL Session</th><th>SSL Connection</th></tr>
+        <tr><td>التعريف</td><td>علاقة بين Client وServer تُنشئها Handshake Protocol</td><td>رابط اتصال مؤقت بين طرفين (Peer-to-Peer)</td></tr>
+        <tr><td>العمر</td><td>قد تستمر طويلاً</td><td>مؤقت جداً</td></tr>
+        <tr><td>العلاقة</td><td>Session واحدة تخدم اتصالات متعددة</td><td>كل Connection مرتبط بـ Session واحدة</td></tr>
+        <tr><td>تعريف المعاملات</td><td>تُعرّف مجموعة من المعاملات المشفّرة (cipher suite)</td><td>يستخدم المعاملات المحددة في الـ Session</td></tr>
+        <tr><td>الهدف</td><td>تجنب التفاوض على مفاتيح جديدة لكل اتصال</td><td>حمل بيانات التطبيق الفعلي</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Property</th><th>SSL Session</th><th>SSL Connection</th></tr>
+        <tr><td>Definition</td><td>Association between client and server, created by Handshake Protocol</td><td>Transient peer-to-peer communications link</td></tr>
+        <tr><td>Lifetime</td><td>Can persist across multiple connections</td><td>Very temporary</td></tr>
+        <tr><td>Relationship</td><td>One session can serve multiple connections</td><td>Each connection is associated with one session</td></tr>
+        <tr><td>Defines</td><td>Set of cryptographic parameters (cipher suite)</td><td>Uses parameters defined by the session</td></tr>
+        <tr><td>Purpose</td><td>Avoid renegotiating keys for every connection</td><td>Carries the actual application data</td></tr>
+      </table>
+    </div>
+
+    <!-- RECORD PROTOCOL -->
+    <div class="sec">
+      <div class="sec-title ar">SSL Record Protocol — <span style="direction:ltr;unicode-bidi:embed">Slides 10–14</span> ⭐</div>
+      <div class="sec-title en">SSL Record Protocol — Slides 10–14 ⭐</div>
+
+      <p class="ar">يوفر الـ Record Protocol خدمتين لكل اتصال SSL:</p>
+      <p class="en">The Record Protocol provides two services for every SSL connection:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>Confidentiality</strong> <span class="aw">(السرية)</span>: تشفير متماثل بمفتاح مشترك حدّده الـ Handshake Protocol (AES, 3DES, RC4...)</p>
+          <p class="en"><strong>Confidentiality</strong>: Symmetric encryption with shared key defined by Handshake Protocol (AES, 3DES, RC4...)</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Message Integrity</strong> <span class="aw">(سلامة الرسالة)</span>: MAC بمفتاح سري مشترك مشابه لـ HMAC</p>
+          <p class="en"><strong>Message Integrity</strong>: MAC using a shared secret key, similar to HMAC</p>
+        </div></li>
+      </ul>
+
+      <p class="ar" style="font-weight:600">الخطوات الست التي تمر بها البيانات في الـ Record Protocol:</p>
+      <p class="en" style="font-weight:600">Six steps data passes through in the Record Protocol:</p>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ SSL Record Protocol Operation</div>
+        <div class="sol-head en">✦ SSL Record Protocol Operation</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">استقبال بيانات التطبيق</div>
+            <div class="sol-rule en">Application data received</div>
+            <div class="sol-calc">Application Data → Record Protocol</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">تجزئة البيانات إلى كتل (Fragment)</div>
+            <div class="sol-rule en">Fragment data into blocks</div>
+            <div class="sol-calc">Data → Fragment (max 2¹⁴ bytes each)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">ضغط البيانات (Compress) — اختياري</div>
+            <div class="sol-rule en">Compress data — optional</div>
+            <div class="sol-calc">Fragment → Compress</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">إضافة MAC للتحقق من السلامة</div>
+            <div class="sol-rule en">Add MAC for integrity verification</div>
+            <div class="sol-calc">Compressed data + MAC(secret_key, data)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">5</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">تشفير البيانات مع الـ MAC</div>
+            <div class="sol-rule en">Encrypt data and MAC together</div>
+            <div class="sol-calc">Encrypt(data || MAC)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">6</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">إضافة SSL Record Header وإرسال</div>
+            <div class="sol-rule en">Append SSL Record Header and transmit</div>
+            <div class="sol-calc">SSL Header || Encrypted(data || MAC) → send</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-PROTOCOLS -->
+    <div class="sec">
+      <div class="sec-title ar">البروتوكولات الفرعية — <span style="direction:ltr;unicode-bidi:embed">Slides 15–17</span> ⭐</div>
+      <div class="sec-title en">Sub-Protocols — Slides 15–17 ⭐</div>
+
+      <p class="ar" style="font-weight:600">١. Change Cipher Spec Protocol — <span style="direction:ltr;unicode-bidi:embed">Slide 15</span></p>
+      <p class="en" style="font-weight:600">1. Change Cipher Spec Protocol — Slide 15</p>
+      <p class="ar">رسالة واحدة فقط — تُحوّل الـ Pending State إلى Current State، أي تُفعّل الـ cipher suite الجديدة.</p>
+      <p class="en">A single message only — converts Pending State to Current State, activating the new cipher suite.</p>
+
+      <p class="ar" style="font-weight:600;margin-top:1rem">٢. Alert Protocol — <span style="direction:ltr;unicode-bidi:embed">Slide 16</span></p>
+      <p class="en" style="font-weight:600;margin-top:1rem">2. Alert Protocol — Slide 16</p>
+      <p class="ar">ينقل تنبيهات SSL بين الطرفين. نوعان من التنبيهات:</p>
+      <p class="en">Conveys SSL-related alerts between parties. Two types:</p>
+      <table class="tbl ar">
+        <tr><th>النوع</th><th>أمثلة</th><th>النتيجة</th></tr>
+        <tr><td><strong>Fatal</strong> <span class="aw">(خطير)</span></td><td>unexpected message, bad record mac, handshake failure, illegal parameter</td><td><span class="bd br">ينهي الاتصال فوراً</span></td></tr>
+        <tr><td><strong>Warning</strong> <span class="aw">(تحذير)</span></td><td>close notify, bad certificate, certificate revoked, certificate expired</td><td><span class="bd ba">يُكمل حسب الحالة</span></td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Type</th><th>Examples</th><th>Result</th></tr>
+        <tr><td><strong>Fatal</strong></td><td>unexpected message, bad record mac, handshake failure, illegal parameter</td><td><span class="bd br">Terminates connection immediately</span></td></tr>
+        <tr><td><strong>Warning</strong></td><td>close notify, bad certificate, certificate revoked, certificate expired</td><td><span class="bd ba">Continues based on situation</span></td></tr>
+      </table>
+
+      <p class="ar" style="font-weight:600;margin-top:1rem">٣. Handshake Protocol — <span style="direction:ltr;unicode-bidi:embed">Slide 17</span> ⭐</p>
+      <p class="en" style="font-weight:600;margin-top:1rem">3. Handshake Protocol — Slide 17 ⭐</p>
+      <p class="ar">أهم بروتوكول في SSL — يُمكّن Server وClient من:</p>
+      <p class="en">Most important SSL protocol — enables Server and Client to:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">مصادقة بعضهما البعض</p>
+          <p class="en">Authenticate each other</p>
+        </div></li>
+        <li><div>
+          <p class="ar">التفاوض على خوارزميات التشفير والـ MAC</p>
+          <p class="en">Negotiate encryption and MAC algorithms</p>
+        </div></li>
+        <li><div>
+          <p class="ar">التفاوض على المفاتيح التشفيرية المستخدمة</p>
+          <p class="en">Negotiate cryptographic keys to be used</p>
+        </div></li>
+      </ul>
+
+      <p class="ar" style="font-weight:600">مراحل الـ Handshake الأربعة:</p>
+      <p class="en" style="font-weight:600">Four Handshake Phases:</p>
+      <div class="solution">
+        <div class="sol-head ar">✦ مراحل Handshake Protocol</div>
+        <div class="sol-head en">✦ Handshake Protocol Phases</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Establish Security Capabilities — رسائل Hello</div>
+            <div class="sol-rule en">Establish Security Capabilities — Hello Messages</div>
+            <div class="sol-calc">Client_hello → Server_hello</div>
+            <div class="sol-note ar">يتبادل الطرفان: SSL version، Random، Session ID، Cipher Suite المدعومة</div>
+            <div class="sol-note en">Parties exchange: SSL version, Random, Session ID, supported Cipher Suites</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Server Authentication and Key Exchange</div>
+            <div class="sol-rule en">Server Authentication and Key Exchange</div>
+            <div class="sol-calc">Certificate → Server_key_exchange → Certificate_request → Server_hello_done</div>
+            <div class="sol-note ar">يُرسل Server شهادته الرقمية ومفتاح التبادل</div>
+            <div class="sol-note en">Server sends its digital certificate and key exchange parameters</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Client Authentication and Key Exchange</div>
+            <div class="sol-rule en">Client Authentication and Key Exchange</div>
+            <div class="sol-calc">Certificate → Client_key_exchange → Certificate_verify</div>
+            <div class="sol-note ar">يُرسل Client شهادته (إن طُلبت) ومعلومات المفتاح</div>
+            <div class="sol-note en">Client sends its certificate (if requested) and key information</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">Finish — تفعيل الاتصال الآمن</div>
+            <div class="sol-rule en">Finish — activate secure connection</div>
+            <div class="sol-calc">Change_cipher_spec → Finished (Client)</div>
+            <div class="sol-calc">Change_cipher_spec → Finished (Server)</div>
+            <div class="sol-note ar">كلا الطرفين يُفعّلان الـ cipher suite الجديدة ويتحققان من نجاح الـ Handshake</div>
+            <div class="sol-note en">Both parties activate the new cipher suite and verify handshake success</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="c-head ar">💡 أهمية رسائل Hello — <span style="direction:ltr;unicode-bidi:embed">Slide 17</span></div>
+        <div class="c-head en">💡 Importance of Hello Messages — Slide 17</div>
+        <p class="ar">رسائل Hello هي بداية الـ Handshake. تحتوي على: إصدار SSL، أرقام عشوائية (Randoms) لاشتقاق المفاتيح، Session ID لإمكانية الاستئناف، وقائمة Cipher Suites المدعومة. بدونها لا يمكن التفاوض على أي معاملات أمان.</p>
+        <p class="en">Hello messages initiate the Handshake. They contain: SSL version, Randoms for key derivation, Session ID for resumption, and supported Cipher Suites list. Without them, no security parameters can be negotiated.</p>
+      </div>
+    </div>
+
+    <!-- CRYPTO COMPUTATIONS -->
+    <div class="sec">
+      <div class="sec-title ar">الحسابات التشفيرية — Master Secret — <span style="direction:ltr;unicode-bidi:embed">Slides 19–21</span></div>
+      <div class="sec-title en">Cryptographic Computations — Master Secret — Slides 19–21</div>
+      <div class="formula">
+        <div class="f-label ar">📐 مراحل توليد المفاتيح</div>
+        <div class="f-label en">📐 Key Generation Stages</div>
+        <div class="f-eq"><span style="color:var(--teal)">Stage 1:</span> Exchange pre_master_secret (via RSA or DH)</div>
+        <div class="f-eq"><span style="color:var(--teal)">Stage 2:</span> master_secret = PRF(pre_master_secret, randoms)</div>
+        <div class="f-eq"><span style="color:var(--teal)">Stage 3:</span> Generate 6 parameters from master_secret:</div>
+        <div class="f-eq" style="font-size:.82rem;color:var(--muted)">
+          &nbsp;&nbsp;client write MAC secret &nbsp;|&nbsp; server write MAC secret<br>
+          &nbsp;&nbsp;client write key &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp; server write key<br>
+          &nbsp;&nbsp;client write IV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp; server write IV
+        </div>
+      </div>
+      <table class="tbl ar">
+        <tr><th>المصطلح</th><th>الوصف</th></tr>
+        <tr><td><strong>pre_master_secret</strong></td><td>قيمة مؤقتة تُشتق منها الـ master_secret</td></tr>
+        <tr><td><strong>master_secret</strong></td><td>قيمة 48 بايت تُولَّد مرة واحدة لكل جلسة</td></tr>
+        <tr><td><strong>PRF</strong></td><td>Pseudo-Random Function — تُنتج بايتات آمنة كافية لكل المعاملات</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Term</th><th>Description</th></tr>
+        <tr><td><strong>pre_master_secret</strong></td><td>Temporary value from which master_secret is derived</td></tr>
+        <tr><td><strong>master_secret</strong></td><td>48-byte one-time value generated per session</td></tr>
+        <tr><td><strong>PRF</strong></td><td>Pseudo-Random Function — produces enough secure bytes for all parameters</td></tr>
+      </table>
+    </div>
+
+    <!-- HTTPS -->
+    <div class="sec">
+      <div class="sec-title ar">HTTPS — HTTP فوق SSL — <span style="direction:ltr;unicode-bidi:embed">Slides 26–27</span></div>
+      <div class="sec-title en">HTTPS — HTTP over SSL — Slides 26–27</div>
+      <p class="ar">HTTPS هو تشغيل HTTP فوق SSL/TLS لتأمين اتصالات المتصفح بالخادم. موثق في RFC 2818.</p>
+      <p class="en">HTTPS runs HTTP over SSL/TLS to secure browser-server communications. Documented in RFC 2818.</p>
+      <table class="tbl ar">
+        <tr><th>الخاصية</th><th>HTTP</th><th>HTTPS</th></tr>
+        <tr><td>المنفذ</td><td>80</td><td><strong>443</strong></td></tr>
+        <tr><td>التشفير</td><td>لا</td><td>نعم — SSL/TLS</td></tr>
+        <tr><td>الرابط</td><td>http://</td><td>https://</td></tr>
+        <tr><td>ما يُشفَّر</td><td>لا شيء</td><td>URL، المحتوى، النماذج، الـ Cookies، HTTP Headers</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Property</th><th>HTTP</th><th>HTTPS</th></tr>
+        <tr><td>Port</td><td>80</td><td><strong>443</strong></td></tr>
+        <tr><td>Encryption</td><td>No</td><td>Yes — SSL/TLS</td></tr>
+        <tr><td>URL prefix</td><td>http://</td><td>https://</td></tr>
+        <tr><td>What is encrypted</td><td>Nothing</td><td>URL, content, forms, cookies, HTTP headers</td></tr>
+      </table>
+    </div>
+
+    <!-- SSH -->
+    <div class="sec">
+      <div class="sec-title ar">SSH — Secure Shell — <span style="direction:ltr;unicode-bidi:embed">Slides 28–39</span></div>
+      <div class="sec-title en">SSH — Secure Shell — Slides 28–39</div>
+      <p class="ar">SSH يُؤمّن الاتصال عن بُعد عوضاً عن Telnet الذي لا يوفر أي أمان. يتكون من ثلاثة بروتوكولات متراكبة:</p>
+      <p class="en">SSH secures remote login replacing insecure Telnet. Consists of three layered protocols:</p>
+
+      <div class="formula">
+        <div class="f-label ar">📐 مكدس بروتوكولات SSH</div>
+        <div class="f-label en">📐 SSH Protocol Stack</div>
+        <div class="f-eq">SSH Connection Protocol &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← multiplexes channels</div>
+        <div class="f-eq">SSH User Auth Protocol &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← authenticates client</div>
+        <div class="f-eq">SSH Transport Layer Protocol &nbsp;← encryption + auth + integrity</div>
+        <div class="f-eq">TCP/IP</div>
+      </div>
+
+      <p class="ar" style="font-weight:600">خدمات SSH Transport Layer Protocol — <span style="direction:ltr;unicode-bidi:embed">Slide 30</span>:</p>
+      <p class="en" style="font-weight:600">SSH Transport Layer Protocol Services — Slide 30:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>Authentication</strong>: التحقق من هوية الـ Server</p>
+          <p class="en"><strong>Authentication</strong>: Server identity verification</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Confidentiality</strong>: تشفير كل البيانات</p>
+          <p class="en"><strong>Confidentiality</strong>: Encryption of all data</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Integrity</strong>: التحقق من عدم تعديل البيانات</p>
+          <p class="en"><strong>Integrity</strong>: Verifying data was not modified</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>Compression</strong>: ضغط البيانات اختيارياً</p>
+          <p class="en"><strong>Compression</strong>: Optional data compression</p>
+        </div></li>
+      </ul>
+
+      <p class="ar" style="font-weight:600;margin-top:1rem">طرق مصادقة الـ Client — <span style="direction:ltr;unicode-bidi:embed">Slides 33–34</span>:</p>
+      <p class="en" style="font-weight:600;margin-top:1rem">Client Authentication Methods — Slides 33–34:</p>
+      <table class="tbl ar">
+        <tr><th>الطريقة</th><th>كيف تعمل</th></tr>
+        <tr><td><strong>Public Key</strong></td><td>يرسل Client مفتاحه العام موقّعاً بمفتاحه الخاص — Server يتحقق</td></tr>
+        <tr><td><strong>Password</strong></td><td>يرسل Client كلمة المرور بنص عادي — محمية بتشفير الـ Transport Layer</td></tr>
+        <tr><td><strong>Host-based</strong></td><td>يتحقق Server من هوية جهاز الـ Client بدل المستخدم نفسه</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Method</th><th>How it Works</th></tr>
+        <tr><td><strong>Public Key</strong></td><td>Client sends public key with message signed by private key — server verifies</td></tr>
+        <tr><td><strong>Password</strong></td><td>Client sends plaintext password — protected by Transport Layer encryption</td></tr>
+        <tr><td><strong>Host-based</strong></td><td>Server verifies the client host identity rather than the user themselves</td></tr>
+      </table>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.16 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.16 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>SSL/TLS فوق أي بروتوكول؟</td><td>TCP — يوفر خدمة موثوقة</td></tr>
+        <tr><td>الفرق بين SSL Session وSSL Connection؟</td><td>Session = علاقة طويلة تُعرّف cipher suite · Connection = اتصال مؤقت يستخدم Session</td></tr>
+        <tr><td>خدمتا Record Protocol؟</td><td>Confidentiality + Message Integrity</td></tr>
+        <tr><td>خطوات Record Protocol بالترتيب؟</td><td>Fragment → Compress → Add MAC → Encrypt → Append Header</td></tr>
+        <tr><td>أهمية رسائل Hello؟</td><td>تُحدّد SSL version والـ cipher suite والـ randoms لاشتقاق المفاتيح</td></tr>
+        <tr><td>Alert Protocol — نوعان؟</td><td>Fatal (ينهي الاتصال) وWarning (يُكمل)</td></tr>
+        <tr><td>منفذ HTTPS؟</td><td>443</td></tr>
+        <tr><td>HTTPS يشفّر؟</td><td>URL + المحتوى + النماذج + Cookies + HTTP Headers</td></tr>
+        <tr><td>SSH يحل محل؟</td><td>Telnet</td></tr>
+        <tr><td>طرق مصادقة Client في SSH؟</td><td>Public Key، Password، Host-based</td></tr>
+        <tr><td>بروتوكولات SSH الثلاثة؟</td><td>Transport Layer · User Auth · Connection</td></tr>
+        <tr><td>master_secret كم بايت؟</td><td>48 بايت</td></tr>
+        <tr><td>Change Cipher Spec يفعل؟</td><td>يُحوّل Pending State إلى Current — يُفعّل الـ cipher suite الجديدة</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>SSL/TLS runs over?</td><td>TCP — provides reliable service</td></tr>
+        <tr><td>Difference between SSL Session and SSL Connection?</td><td>Session = long-term relationship defining cipher suite · Connection = temporary, uses session parameters</td></tr>
+        <tr><td>Two Record Protocol services?</td><td>Confidentiality + Message Integrity</td></tr>
+        <tr><td>Record Protocol steps in order?</td><td>Fragment → Compress → Add MAC → Encrypt → Append Header</td></tr>
+        <tr><td>Importance of Hello messages?</td><td>Establish SSL version, cipher suite, and randoms for key derivation</td></tr>
+        <tr><td>Alert Protocol — two types?</td><td>Fatal (terminates connection) and Warning (may continue)</td></tr>
+        <tr><td>HTTPS port?</td><td>443</td></tr>
+        <tr><td>What does HTTPS encrypt?</td><td>URL + content + forms + cookies + HTTP headers</td></tr>
+        <tr><td>SSH replaces?</td><td>Telnet</td></tr>
+        <tr><td>SSH client authentication methods?</td><td>Public Key, Password, Host-based</td></tr>
+        <tr><td>Three SSH protocols?</td><td>Transport Layer · User Auth · Connection</td></tr>
+        <tr><td>master_secret size?</td><td>48 bytes</td></tr>
+        <tr><td>What does Change Cipher Spec do?</td><td>Converts Pending State to Current — activates new cipher suite</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ CH 22 ═══════════ -->
+<div class="chapter" id="ch22">
+  <div class="ch-hdr" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f43f5e,#f59e0b)">22</div>
+    <div>
+      <div class="ch-title">Firewalls</div>
+      <div class="ch-sub ar">جدران الحماية · Slides 4–62</div>
+      <div class="ch-sub en">Firewalls · Slides 4–62</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <!-- WHAT IS FIREWALL -->
+    <div class="sec">
+      <div class="sec-title ar">ما هو الـ Firewall؟ — <span style="direction:ltr;unicode-bidi:embed">Slides 4–6</span></div>
+      <div class="sec-title en">What is a Firewall? — Slides 4–6</div>
+      <p class="ar">الـ Firewall يُدرج بين الشبكة الداخلية والإنترنت ليُنشئ نقطة تحكم واحدة <span class="aw">(choke point)</span> تمر من خلالها كل حركة مرور البيانات. يوفر:</p>
+      <p class="en">A firewall is inserted between the premises network and the Internet to establish a single choke point where all traffic passes. It provides:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">نقطة تحكم واحدة تمنع المستخدمين غير المصرّح لهم وتحمي الخدمات الحساسة</p>
+          <p class="en">A single choke point that keeps unauthorized users out and protects sensitive services</p>
+        </div></li>
+        <li><div>
+          <p class="ar">موقع لمراقبة الأحداث الأمنية وتسجيلها</p>
+          <p class="en">A location for monitoring and logging security-related events</p>
+        </div></li>
+        <li><div>
+          <p class="ar">منصة لوظائف مثل NAT وتقارير استخدام الإنترنت</p>
+          <p class="en">A platform for functions like NAT and Internet usage auditing</p>
+        </div></li>
+        <li><div>
+          <p class="ar">منصة لتطبيق VPN باستخدام IPSec</p>
+          <p class="en">A platform for implementing VPN using IPSec</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- CHARACTERISTICS -->
+    <div class="sec">
+      <div class="sec-title ar">خصائص وتقنيات الـ Firewall — <span style="direction:ltr;unicode-bidi:embed">Slides 7–8</span></div>
+      <div class="sec-title en">Firewall Characteristics and Techniques — Slides 7–8</div>
+      <p class="ar">ثلاثة أهداف تصميم أساسية:</p>
+      <p class="en">Three core design goals:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar">كل حركة المرور من/إلى الشبكة يجب أن تمر من خلال الـ Firewall</p>
+          <p class="en">All traffic to/from the network must pass through the firewall</p>
+        </div></li>
+        <li><div>
+          <p class="ar">فقط حركة المرور المصرّح بها تُسمح بالمرور</p>
+          <p class="en">Only authorized traffic as defined by security policy is allowed</p>
+        </div></li>
+        <li><div>
+          <p class="ar">الـ Firewall نفسه محصّن ضد الاختراق</p>
+          <p class="en">The firewall itself is immune to penetration</p>
+        </div></li>
+      </ul>
+      <p class="ar" style="font-weight:600;margin-top:.8rem">أربع تقنيات للتحكم:</p>
+      <p class="en" style="font-weight:600;margin-top:.8rem">Four control techniques:</p>
+      <table class="tbl ar">
+        <tr><th>التقنية</th><th>الوصف</th></tr>
+        <tr><td><strong>Service Control</strong></td><td>يحدد أنواع خدمات الإنترنت المسموح بها</td></tr>
+        <tr><td><strong>Direction Control</strong></td><td>يحدد اتجاه تدفق كل خدمة (داخل/خارج)</td></tr>
+        <tr><td><strong>User Control</strong></td><td>يتحكم في الوصول بحسب هوية المستخدم</td></tr>
+        <tr><td><strong>Behavior Control</strong></td><td>يتحكم في طريقة استخدام الخدمات</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Technique</th><th>Description</th></tr>
+        <tr><td><strong>Service Control</strong></td><td>Determines types of Internet services that can be accessed</td></tr>
+        <tr><td><strong>Direction Control</strong></td><td>Determines the direction in which particular service requests may be initiated</td></tr>
+        <tr><td><strong>User Control</strong></td><td>Controls access according to user identity</td></tr>
+        <tr><td><strong>Behavior Control</strong></td><td>Controls how particular services are used</td></tr>
+      </table>
+    </div>
+
+    <!-- LIMITATIONS -->
+    <div class="sec">
+      <div class="sec-title ar">قيود الـ Firewall — <span style="direction:ltr;unicode-bidi:embed">Slides 9–10</span> ⭐</div>
+      <div class="sec-title en">Firewall Limitations — Slides 9–10 ⭐</div>
+      <p class="ar">الـ Firewall لا يستطيع حماية من:</p>
+      <p class="en">A firewall CANNOT protect against:</p>
+      <ul class="steps">
+        <li><div>
+          <p class="ar"><strong>هجمات تتجاوزه</strong>: مثل Sneaker Net، مودم المنفعة، الخدمات الموثوقة (SSL/SSH)</p>
+          <p class="en"><strong>Attacks bypassing it</strong>: e.g. sneaker net, utility modems, trusted services like SSL/SSH</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>التهديدات الداخلية</strong>: مثل الموظفين الساخطين أو المتواطئين</p>
+          <p class="en"><strong>Internal threats</strong>: e.g. disgruntled or colluding employees</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>الوصول عبر WLAN</strong>: إذا لم يكن الواي فاي محمياً بشكل صحيح من الخارج</p>
+          <p class="en"><strong>Access via WLAN</strong>: if improperly secured against external use</p>
+        </div></li>
+        <li><div>
+          <p class="ar"><strong>البرمجيات الخبيثة المُدخَلة</strong>: عبر لابتوب أو USB أو تخزين مصاب من الخارج</p>
+          <p class="en"><strong>Malware imported via laptop</strong>: PDA, or storage infected outside the network</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <!-- TYPES -->
+    <div class="sec">
+      <div class="sec-title ar">أنواع الـ Firewall الثلاثة — <span style="direction:ltr;unicode-bidi:embed">Slides 11–33</span> ⭐</div>
+      <div class="sec-title en">Three Types of Firewalls — Slides 11–33 ⭐</div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ النوع الأول: Packet Filter Firewall — Slides 11–19</div>
+        <div class="sol-head en">✦ Type 1: Packet Filter Firewall — Slides 11–19</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: يفحص كل IP packet منفردة ويقرر السماح أو الرفض</div>
+            <div class="sol-rule en">Idea: examines each IP packet individually and decides to forward or discard</div>
+            <div class="sol-calc">Decision based on: source IP, dest IP, ports, protocol, interface</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الطبقات التي يعمل عليها</div>
+            <div class="sol-rule en">Layers it operates on</div>
+            <div class="sol-calc">Transport + Network/Internet + Network Access layers</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">سياستان افتراضيتان ممكنتان</div>
+            <div class="sol-rule en">Two possible default policies</div>
+            <div class="sol-calc">Conservative: "that not expressly permitted is prohibited" ← احفظ هذا</div>
+            <div class="sol-calc">Permissive:   "that not expressly prohibited is permitted"</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المميزات والعيوب</div>
+            <div class="sol-rule en">Advantages and disadvantages</div>
+            <div class="sol-calc">+ Simple, fast, transparent</div>
+            <div class="sol-calc">- No context (no session tracking), vulnerable to spoofing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ Stateful Packet Filter — Slides 20–23</div>
+        <div class="sol-head en">✦ Stateful Packet Filter — Slides 20–23</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">تطوير على Packet Filter العادي — يتتبع حالة الجلسات</div>
+            <div class="sol-rule en">Enhancement of basic packet filter — tracks session state</div>
+            <div class="sol-calc">Maintains a connection state table for all active sessions</div>
+            <div class="sol-note ar">يفحص كل packet في سياق الجلسة الكاملة — أفضل بكثير في اكتشاف الهجمات</div>
+            <div class="sol-note en">Examines each packet in context of full session — much better at detecting attacks</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ النوع الثاني: Application-Level Gateway (Proxy) — Slides 24–27</div>
+        <div class="sol-head en">✦ Type 2: Application-Level Gateway (Proxy) — Slides 24–27</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: وسيط على مستوى التطبيق — يتصرف كـ Proxy</div>
+            <div class="sol-rule en">Idea: intermediary at application level — acts as a proxy</div>
+            <div class="sol-calc">User → Gateway (proxy) → External Server</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الطبقة التي يعمل عليها</div>
+            <div class="sol-rule en">Layer it operates on</div>
+            <div class="sol-calc">Application Layer — has full access to protocol</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">المميزات والعيوب</div>
+            <div class="sol-rule en">Advantages and disadvantages</div>
+            <div class="sol-calc">+ More secure, can log at application level, full protocol inspection</div>
+            <div class="sol-calc">- Slower (additional processing overhead), needs separate proxy per service</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution">
+        <div class="sol-head ar">✦ النوع الثالث: Circuit-Level Gateway — Slides 28–33</div>
+        <div class="sol-head en">✦ Type 3: Circuit-Level Gateway — Slides 28–33</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الفكرة: يُوصّل بين اتصالين TCP دون فحص المحتوى</div>
+            <div class="sol-rule en">Idea: relays two TCP connections without examining content</div>
+            <div class="sol-calc">Internal TCP ↔ Gateway ↔ External TCP</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الطبقة التي يعمل عليها</div>
+            <div class="sol-rule en">Layer it operates on</div>
+            <div class="sol-calc">Transport Layer (Session Layer via SOCKS — Layer 5)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">الاستخدام النموذجي</div>
+            <div class="sol-rule en">Typical use</div>
+            <div class="sol-calc">When internal users are trusted but external destinations are not</div>
+            <div class="sol-note ar">مثال التطبيق: SOCKS (RFC 1928)</div>
+            <div class="sol-note en">Common implementation: SOCKS (RFC 1928)</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="tbl ar">
+        <tr><th>النوع</th><th>الطبقة</th><th>السرعة</th><th>الأمان</th></tr>
+        <tr><td><strong>Packet Filter</strong></td><td>Transport/Network</td><td><span class="bd bg">الأسرع</span></td><td><span class="bd br">الأضعف</span></td></tr>
+        <tr><td><strong>Stateful Packet Filter</strong></td><td>Transport/Network</td><td><span class="bd ba">سريع</span></td><td><span class="bd ba">متوسط+</span></td></tr>
+        <tr><td><strong>Application Gateway</strong></td><td>Application</td><td><span class="bd br">الأبطأ</span></td><td><span class="bd bg">الأعلى</span></td></tr>
+        <tr><td><strong>Circuit-Level Gateway</strong></td><td>Transport (SOCKS)</td><td><span class="bd ba">متوسط</span></td><td><span class="bd ba">متوسط</span></td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Type</th><th>Layer</th><th>Speed</th><th>Security</th></tr>
+        <tr><td><strong>Packet Filter</strong></td><td>Transport/Network</td><td><span class="bd bg">Fastest</span></td><td><span class="bd br">Weakest</span></td></tr>
+        <tr><td><strong>Stateful Packet Filter</strong></td><td>Transport/Network</td><td><span class="bd ba">Fast</span></td><td><span class="bd ba">Medium+</span></td></tr>
+        <tr><td><strong>Application Gateway</strong></td><td>Application</td><td><span class="bd br">Slowest</span></td><td><span class="bd bg">Highest</span></td></tr>
+        <tr><td><strong>Circuit-Level Gateway</strong></td><td>Transport (SOCKS)</td><td><span class="bd ba">Medium</span></td><td><span class="bd ba">Medium</span></td></tr>
+      </table>
+    </div>
+
+    <!-- ATTACKS ON PACKET FILTERS -->
+    <div class="sec">
+      <div class="sec-title ar">هجمات Packet Filter وحلولها — <span style="direction:ltr;unicode-bidi:embed">Slides 18–19</span> ⭐</div>
+      <div class="sec-title en">Attacks on Packet Filters and Countermeasures — Slides 18–19 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>الهجوم</th><th>الطريقة</th><th>الحل</th></tr>
+        <tr><td><strong>IP Address Spoofing</strong> <span class="aw">(انتحال IP)</span></td><td>يُرسل المهاجم حزماً من الخارج بعنوان IP داخلي مزيف ليُوهم الـ Firewall</td><td>أضف فلاتر على الـ Router لحذف الحزم التي تأتي من الخارج بعنوان IP داخلي</td></tr>
+        <tr><td><strong>Source Routing Attacks</strong> <span class="aw">(توجيه المصدر)</span></td><td>يُحدد المهاجم مسار الحزمة يدوياً لتجاوز الـ Firewall</td><td>احذف جميع الحزم التي تستخدم Source Routing</td></tr>
+        <tr><td><strong>Tiny Fragment Attacks</strong> <span class="aw">(التجزئة الصغيرة)</span></td><td>يُجزئ المهاجم المعلومات عبر عدة حزم صغيرة لتجاوز قواعد الفلترة</td><td>احذف أو أعد تجميع الحزم المجزأة قبل تطبيق القواعد</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Attack</th><th>Method</th><th>Countermeasure</th></tr>
+        <tr><td><strong>IP Address Spoofing</strong></td><td>Attacker sends packets from outside with a fake internal IP address to fool the firewall</td><td>Add filters on router to discard packets arriving from outside with inside source address</td></tr>
+        <tr><td><strong>Source Routing Attacks</strong></td><td>Attacker specifies the route a packet takes to bypass security measures that don't analyze source routing</td><td>Discard all packets that use source routing option</td></tr>
+        <tr><td><strong>Tiny Fragment Attacks</strong></td><td>Attacker splits header info over several tiny fragments to circumvent filtering rules needing full header</td><td>Discard or reassemble all fragmented packets before checking rules</td></tr>
+      </table>
+    </div>
+
+    <!-- ACL RULES -->
+    <div class="sec">
+      <div class="sec-title ar">قراءة قواعد ACL — <span style="direction:ltr;unicode-bidi:embed">Slides 15–16</span> ⭐</div>
+      <div class="sec-title en">Reading ACL Rules — Slides 15–16 ⭐</div>
+      <p class="ar">القواعد تُطبَّق من أعلى لأسفل — أول قاعدة تنطبق تُنفَّذ. * تعني "أي قيمة".</p>
+      <p class="en">Rules are applied top to bottom — first matching rule is applied. * means "any value".</p>
+      <div class="solution">
+        <div class="sol-head ar">✦ مثال: قواعد ACL من الاختبار</div>
+        <div class="sol-head en">✦ Example: ACL Rules from Exam</div>
+        <div class="sol-step">
+          <div class="sol-num">1</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">قراءة القاعدة</div>
+            <div class="sol-rule en">Reading the rule</div>
+            <div class="sol-calc">Rule 1: allow | src=* | dst=192.168.1.10 | port=80</div>
+            <div class="sol-note ar">السماح لأي مصدر بالوصول للـ IP 192.168.1.10 على المنفذ 80 (HTTP)</div>
+            <div class="sol-note en">Allow any source to access IP 192.168.1.10 on port 80 (HTTP)</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">2</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">قراءة القاعدة الثانية</div>
+            <div class="sol-rule en">Reading the second rule</div>
+            <div class="sol-calc">Rule 2: block | src=* | dst=* | port=*</div>
+            <div class="sol-note ar">حذف جميع الحزم الأخرى — هذه السياسة المحافظة (Conservative)</div>
+            <div class="sol-note en">Block all other packets — this is the Conservative default policy</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">3</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">ماذا يحدث لحزمة من 128.30.5.4:1800 إلى 192.168.1.20:80؟</div>
+            <div class="sol-rule en">What happens to a packet from 128.30.5.4:1800 to 192.168.1.20:80?</div>
+            <div class="sol-calc">Check Rule 1: dst=192.168.1.20 ≠ 192.168.1.10 → no match</div>
+            <div class="sol-calc">Check Rule 2: matches * → BLOCK ✗</div>
+            <div class="sol-note ar">الحزمة تُحذف — الـ IP المقصود ليس 192.168.1.10</div>
+            <div class="sol-note en">Packet is blocked — destination IP is not 192.168.1.10</div>
+          </div>
+        </div>
+        <div class="sol-step">
+          <div class="sol-num">4</div>
+          <div class="sol-content">
+            <div class="sol-rule ar">لتغيير السياسة لـ Permissive</div>
+            <div class="sol-rule en">To change policy to Permissive</div>
+            <div class="sol-calc">Change Rule 2 from: block | * | * | *</div>
+            <div class="sol-calc">               to:  allow | * | * | *</div>
+            <div class="sol-note ar">السياسة المتساهلة تسمح بكل شيء لم يُحظر صراحةً</div>
+            <div class="sol-note en">Permissive policy allows everything not explicitly blocked</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BASTION HOST -->
+    <div class="sec">
+      <div class="sec-title ar">Bastion Host — <span style="direction:ltr;unicode-bidi:embed">Slides 34–36</span></div>
+      <div class="sec-title en">Bastion Host — Slides 34–36</div>
+      <p class="ar">نظام محصّن يُعرّفه مسؤول الأمان كنقطة قوة حرجة في الشبكة. يُشغّل Application-level أو Circuit-level Gateways.</p>
+      <p class="en">A highly secure host identified by the security administrator as a critical strong point in the network. Runs application-level or circuit-level gateways.</p>
+      <table class="tbl ar">
+        <tr><th>خاصية Bastion Host</th><th>التفاصيل</th></tr>
+        <tr><td>نظام التشغيل</td><td>نسخة محصّنة (hardened OS) — فقط الخدمات الضرورية</td></tr>
+        <tr><td>المصادقة</td><td>قد يتطلب مصادقة إضافية للوصول لخدمات الـ Proxy</td></tr>
+        <tr><td>التسجيل</td><td>يُسجّل كل حركة المرور والاتصالات ومدتها</td></tr>
+        <tr><td>الـ Proxies</td><td>صغيرة، مستقلة، آمنة، بصلاحيات محدودة</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Bastion Host Feature</th><th>Details</th></tr>
+        <tr><td>OS</td><td>Hardened OS — only essential services installed</td></tr>
+        <tr><td>Authentication</td><td>May require additional authentication to access proxy services</td></tr>
+        <tr><td>Logging</td><td>Logs all traffic, connections, and their durations</td></tr>
+        <tr><td>Proxies</td><td>Small, independent, secure, running as non-privileged users</td></tr>
+      </table>
+    </div>
+
+    <!-- FIREWALL CONFIGURATIONS -->
+    <div class="sec">
+      <div class="sec-title ar">تكوينات الـ Firewall — <span style="direction:ltr;unicode-bidi:embed">Slides 42–50</span> ⭐</div>
+      <div class="sec-title en">Firewall Configurations — Slides 42–50 ⭐</div>
+
+      <table class="tbl ar">
+        <tr><th>التكوين</th><th>البنية</th><th>مستوى الأمان</th></tr>
+        <tr><td><strong>Single-Homed Bastion Host (SHBH)</strong></td><td>Packet-filter router + Bastion Host (نظامان منفصلان)</td><td><span class="bd ba">جيد</span></td></tr>
+        <tr><td><strong>Dual-Homed Bastion Host (DHBH)</strong></td><td>Bastion Host بواجهتين شبكيتين يفصل فيزيائياً بين الشبكتين</td><td><span class="bd bg">أفضل ← يحتاج اختراق نظامين</span></td></tr>
+        <tr><td><strong>Screened Subnet (DMZ)</strong></td><td>روترين للفلترة + Bastion Host = ثلاثة مستويات دفاع</td><td><span class="bd bg">الأعلى أماناً ✓</span></td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Configuration</th><th>Structure</th><th>Security Level</th></tr>
+        <tr><td><strong>Single-Homed Bastion Host (SHBH)</strong></td><td>Packet-filter router + Bastion Host (two separate systems)</td><td><span class="bd ba">Good</span></td></tr>
+        <tr><td><strong>Dual-Homed Bastion Host (DHBH)</strong></td><td>Bastion Host with two network interfaces physically separating networks</td><td><span class="bd bg">Better ← needs two systems compromised</span></td></tr>
+        <tr><td><strong>Screened Subnet (DMZ)</strong></td><td>Two filtering routers + Bastion Host = three levels of defense</td><td><span class="bd bg">Most secure ✓</span></td></tr>
+      </table>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 DHBH مقابل SHBH — سؤال شائع</div>
+        <div class="c-head en">🔑 DHBH vs SHBH — Common Exam Question</div>
+        <p class="ar"><strong>DHBH أكثر أماناً من SHBH</strong> لأنه يفصل فيزيائياً بين الشبكة الداخلية والخارجية — يجب على المهاجم اختراق نظامين منفصلين للوصول للشبكة الداخلية، بدلاً من نظام واحد.</p>
+        <p class="en"><strong>DHBH is more secure than SHBH</strong> because it physically separates internal from external network — an attacker must compromise two separate systems to reach the internal network, instead of just one.</p>
+      </div>
+
+      <p class="ar" style="font-weight:600;margin-top:1rem">DMZ — منطقة مُجرَّدة من السلاح:</p>
+      <p class="en" style="font-weight:600;margin-top:1rem">DMZ — Demilitarized Zone:</p>
+      <p class="ar">شبكة فرعية معزولة بين الشبكة الداخلية والإنترنت. توضع فيها الخوادم التي تحتاج وصولاً خارجياً (Web server، Email server، DNS server). تُوفّر ثلاثة مستويات دفاع.</p>
+      <p class="en">An isolated subnetwork between the internal network and the Internet. Servers needing external access are placed here (Web server, Email server, DNS server). Provides three levels of defense.</p>
+    </div>
+
+    <!-- MCQ -->
+    <div class="sec">
+      <div class="sec-title ar">أسئلة MCQ المتكررة — Ch.22 ⭐</div>
+      <div class="sec-title en">Frequently Tested MCQ — Ch.22 ⭐</div>
+      <table class="tbl ar">
+        <tr><th>السؤال</th><th>الجواب</th></tr>
+        <tr><td>أنواع الـ Firewall الثلاثة؟</td><td>Packet Filter · Application Gateway · Circuit-Level Gateway</td></tr>
+        <tr><td>Packet Filter يعمل على أي طبقة؟</td><td>Transport + Network + Network Access</td></tr>
+        <tr><td>Application Gateway يعمل على؟</td><td>Application Layer</td></tr>
+        <tr><td>Circuit-Level يعمل على؟</td><td>Transport Layer (SOCKS = Layer 5)</td></tr>
+        <tr><td>أسرع نوع Firewall؟</td><td>Packet Filter</td></tr>
+        <tr><td>أكثر نوع أماناً؟</td><td>Application-Level Gateway</td></tr>
+        <tr><td>قيود الـ Firewall (4)؟</td><td>لا يحمي من: هجمات تتجاوزه · تهديدات داخلية · WLAN غير مؤمّن · Malware مُدخَل</td></tr>
+        <tr><td>DHBH مقابل SHBH؟</td><td>DHBH أكثر أماناً — يفصل فيزيائياً ويحتاج اختراق نظامين</td></tr>
+        <tr><td>DMZ تعني؟</td><td>Demilitarized Zone — شبكة معزولة للخوادم العامة</td></tr>
+        <tr><td>هجوم IP Spoofing وحله؟</td><td>انتحال IP داخلي · الحل: فلترة حزم الخارج التي تدّعي IP داخلي</td></tr>
+        <tr><td>هجوم Tiny Fragment وحله؟</td><td>تجزئة الـ Header · الحل: إعادة تجميع الحزم قبل الفلترة</td></tr>
+        <tr><td>هجوم Source Routing وحله؟</td><td>تحديد المسار يدوياً · الحل: حذف جميع حزم Source Routing</td></tr>
+        <tr><td>Stateful Packet Filter يفعل ماذا؟</td><td>يتتبع حالة الجلسات — يفحص كل حزمة في سياق الجلسة كاملة</td></tr>
+        <tr><td>ما هو Bastion Host؟</td><td>نظام محصّن يُشغّل Application/Circuit Gateways مع تسجيل كامل</td></tr>
+        <tr><td>السياسة المحافظة Conservative؟</td><td>"ما لم يُسمح به صراحةً فهو محظور" — الأكثر أماناً</td></tr>
+      </table>
+      <table class="tbl en">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Three types of firewalls?</td><td>Packet Filter · Application Gateway · Circuit-Level Gateway</td></tr>
+        <tr><td>Packet Filter operates at which layer?</td><td>Transport + Network + Network Access layers</td></tr>
+        <tr><td>Application Gateway operates at?</td><td>Application Layer</td></tr>
+        <tr><td>Circuit-Level operates at?</td><td>Transport Layer (SOCKS = Layer 5)</td></tr>
+        <tr><td>Fastest firewall type?</td><td>Packet Filter</td></tr>
+        <tr><td>Most secure firewall type?</td><td>Application-Level Gateway</td></tr>
+        <tr><td>Firewall limitations (4)?</td><td>Cannot protect: attacks bypassing it · internal threats · unsecured WLAN · imported malware</td></tr>
+        <tr><td>DHBH vs SHBH?</td><td>DHBH is more secure — physically separates networks, requires compromising two systems</td></tr>
+        <tr><td>DMZ stands for?</td><td>Demilitarized Zone — isolated subnet for public-facing servers</td></tr>
+        <tr><td>IP Spoofing attack and countermeasure?</td><td>Fake internal IP · Block external packets claiming inside source address</td></tr>
+        <tr><td>Tiny Fragment attack and countermeasure?</td><td>Splits header across tiny fragments · Reassemble all fragments before applying rules</td></tr>
+        <tr><td>Source Routing attack and countermeasure?</td><td>Manually specifies route · Discard all packets using Source Routing option</td></tr>
+        <tr><td>What does Stateful Packet Filter do?</td><td>Tracks session state — examines each packet in context of the full session</td></tr>
+        <tr><td>What is a Bastion Host?</td><td>Hardened system running Application/Circuit Gateways with full logging</td></tr>
+        <tr><td>Conservative default policy?</td><td>"That not expressly permitted is prohibited" — most secure</td></tr>
       </table>
     </div>
 
