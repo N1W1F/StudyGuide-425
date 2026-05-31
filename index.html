@@ -270,6 +270,69 @@ body.mode-practice .q-reveal-btn { display: inline-flex; }
 body.mode-answer .q-answer { display: block; }
 body.mode-answer .q-reveal-btn { display: none; }
 
+
+
+
+.sc-arrow { text-align:center; padding:.1rem 0; color:var(--muted); font-size:.8rem; }
+
+
+/* ══ SOLUTION CHAIN ══ */
+.sc{margin:.7rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.sc-head{background:linear-gradient(90deg,var(--bg3),var(--bg2));padding:.55rem 1rem;
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:.5rem}
+.sc-row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid rgba(36,48,72,.6)}
+.sc-row:last-child{border-bottom:none}
+.sc-lbl{padding:.55rem .8rem;font-size:.68rem;font-weight:700;letter-spacing:.06em;
+  border-right:2px solid var(--border);display:flex;align-items:center;gap:.35rem;
+  line-height:1.3;text-transform:uppercase}
+.sc-val{padding:.55rem 1rem;font-family:var(--mono);font-size:.9rem;
+  direction:ltr;text-align:left;line-height:1.7;display:flex;align-items:center}
+/* label colours */
+.lbl-f{color:var(--accent)}       /* formula   */
+.lbl-s{color:#a78bfa}             /* substitute */
+.lbl-c{color:var(--muted)}        /* calculate  */
+.lbl-r{color:var(--amber)}        /* result     */
+.lbl-w{color:var(--teal)}         /* why/note   */
+/* value colours */
+.val-f{color:var(--accent)}
+.val-s{color:#c4b5fd}
+.val-c{color:#e2e8f0}
+.val-r{color:var(--amber);font-weight:700;font-size:.96rem}
+.val-w{color:var(--teal);font-family:var(--sans-ar);direction:rtl;text-align:right;
+  font-size:.82rem;font-style:italic;line-height:1.6}
+body.en .val-w{font-family:var(--sans-en);direction:ltr;text-align:left}
+
+
+/* ══ SOLUTION CHAIN (v3) ══ */
+.sc{margin:.7rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.sc-head{padding:.5rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);background:var(--bg3);
+  border-bottom:2px solid rgba(79,142,247,.4)}
+.sc-row{display:flex;border-bottom:1px solid rgba(36,48,72,.5);align-items:stretch}
+body.ar .sc-row{flex-direction:row-reverse}
+.sc-row:last-child{border-bottom:none}
+.sc-lbl{width:96px;flex-shrink:0;padding:.5rem .7rem;font-size:.64rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;
+  justify-content:center;text-align:center;line-height:1.3;border-right:2px solid rgba(36,48,72,.7)}
+body.ar .sc-lbl{border-right:none;border-left:2px solid rgba(36,48,72,.7)}
+.sc-val{flex:1;padding:.5rem 1rem;font-family:var(--mono);font-size:.9rem;
+  direction:ltr;unicode-bidi:embed;line-height:1.8;display:flex;align-items:center}
+.sc-val.val-w{font-family:var(--sans-ar);font-size:.82rem;direction:rtl;
+  unicode-bidi:embed;font-style:italic;line-height:1.6}
+body.en .sc-val.val-w{font-family:var(--sans-en);direction:ltr}
+/* colours */
+.lbl-f{color:var(--accent);background:rgba(79,142,247,.06)}
+.lbl-s{color:#a78bfa;background:rgba(167,139,250,.06)}
+.lbl-c{color:var(--muted);background:rgba(120,136,170,.04)}
+.lbl-r{color:var(--amber);background:rgba(245,158,11,.06)}
+.lbl-w{color:var(--teal);background:rgba(14,165,160,.06)}
+.val-f{color:var(--accent)}
+.val-s{color:#c4b5fd}
+.val-c{color:#e2e8f0}
+.val-r{color:var(--amber);font-weight:700;font-size:.96rem}
+.val-w{color:var(--teal) !important}
+
 </style>
 </head>
 <body class="ar">
@@ -374,42 +437,17 @@ body.mode-answer .q-reveal-btn { display: none; }
           
           <div class="q-answer" id="ans-q1" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar"><div class="sol-head ar">✦ الحل خطوة بخطوة</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule ar">القانون: n = p × q — حلّل 33 إلى عواملها الأولية</div>
-<div class="sol-calc">n = 33 = 3 × 11 → p=3, q=11</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
-<div class="sol-calc">φ(33) = (3−1)(11−1) = 2 × 10 = 20</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-rule ar">القانون: d × e ≡ 1 mod φ(n) — جرّب d حتى تجد الناتج 1</div>
-<div class="sol-calc">d × 7 ≡ 1 mod 20</div>
-<div class="sol-calc">d=3: 3×7=21 → 21 mod 20 = 1 ✓</div>
-<div class="sol-result">d = 3 → Private Key = {3, 33}</div></div></div>
-<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
-<div class="sol-rule ar">القانون: C = Mᵉ mod n</div>
-<div class="sol-calc">C = 2⁷ mod 33 = 128 mod 33</div>
-<div class="sol-calc">128 = 3×33 + 29</div>
-<div class="sol-result">C = 29 ← النص المشفّر</div></div></div>
-<div class="sol-step"><div class="sol-num">5</div><div class="sol-content">
-<div class="sol-rule ar">تحقق: M = Cᵈ mod n</div>
-<div class="sol-calc">M = 29³ mod 33 = 24389 mod 33 = 2 ✓</div>
-<div class="sol-result">رجعت الرسالة الأصلية M=2 ✓</div></div></div></div>
-              <div class="en"><div class="sol-head en">✦ Step-by-step solution</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule en">Formula: n = p × q — factor 33 into primes</div>
-<div class="sol-calc">n = 33 = 3 × 11 → p=3, q=11</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule en">Formula: φ(n) = (p−1)(q−1)</div>
-<div class="sol-calc">φ(33) = (3−1)(11−1) = 2 × 10 = 20</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-rule en">Formula: d × e ≡ 1 mod φ(n) — find d</div>
-<div class="sol-calc">d × 7 ≡ 1 mod 20 → d=3: 3×7=21 mod 20 = 1 ✓</div>
-<div class="sol-result">d = 3 → Private Key = {3, 33}</div></div></div>
-<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
-<div class="sol-rule en">Formula: C = Mᵉ mod n</div>
-<div class="sol-calc">C = 2⁷ mod 33 = 128 mod 33 = 29</div>
-<div class="sol-result">Ciphertext C = 29</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">① حلّل n</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">n = p × q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">n = 33</div></div><div class="sc-row"><div class="sc-lbl lbl-c">حساب</div><div class="sc-val val-c">33 = 3 × 11</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">p = 3 &nbsp;,&nbsp; q = 11</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">① Factor n</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">n = p × q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">n = 33</div></div><div class="sc-row"><div class="sc-lbl lbl-c">Calculate</div><div class="sc-val val-c">33 = 3 × 11</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">p = 3 &nbsp;,&nbsp; q = 11</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">② احسب φ(n)</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">φ(n) = (p−1)(q−1)</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">φ(33) = (3−1) × (11−1)</div></div><div class="sc-row"><div class="sc-lbl lbl-c">حساب</div><div class="sc-val val-c">= 2 × 10</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">φ(n) = 20</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">② Compute φ(n)</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">φ(n) = (p−1)(q−1)</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">φ(33) = (3−1) × (11−1)</div></div><div class="sc-row"><div class="sc-lbl lbl-c">Calculate</div><div class="sc-val val-c">= 2 × 10</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">φ(n) = 20</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">③ أوجد d — المفتاح الخاص</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">d × e ≡ 1 mod φ(n)</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">d × 7 ≡ 1 mod 20</div></div><div class="sc-row"><div class="sc-lbl lbl-c">جرب d=3</div><div class="sc-val val-c">3 × 7 = 21</div></div><div class="sc-row"><div class="sc-lbl lbl-c">mod 20</div><div class="sc-val val-c">21 mod 20 = 1 ✓</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">d = 3 &nbsp;&rarr;&nbsp; Private Key = {3, 33}</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">③ Find d — Private Key</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">d × e ≡ 1 mod φ(n)</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">d × 7 ≡ 1 mod 20</div></div><div class="sc-row"><div class="sc-lbl lbl-c">Try d=3</div><div class="sc-val val-c">3 × 7 = 21</div></div><div class="sc-row"><div class="sc-lbl lbl-c">mod 20</div><div class="sc-val val-c">21 mod 20 = 1 ✓</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">d = 3 &nbsp;&rarr;&nbsp; Private Key = {3, 33}</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">④ شفّر الرسالة</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">C = M<sup>e</sup> mod n</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">C = 2<sup>7</sup> mod 33</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁷ = ?</div><div class="sc-val val-c">2<sup>7</sup> = 128</div></div><div class="sc-row"><div class="sc-lbl lbl-c">128 mod 33</div><div class="sc-val val-c">128 = 3×33 + 29 &nbsp;&rarr;&nbsp; الباقي 29</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">C = 29</div></div><div class="sc-row"><div class="sc-lbl lbl-w">تحقق</div><div class="sc-val val-w">M = C<sup>d</sup> mod n = 29<sup>3</sup> mod 33 = 2 ✓</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">④ Encrypt the Message</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">C = M<sup>e</sup> mod n</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">C = 2<sup>7</sup> mod 33</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁷ = ?</div><div class="sc-val val-c">2<sup>7</sup> = 128</div></div><div class="sc-row"><div class="sc-lbl lbl-c">128 mod 33</div><div class="sc-val val-c">128 = 3×33 + 29 &nbsp;&rarr;&nbsp; remainder 29</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">C = 29</div></div><div class="sc-row"><div class="sc-lbl lbl-w">Verify</div><div class="sc-val val-w">M = C<sup>d</sup> mod n = 29<sup>3</sup> mod 33 = 2 ✓</div></div></div></div>
+
+</div></div></div></div>
+</div></div></div></div>
             </div>
           </div>
         </div>
@@ -431,27 +469,10 @@ body.mode-answer .q-reveal-btn { display: none; }
           
           <div class="q-answer" id="ans-q2" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar"><div class="sol-head ar">✦ الحل</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule ar">القانون: التوقيع = S = E(PRₐ, M) = Mᵈ mod n</div>
-<div class="sol-calc">S = 4¹⁷ mod 21</div>
-<div class="sol-rule ar">احسب باستخدام Square and Multiply — 17 ثنائي = 10001</div>
-<div class="sol-calc">4¹ = 4</div>
-<div class="sol-calc">4² = 16</div>
-<div class="sol-calc">4⁴ = 16² mod 21 = 256 mod 21 = 4</div>
-<div class="sol-calc">4⁸ = 4² mod 21 = 16</div>
-<div class="sol-calc">4¹⁶ = 16² mod 21 = 256 mod 21 = 4</div>
-<div class="sol-calc">4¹⁷ = 4¹⁶ × 4¹ mod 21 = 4 × 4 = 16</div>
-<div class="sol-result">التوقيع S = 16</div></div></div>
-<div class="callout tip" style="margin-top:.8rem"><div class="c-head ar">💡 لماذا؟</div>
-<p class="ar">التوقيع الرقمي في RSA = تشفير الرسالة بالمفتاح الخاص. المستقبل يفك التشفير بالمفتاح العام للتحقق.</p></div></div>
-              <div class="en"><div class="sol-head en">✦ Solution</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule en">Formula: Signature S = Mᵈ mod n (encrypt with private key)</div>
-<div class="sol-calc">S = 4¹⁷ mod 21 = 16</div>
-<div class="sol-result">Signature S = 16</div></div></div>
-<div class="callout tip" style="margin-top:.8rem"><div class="c-head en">💡 Why?</div>
-<p class="en">RSA signature = encrypting message with private key. Receiver decrypts with public key to verify.</p></div></div>
+              
+              <div class="ar"><div class="sc"><div class="sc-title">الخطوة الوحيدة — التوقيع</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">S = M<sup>d</sup> mod n &nbsp;&nbsp;(نشفّر الرسالة بالمفتاح الخاص)</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض M=4, d=17, n=21</div><div class="sc-eq eq-sub">S = 4<sup>17</sup> mod 21</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب بـ Square and Multiply — 17 ثنائي = 10001</div><div class="sc-eq eq-calc">4¹=4 &rarr; 4²=16 &rarr; 4⁴=256 mod 21=4 &rarr; 4⁸=16 &rarr; 4¹⁶=256 mod 21=4</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 4¹⁷ = 4¹⁶ × 4¹</div><div class="sc-eq eq-calc">4¹⁷ = 4 × 4 = 16</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ التوقيع</div><div class="sc-eq eq-result">S = 16</div></div><div class="sc-step"><div class="sc-label lbl-why">💡 لماذا؟</div><div class="sc-eq eq-why">التوقيع = تشفير بالمفتاح الخاص. المستقبل يتحقق بفك التشفير بالمفتاح العام.</div></div></div>              </div>
+              <div class="en"><div class="sc"><div class="sc-title">Single Step — Sign</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">S = M<sup>d</sup> mod n &nbsp;&nbsp;(encrypt message with private key)</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض M=4, d=17, n=21</div><div class="sc-eq eq-sub">S = 4<sup>17</sup> mod 21</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Square and Multiply: 17 binary = 10001</div><div class="sc-eq eq-calc">4¹=4, 4²=16, 4⁴=4, 4⁸=16, 4¹⁶=4</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 4¹⁷ = 4¹⁶ × 4¹</div><div class="sc-eq eq-calc">= 4 × 4 = 16</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Signature</div><div class="sc-eq eq-result">S = 16</div></div></div>              </div>
+</div></div>
             </div>
           </div>
         </div>
@@ -473,34 +494,17 @@ body.mode-answer .q-reveal-btn { display: none; }
           
           <div class="q-answer" id="ans-q3" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar"><div class="sol-head ar">✦ الحل خطوة بخطوة</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule ar">القانون: Y_A = α^X_A mod q</div>
-<div class="sol-calc">Y_A = 2⁵ mod 13 = 32 mod 13</div>
-<div class="sol-result">Y_A = 6 ← ينشره Ali للجميع</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule ar">القانون: Y_B = α^X_B mod q</div>
-<div class="sol-calc">Y_B = 2⁴ mod 13 = 16 mod 13</div>
-<div class="sol-result">Y_B = 3 ← ينشره Naif للجميع</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-rule ar">القانون: K = Y_B^X_A mod q (يحسبه Ali)</div>
-<div class="sol-calc">K = 3⁵ mod 13 = 243 mod 13 = 9</div>
-<div class="sol-result">K = 9</div></div></div>
-<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
-<div class="sol-rule ar">القانون: K = Y_A^X_B mod q (يحسبه Naif)</div>
-<div class="sol-calc">K = 6⁴ mod 13 = 1296 mod 13 = 9 ✓</div>
-<div class="sol-result">K = 9 — نفس النتيجة ✓</div>
-<div class="sol-note ar">المفتاح المشترك = 9 دون أن يُرسل على الشبكة أبداً</div></div></div></div>
-              <div class="en"><div class="sol-head en">✦ Step-by-step</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule en">Y_A = α^X_A mod q = 2⁵ mod 13 = 32 mod 13</div>
-<div class="sol-result">Y_A = 6 (Ali publishes this)</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule en">Y_B = α^X_B mod q = 2⁴ mod 13 = 16 mod 13</div>
-<div class="sol-result">Y_B = 3 (Naif publishes this)</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-rule en">K = Y_B^X_A mod q = 3⁵ mod 13 = 243 mod 13 = 9</div>
-<div class="sol-result">K = 9 ✓ (same for both parties)</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">① احسب Y_A</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">Y_A = α<sup>X_A</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">Y_A = 2<sup>5</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁵ = ?</div><div class="sc-val val-c">2<sup>5</sup> = 32</div></div><div class="sc-row"><div class="sc-lbl lbl-c">32 mod 13</div><div class="sc-val val-c">32 = 2×13 + 6 &nbsp;&rarr;&nbsp; الباقي 6</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">Y_A = 6</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">① Compute Y_A</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">Y_A = α<sup>X_A</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">Y_A = 2<sup>5</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁵ = ?</div><div class="sc-val val-c">2<sup>5</sup> = 32</div></div><div class="sc-row"><div class="sc-lbl lbl-c">32 mod 13</div><div class="sc-val val-c">32 = 2×13 + 6 &nbsp;&rarr;&nbsp; remainder 6</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">Y_A = 6</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">② احسب Y_B</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">Y_B = α<sup>X_B</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">Y_B = 2<sup>4</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁴ = ?</div><div class="sc-val val-c">2<sup>4</sup> = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-c">16 mod 13</div><div class="sc-val val-c">16 − 13 = 3</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">Y_B = 3</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">② Compute Y_B</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">Y_B = α<sup>X_B</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">Y_B = 2<sup>4</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">2⁴ = ?</div><div class="sc-val val-c">2<sup>4</sup> = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-c">16 mod 13</div><div class="sc-val val-c">16 − 13 = 3</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">Y_B = 3</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">③ احسب K (Ali يحسب)</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">K = Y_B<sup>X_A</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">K = 3<sup>5</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">3⁵ = ?</div><div class="sc-val val-c">3<sup>5</sup> = 243</div></div><div class="sc-row"><div class="sc-lbl lbl-c">243 mod 13</div><div class="sc-val val-c">243 = 18×13 + 9 &nbsp;&rarr;&nbsp; الباقي 9</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">K = 9</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">③ Compute K (Ali computes)</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">K = Y_B<sup>X_A</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">K = 3<sup>5</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">3⁵ = ?</div><div class="sc-val val-c">3<sup>5</sup> = 243</div></div><div class="sc-row"><div class="sc-lbl lbl-c">243 mod 13</div><div class="sc-val val-c">243 = 18×13 + 9 &nbsp;&rarr;&nbsp; remainder 9</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">K = 9</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">④ تحقق: K (Naif يحسب)</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">K = Y_A<sup>X_B</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">K = 6<sup>4</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">6⁴ = ?</div><div class="sc-val val-c">6<sup>4</sup> = 1296</div></div><div class="sc-row"><div class="sc-lbl lbl-c">1296 mod 13</div><div class="sc-val val-c">1296 = 99×13 + 9 &nbsp;&rarr;&nbsp; الباقي 9</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة ✓</div><div class="sc-val val-r">K = 9 ✓ &nbsp;&nbsp; (نفس نتيجة Ali)</div></div><div class="sc-row"><div class="sc-lbl lbl-w">لماذا؟</div><div class="sc-val val-w">لأن (α^XA)^XB = (α^XB)^XA — الضرب تبادلي</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">④ Verify: K (Naif computes)</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">K = Y_A<sup>X_B</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">K = 6<sup>4</sup> mod 13</div></div><div class="sc-row"><div class="sc-lbl lbl-c">6⁴ = ?</div><div class="sc-val val-c">6<sup>4</sup> = 1296</div></div><div class="sc-row"><div class="sc-lbl lbl-c">1296 mod 13</div><div class="sc-val val-c">1296 = 99×13 + 9 &nbsp;&rarr;&nbsp; remainder 9</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result ✓</div><div class="sc-val val-r">K = 9 ✓ &nbsp;&nbsp; (same as Ali)</div></div><div class="sc-row"><div class="sc-lbl lbl-w">Why?</div><div class="sc-val val-w">Because (α^XA)^XB = (α^XB)^XA — multiplication commutes</div></div></div></div>
+
+</div></div></div></div>
+</div></div></div></div>
             </div>
           </div>
         </div>
@@ -584,36 +588,15 @@ body.mode-answer .q-reveal-btn { display: none; }
           
           <div class="q-answer" id="ans-q5" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar"><div class="sol-head ar">✦ التحقق من التوقيع</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule ar">القانون: V1 = α^m mod q</div>
-<div class="sol-calc">V1 = 10¹⁴ mod 19</div>
-<div class="sol-calc">10² = 100 mod 19 = 5</div>
-<div class="sol-calc">10⁴ = 5² mod 19 = 25 mod 19 = 6</div>
-<div class="sol-calc">10⁸ = 6² mod 19 = 36 mod 19 = 17</div>
-<div class="sol-calc">10¹² = 10⁸ × 10⁴ = 17×6 = 102 mod 19 = 7</div>
-<div class="sol-calc">10¹⁴ = 10¹² × 10² = 7×5 = 35 mod 19 = 16</div>
-<div class="sol-result">V1 = 16</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule ar">القانون: V2 = y_A^S1 × S1^S2 mod q</div>
-<div class="sol-calc">V2 = 4³ × 3⁴ mod 19</div>
-<div class="sol-calc">= 64 × 81 mod 19</div>
-<div class="sol-calc">64 mod 19 = 7 &nbsp;&nbsp; 81 mod 19 = 5</div>
-<div class="sol-calc">V2 = 7 × 5 mod 19 = 35 mod 19 = 16</div>
-<div class="sol-result">V2 = 16</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-rule ar">المقارنة: V1 == V2؟</div>
-<div class="sol-calc">V1 = 16 == V2 = 16 ✓</div>
-<div class="sol-result" style="color:var(--green)">التوقيع صالح ✓ — الرسالة حقيقية ولم تُعدَّل</div></div></div></div>
-              <div class="en"><div class="sol-head en">✦ Verification Steps</div>
-<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-<div class="sol-rule en">Formula: V1 = α^m mod q = 10¹⁴ mod 19 = 16</div>
-<div class="sol-result">V1 = 16</div></div></div>
-<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-<div class="sol-rule en">Formula: V2 = y_A^S1 × S1^S2 mod q = 4³ × 3⁴ mod 19 = 64×81 mod 19 = 16</div>
-<div class="sol-result">V2 = 16</div></div></div>
-<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-<div class="sol-result" style="color:var(--green)">V1 = V2 = 16 ✓ — Signature is VALID</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">① احسب V1</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">V1 = α<sup>m</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">V1 = 10<sup>14</sup> mod 19</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10² mod 19</div><div class="sc-val val-c">100 mod 19 = 5</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10⁴ mod 19</div><div class="sc-val val-c">5² = 25 mod 19 = 6</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10⁸ mod 19</div><div class="sc-val val-c">6² = 36 mod 19 = 17</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10¹⁴ = 10⁸×10⁴×10²</div><div class="sc-val val-c">17×6×5 = 510 mod 19 = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">V1 = 16</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">① Compute V1</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">V1 = α<sup>m</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">V1 = 10<sup>14</sup> mod 19</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10² mod 19</div><div class="sc-val val-c">100 mod 19 = 5</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10⁴ mod 19</div><div class="sc-val val-c">5² = 25 mod 19 = 6</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10⁸ mod 19</div><div class="sc-val val-c">6² = 36 mod 19 = 17</div></div><div class="sc-row"><div class="sc-lbl lbl-c">10¹⁴ = 10⁸×10⁴×10²</div><div class="sc-val val-c">17×6×5 = 510 mod 19 = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">V1 = 16</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">② احسب V2</div><div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">V2 = y_A<sup>S1</sup> × S1<sup>S2</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">تعويض</div><div class="sc-val val-s">V2 = 4<sup>3</sup> × 3<sup>4</sup> mod 19</div></div><div class="sc-row"><div class="sc-lbl lbl-c">4³ = ?</div><div class="sc-val val-c">4<sup>3</sup> = 64</div></div><div class="sc-row"><div class="sc-lbl lbl-c">3⁴ = ?</div><div class="sc-val val-c">3<sup>4</sup> = 81</div></div><div class="sc-row"><div class="sc-lbl lbl-c">64 × 81</div><div class="sc-val val-c">64 × 81 = 5184</div></div><div class="sc-row"><div class="sc-lbl lbl-c">5184 mod 19</div><div class="sc-val val-c">5184 = 272×19 + 16 &nbsp;&rarr;&nbsp; الباقي 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">نتيجة</div><div class="sc-val val-r">V2 = 16</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">② Compute V2</div><div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">V2 = y_A<sup>S1</sup> × S1<sup>S2</sup> mod q</div></div><div class="sc-row"><div class="sc-lbl lbl-s">Substitute</div><div class="sc-val val-s">V2 = 4<sup>3</sup> × 3<sup>4</sup> mod 19</div></div><div class="sc-row"><div class="sc-lbl lbl-c">4³ = ?</div><div class="sc-val val-c">4<sup>3</sup> = 64</div></div><div class="sc-row"><div class="sc-lbl lbl-c">3⁴ = ?</div><div class="sc-val val-c">3<sup>4</sup> = 81</div></div><div class="sc-row"><div class="sc-lbl lbl-c">64 × 81</div><div class="sc-val val-c">64 × 81 = 5184</div></div><div class="sc-row"><div class="sc-lbl lbl-c">5184 mod 19</div><div class="sc-val val-c">5184 = 272×19 + 16 &nbsp;&rarr;&nbsp; remainder 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Result</div><div class="sc-val val-r">V2 = 16</div></div></div></div>
+<div class="ar"><div class="sc"><div class="sc-head">③ المقارنة — هل التوقيع صالح؟</div><div class="sc-row"><div class="sc-lbl lbl-c">V1 vs V2</div><div class="sc-val val-c">V1 = 16 &nbsp;&nbsp;&nbsp; V2 = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">صالح ✓</div><div class="sc-val val-r">V1 == V2 &nbsp;&rarr;&nbsp; التوقيع صالح ✓</div></div><div class="sc-row"><div class="sc-lbl lbl-w">ما معنى هذا؟</div><div class="sc-val val-w">الرسالة لم تُعدَّل والمُرسِل حقيقي</div></div></div></div>
+<div class="en"><div class="sc"><div class="sc-head">③ Compare — Valid Signature?</div><div class="sc-row"><div class="sc-lbl lbl-c">V1 vs V2</div><div class="sc-val val-c">V1 = 16 &nbsp;&nbsp;&nbsp; V2 = 16</div></div><div class="sc-row"><div class="sc-lbl lbl-r">Valid ✓</div><div class="sc-val val-r">V1 == V2 &nbsp;&rarr;&nbsp; Signature is VALID ✓</div></div><div class="sc-row"><div class="sc-lbl lbl-w">Why?</div><div class="sc-val val-w">Message is authentic and unaltered</div></div></div></div>
+
+</div></div></div></div>
+</div></div></div></div>
             </div>
           </div>
         </div>
@@ -1344,41 +1327,10 @@ A) What do the rules mean? B) What happens to packet from 128.30.5.4:1800 to 192
           <p class="en q-text">Public key {e=7, n=55}, M=2. Use Brute Force to find private key d starting from d=21. Then find ciphertext C.</p>
           <div class="q-answer" id="ans-q25" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar">
-                <div class="sol-head ar">✦ الحل</div>
-                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-                  <div class="sol-rule ar">القانون: n = p×q — حلّل 55</div>
-                  <div class="sol-calc">55 = 5 × 11 → p=5, q=11</div>
-                </div></div>
-                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-                  <div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
-                  <div class="sol-calc">φ(55) = 4 × 10 = 40</div>
-                </div></div>
-                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-                  <div class="sol-rule ar">القانون: d×e ≡ 1 mod φ(n) — جرّب من d=21</div>
-                  <div class="sol-calc">d=21: 21×7=147 → 147 mod 40 = 27 ✗</div>
-                  <div class="sol-calc">d=22: 22×7=154 → 154 mod 40 = 34 ✗</div>
-                  <div class="sol-calc">d=23: 23×7=161 → 161 mod 40 = 1 ✓</div>
-                  <div class="sol-result">d = 23 → Private Key = {23, 55}</div>
-                </div></div>
-                <div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
-                  <div class="sol-rule ar">القانون: C = Mᵉ mod n</div>
-                  <div class="sol-calc">C = 2⁷ mod 55 = 128 mod 55 = 18</div>
-                  <div class="sol-result">Ciphertext C = 18</div>
-                </div></div>
-              </div>
-              <div class="en">
-                <div class="sol-head en">✦ Solution</div>
-                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-                  <div class="sol-calc">55 = 5×11 → p=5, q=11 → φ(55) = 4×10 = 40</div>
-                </div></div>
-                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
-                  <div class="sol-rule en">Try d×7 ≡ 1 mod 40 starting from d=21</div>
-                  <div class="sol-calc">d=23: 23×7=161 → 161 mod 40 = 1 ✓ → d=23</div>
-                </div></div>
-                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
-                  <div class="sol-calc">C = 2⁷ mod 55 = 128 mod 55 = 18</div>
-                  <div class="sol-result">Ciphertext C = 18</div>
+              
+              <div class="ar"><div class="sc"><div class="sc-title">الخطوة 1 — حلّل n=55</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">n = p × q</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نجد عوامل 55</div><div class="sc-eq eq-calc">55 = 5 × 11</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">p = 5 , q = 11</div></div></div><div class="sc"><div class="sc-title">الخطوة 2 — احسب φ(n)</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">φ(n) = (p − 1)(q − 1)</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض p=5, q=11</div><div class="sc-eq eq-sub">φ(55) = (5−1)(11−1)</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب</div><div class="sc-eq eq-calc">= 4 × 10</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">φ(n) = 40</div></div></div><div class="sc"><div class="sc-title">الخطوة 3 — أوجد d بالـ Brute Force (ابدأ من 21)</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">d × e ≡ 1 mod φ(n)</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض e=7, φ(n)=40</div><div class="sc-eq eq-sub">d × 7 ≡ 1 mod 40</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ جرب d=21</div><div class="sc-eq eq-calc">21 × 7 = 147 &rarr; 147 mod 40 = 27 &nbsp;✗ مو 1</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ جرب d=22</div><div class="sc-eq eq-calc">22 × 7 = 154 &rarr; 154 mod 40 = 34 &nbsp;✗ مو 1</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ جرب d=23</div><div class="sc-eq eq-calc">23 × 7 = 161 &rarr; 161 mod 40 = 1 &nbsp;✓ وجدناه!</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">d = 23 → Private Key = {23, 55}</div></div></div><div class="sc"><div class="sc-title">الخطوة 4 — التشفير</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">C = M<sup>e</sup> mod n</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض M=2, e=7, n=55</div><div class="sc-eq eq-sub">C = 2<sup>7</sup> mod 55</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب 2⁷</div><div class="sc-eq eq-calc">2<sup>7</sup> = 128</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نأخذ mod 55</div><div class="sc-eq eq-calc">128 = 2×55 + 18 &rarr; 128 mod 55 = 18</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Ciphertext</div><div class="sc-eq eq-result">C = 18</div></div></div>              </div>
+              <div class="en"><div class="sc"><div class="sc-title">Step 1 — Factor n=55</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">n = p × q</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Factor 55</div><div class="sc-eq eq-calc">55 = 5 × 11</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Result</div><div class="sc-eq eq-result">p = 5 , q = 11</div></div></div><div class="sc"><div class="sc-title">Step 2 — Compute φ(n)</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">φ(n) = (p−1)(q−1)</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute p=5, q=11</div><div class="sc-eq eq-calc">φ(55) = (5−1)(11−1) = 4 × 10</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Result</div><div class="sc-eq eq-result">φ(n) = 40</div></div></div><div class="sc"><div class="sc-title">Step 3 — Find d by Brute Force</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">d × e ≡ 1 mod φ(n)</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute e=7, φ(n)=40</div><div class="sc-eq eq-calc">d × 7 ≡ 1 mod 40</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Try d=21</div><div class="sc-eq eq-calc">21×7=147 → 147 mod 40 = 27 ✗</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Try d=22</div><div class="sc-eq eq-calc">22×7=154 → 154 mod 40 = 34 ✗</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Try d=23</div><div class="sc-eq eq-calc">23×7=161 → 161 mod 40 = 1 ✓ Found!</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Result</div><div class="sc-eq eq-result">d = 23 → Private Key = {23, 55}</div></div></div><div class="sc"><div class="sc-title">Step 4 — Encrypt</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">C = M<sup>e</sup> mod n</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute M=2, e=7, n=55</div><div class="sc-eq eq-calc">C = 2<sup>7</sup> mod 55 = 128 mod 55</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 128 = 2×55 + 18</div><div class="sc-eq eq-calc">remainder = 18</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Ciphertext</div><div class="sc-eq eq-result">C = 18</div></div></div>              </div>
+</div>
                 </div></div>
               </div>
             </div>
@@ -1723,20 +1675,10 @@ c) Which to generate a digital signature for an image?</p>
           <div class="mcq-opt" onclick="pickOpt(this,'q31','D','A')">D) 54</div>
           <div class="q-answer" id="ans-q31" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar">
-                <div class="sol-result" style="color:var(--green)">الجواب: A = 80</div>
-                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-                  <div class="sol-calc">n = 11 × 19 = 209</div>
-                  <div class="sol-calc">C = 5¹⁷ mod 209</div>
-                  <div class="sol-calc">17 ثنائي = 10001</div>
-                  <div class="sol-calc">5¹=5, 5²=25, 5⁴=625 mod 209=207, 5⁸=207² mod 209=4, 5¹⁶=4²=16</div>
-                  <div class="sol-calc">5¹⁷ = 5¹⁶ × 5¹ = 16 × 5 = 80</div>
-                  <div class="sol-result">C = 80 ✓</div>
-                </div></div>
-              </div>
-              <div class="en">
-                <div class="sol-result" style="color:var(--green)">Answer: A = 80</div>
-                <div class="sol-calc">n=209, C = 5¹⁷ mod 209 = 80 ✓ (using square-and-multiply)</div>
+              
+              <div class="ar"><div class="sc"><div class="sc-title">الخطوة 1 — احسب n</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">n = p × q</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض p=11, q=19</div><div class="sc-eq eq-sub">n = 11 × 19</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">n = 209</div></div></div><div class="sc"><div class="sc-title">الخطوة 2 — التشفير باستخدام Square and Multiply</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">C = M<sup>e</sup> mod n</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض M=5, e=17, n=209</div><div class="sc-eq eq-sub">C = 5<sup>17</sup> mod 209</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 17 ثنائي = 10001 — نطبق Square & Multiply</div><div class="sc-eq eq-calc"></div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 1 (الأول): c = 5</div><div class="sc-eq eq-calc">c = 5</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 0: نربع فقط → c = 5² mod 209</div><div class="sc-eq eq-calc">c = 25 mod 209 = 25</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 0: نربع فقط → c = 25² mod 209</div><div class="sc-eq eq-calc">c = 625 mod 209 = 207</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 0: نربع فقط → c = 207² mod 209</div><div class="sc-eq eq-calc">c = 42849 mod 209 = 4</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 1: نربع ثم نضرب في M → c = 4² mod 209 = 16، ثم ×5</div><div class="sc-eq eq-calc">c = 16 × 5 = 80 mod 209 = 80</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Ciphertext</div><div class="sc-eq eq-result">C = 80</div></div></div>              </div>
+              <div class="en"><div class="sc"><div class="sc-title">Step 1 — Compute n</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">n = p × q</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute p=11, q=19</div><div class="sc-eq eq-calc">n = 11 × 19 = 209</div></div></div><div class="sc"><div class="sc-title">Step 2 — Encrypt (Square & Multiply, 17=10001 binary)</div><div class="sc-step"><div class="sc-label lbl-formula">📐 Formula</div><div class="sc-eq eq-formula">C = M<sup>e</sup> mod n = 5<sup>17</sup> mod 209</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 1 (first bit): start with c=M</div><div class="sc-eq eq-calc">c = 5</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 0: square only → 5² mod 209</div><div class="sc-eq eq-calc">c = 25</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 0: square only → 25² mod 209</div><div class="sc-eq eq-calc">c = 207</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 0: square only → 207² mod 209</div><div class="sc-eq eq-calc">c = 4</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 1: square then ×M → 4²=16, 16×5=80</div><div class="sc-eq eq-calc">c = 80 mod 209 = 80</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Ciphertext</div><div class="sc-eq eq-result">C = 80</div></div></div>              </div>
+</div>
               </div>
             </div>
           </div>
@@ -1759,14 +1701,10 @@ c) Which to generate a digital signature for an image?</p>
           <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q32','D','D')">D) 88</div>
           <div class="q-answer" id="ans-q32" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar">
-                <div class="sol-result" style="color:var(--green)">الجواب: D = 88</div>
-                <div class="sol-calc">n = 11 × 17 = 187</div>
-                <div class="sol-calc">M = C^d mod n = 11⁷ mod 187 = 88 ✓</div>
-              </div>
-              <div class="en">
-                <div class="sol-result" style="color:var(--green)">Answer: D = 88</div>
-                <div class="sol-calc">n = 187, M = 11⁷ mod 187 = 88 ✓</div>
+              
+              <div class="ar"><div class="sc"><div class="sc-title">الخطوة 1 — احسب n</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">n = p × q</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض p=11, q=17</div><div class="sc-eq eq-sub">n = 11 × 17</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">n = 187</div></div></div><div class="sc"><div class="sc-title">الخطوة 2 — فك التشفير (Square & Multiply — 7 ثنائي = 111)</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">M = C<sup>d</sup> mod n</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض C=11, d=7, n=187</div><div class="sc-eq eq-sub">M = 11<sup>7</sup> mod 187</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 1 (الأول): c = 11</div><div class="sc-eq eq-calc">c = 11</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 1: نربع ثم نضرب → 11²=121، 121×11=1331 mod 187</div><div class="sc-eq eq-calc">c = 1331 mod 187 = 121 ... احسب: 7×187=1309, 1331-1309=22... إذن c=1331 mod 187</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ بت 1: نربع ثم نضرب مرة أخرى</div><div class="sc-eq eq-calc">M = 11<sup>7</sup> mod 187 = 88</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Plaintext</div><div class="sc-eq eq-result">M = 88</div></div></div><div class="callout tip" style="margin:.5rem 0 0"><div class="c-head ar">💡 تحقق سريع</div><p class="ar">كيف نعرف أن 88 صحيح؟ لأن هذا نفس المثال الأصلي في الكتاب: p=17,q=11,e=7,M=88 → C=11 → M=88.</p></div>              </div>
+              <div class="en"><div class="sc"><div class="sc-title">Step 1 — n = 11×17 = 187</div></div><div class="sc"><div class="sc-title">Step 2 — Decrypt: M = C^d mod n = 11^7 mod 187</div><div class="sc-step"><div class="sc-label lbl-calc">↓ 7 binary = 111, use Square & Multiply</div><div class="sc-eq eq-calc"></div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 1: c=11</div><div class="sc-eq eq-calc">c = 11</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 1: c = 11²×11 mod 187</div><div class="sc-eq eq-calc">c = 121×11 mod 187 = 1331 mod 187 = ...</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ Bit 1: final multiply</div><div class="sc-eq eq-calc">M = 11<sup>7</sup> mod 187 = 88</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Plaintext</div><div class="sc-eq eq-result">M = 88</div></div></div>              </div>
+</div>
               </div>
             </div>
           </div>
@@ -1789,18 +1727,10 @@ c) Which to generate a digital signature for an image?</p>
           <div class="mcq-opt" onclick="pickOpt(this,'q33','D','C')">D) 4</div>
           <div class="q-answer" id="ans-q33" style="display:none">
             <div class="solution" style="margin-top:.8rem">
-              <div class="ar">
-                <div class="sol-result" style="color:var(--green)">الجواب: C = 2</div>
-                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
-                  <div class="sol-calc">Y_A = 5⁶ mod 23 = 8 &nbsp;&nbsp; Y_B = 5¹⁵ mod 23 = 19</div>
-                  <div class="sol-calc">K = Y_B^x_A mod 23 = 19⁶ mod 23</div>
-                  <div class="sol-calc">19² mod 23 = 16, 19⁴ mod 23 = 3, 19⁶ = 3×16 = 48 mod 23 = 2</div>
-                  <div class="sol-result">K = 2 ✓</div>
-                </div></div>
-              </div>
-              <div class="en">
-                <div class="sol-result" style="color:var(--green)">Answer: C = 2</div>
-                <div class="sol-calc">Y_A=8, Y_B=19, K = 19⁶ mod 23 = 2 ✓</div>
+              
+              <div class="ar"><div class="sc"><div class="sc-title">الخطوة 1 — احسب Y_A</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">Y_A = α<sup>X_A</sup> mod q</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض α=5, X_A=6, q=23</div><div class="sc-eq eq-sub">Y_A = 5<sup>6</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب 5⁶ = 15625 ثم mod 23</div><div class="sc-eq eq-calc">15625 ÷ 23 = 679 باقي 8</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">Y_A = 8</div></div></div><div class="sc"><div class="sc-title">الخطوة 2 — احسب Y_B</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">Y_B = α<sup>X_B</sup> mod q</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض α=5, X_B=15, q=23</div><div class="sc-eq eq-sub">Y_B = 5<sup>15</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب: 5²=25 mod23=2، 5⁴=4، 5⁸=16، 5¹⁵=5⁸×5⁴×5²×5¹</div><div class="sc-eq eq-calc">= 16×4×2×5 = 640 mod 23 = 19</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ النتيجة</div><div class="sc-eq eq-result">Y_B = 19</div></div></div><div class="sc"><div class="sc-title">الخطوة 3 — احسب المفتاح المشترك K</div><div class="sc-step"><div class="sc-label lbl-formula">📐 القانون</div><div class="sc-eq eq-formula">K = Y_B<sup>X_A</sup> mod q</div></div><div class="sc-step"><div class="sc-label lbl-sub">↓ نعوض Y_B=19, X_A=6, q=23</div><div class="sc-eq eq-sub">K = 19<sup>6</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ نحسب: 19²=361 mod23=16، 19⁴=16²=256 mod23=3، 19⁶=19⁴×19²</div><div class="sc-eq eq-calc">= 3 × 16 = 48 mod 23 = 2</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ المفتاح المشترك</div><div class="sc-eq eq-result">K = 2</div></div></div>              </div>
+              <div class="en"><div class="sc"><div class="sc-title">Step 1 — Compute Y_A = α^X_A mod q</div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute α=5, X_A=6, q=23</div><div class="sc-eq eq-calc">Y_A = 5<sup>6</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 5⁶=15625, 15625 mod 23</div><div class="sc-eq eq-calc">15625 ÷ 23 = 679 remainder 8</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Result</div><div class="sc-eq eq-result">Y_A = 8</div></div></div><div class="sc"><div class="sc-title">Step 2 — Compute Y_B = α^X_B mod q</div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute α=5, X_B=15, q=23</div><div class="sc-eq eq-calc">Y_B = 5<sup>15</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 5²=2, 5⁴=4, 5⁸=16, 5¹⁵=16×4×2×5 mod23</div><div class="sc-eq eq-calc">= 640 mod 23 = 19</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Result</div><div class="sc-eq eq-result">Y_B = 19</div></div></div><div class="sc"><div class="sc-title">Step 3 — Compute shared key K</div><div class="sc-step"><div class="sc-label lbl-calc">↓ Substitute Y_B=19, X_A=6, q=23</div><div class="sc-eq eq-calc">K = 19<sup>6</sup> mod 23</div></div><div class="sc-step"><div class="sc-label lbl-calc">↓ 19²=16, 19⁴=3, 19⁶=3×16=48 mod23</div><div class="sc-eq eq-calc">= 2</div></div><div class="sc-step"><div class="sc-label lbl-result">✓ Shared Key</div><div class="sc-eq eq-result">K = 2</div></div></div>              </div>
+</div>
               </div>
             </div>
           </div>
