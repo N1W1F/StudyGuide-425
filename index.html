@@ -211,6 +211,65 @@ body.ar code, body.ar strong code {
   display: inline-block;
 }
 
+
+/* ── EXAM STYLES ── */
+.exam-mode-btn { font-family: var(--sans-ar); }
+body.en .exam-mode-btn { font-family: var(--sans-en); }
+.q-filter {
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--muted); font-size: .72rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 6px; cursor: pointer;
+  font-family: var(--sans-ar); transition: all .2s;
+}
+.q-filter.active-filter { background: var(--accent); color: #fff; border-color: var(--accent); }
+.q-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 1rem;
+  transition: border-color .2s;
+}
+.q-card:hover { border-color: rgba(79,142,247,.3); }
+.q-card[style*="display:none"] { margin: 0; }
+.q-header {
+  padding: .75rem 1.1rem;
+  background: var(--bg3); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+}
+.q-num {
+  font-size: .72rem; font-weight: 700; color: #000;
+  background: var(--accent); padding: 2px 8px; border-radius: 5px;
+}
+.q-tag { font-size: .75rem; color: var(--muted); font-weight: 500; }
+.q-type { font-size: .7rem; color: var(--teal); font-weight: 600;
+  background: rgba(14,165,160,.1); padding: 2px 7px; border-radius: 4px; }
+.q-reveal-btn {
+  background: rgba(79,142,247,.12); border: 1px solid rgba(79,142,247,.3);
+  color: var(--accent); font-size: .75rem; font-weight: 600;
+  padding: 5px 12px; border-radius: 6px; cursor: pointer;
+  font-family: var(--sans-ar); transition: all .2s; white-space: nowrap;
+}
+body.en .q-reveal-btn { font-family: var(--sans-en); }
+.q-reveal-btn:hover { background: var(--accent); color: #fff; }
+.q-reveal-btn.revealed { background: var(--green); border-color: var(--green); color: #000; }
+.q-body { padding: 1rem 1.1rem; }
+.q-text { margin-bottom: .7rem !important; font-size: .9rem; }
+.mcq-opt {
+  padding: .6rem 1rem; margin: .35rem 0;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; font-size: .88rem;
+  transition: all .2s; direction: ltr;
+}
+.mcq-opt:hover { border-color: var(--accent); background: rgba(79,142,247,.08); }
+.mcq-opt.selected-wrong { background: rgba(244,63,94,.15); border-color: var(--coral); color: var(--coral); }
+.mcq-opt.selected-correct { background: rgba(34,197,94,.15); border-color: var(--green); color: var(--green); }
+.mcq-opt.correct-opt.reveal-correct { background: rgba(34,197,94,.15); border-color: var(--green); }
+.q-answer .solution { border: 1px solid rgba(79,142,247,.2); border-radius: 10px; overflow: hidden; }
+/* practice mode hides answers */
+.q-answer.revealed-ans { display: block !important; }
+body.mode-practice .q-answer:not(.revealed-ans) { display: none; }
+body.mode-practice .q-reveal-btn { display: inline-flex; }
+body.mode-answer .q-answer { display: block; }
+body.mode-answer .q-reveal-btn { display: none; }
+
 </style>
 </head>
 <body class="ar">
@@ -218,7 +277,7 @@ body.ar code, body.ar strong code {
 <nav>
   <span class="nav-brand">CPIT-425</span>
   <div class="nav-ch">
-    <a href="#ch9" class="active">Ch.9 RSA</a>
+    <a href="#practice-exam" style="color:var(--amber)">🎯 اختبار</a><a href="#ch9" class="active">Ch.9 RSA</a>
     <a href="#ch10">Ch.10 DH/ElGamal</a>
     <a href="#ch11">Ch.11 Hash</a>
     <a href="#ch12">Ch.12 MAC</a>
@@ -243,7 +302,7 @@ body.ar code, body.ar strong code {
   <div class="toc-label ar">الشابترات</div>
   <div class="toc-label en">Chapters</div>
   <div class="toc-pills">
-    <a href="#ch9">Ch.9 — RSA</a>
+    <a href="#practice-exam" style="border-color:var(--amber);color:var(--amber)">🎯 نماذج الاختبار</a><a href="#ch9">Ch.9 — RSA</a>
     <a href="#ch10">Ch.10 — DH/ElGamal</a>
     <a href="#ch11">Ch.11 — Hash</a>
     <a href="#ch12">Ch.12 — MAC</a>
@@ -253,6 +312,1711 @@ body.ar code, body.ar strong code {
     <a href="#ch22">Ch.22 — Firewalls</a>
   </div>
 </div>
+
+
+<!-- ═══════════ PRACTICE EXAM ═══════════ -->
+<div class="chapter" id="practice-exam">
+  <div class="ch-hdr open" onclick="tog(this)">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)">🎯</div>
+    <div>
+      <div class="ch-title">نماذج الاختبارات السابقة</div>
+      <div class="ch-sub ar">أسئلة حقيقية من الفايندل مع الحل والشرح الكامل</div>
+      <div class="ch-sub en">Real exam questions with full solutions and explanations</div>
+    </div>
+    <span class="ch-arrow">▼</span>
+  </div>
+  <div class="ch-body open">
+
+    <!-- Controls -->
+    <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center">
+      <span class="ar" style="font-size:.82rem;color:var(--muted)">وضع العرض:</span>
+      <span class="en" style="font-size:.82rem;color:var(--muted)">Mode:</span>
+      <div style="display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <button onclick="setMode('practice')" id="btn-practice" class="exam-mode-btn active-mode"
+          style="padding:6px 14px;font-size:.8rem;font-weight:600;border:none;cursor:pointer;background:var(--amber);color:#000">
+          <span class="ar">🎯 اختبر نفسك</span><span class="en">🎯 Practice</span>
+        </button>
+        <button onclick="setMode('answer')" id="btn-answer" class="exam-mode-btn"
+          style="padding:6px 14px;font-size:.8rem;font-weight:600;border:none;cursor:pointer;background:none;color:var(--muted)">
+          <span class="ar">📖 الإجابات</span><span class="en">📖 Answers</span>
+        </button>
+      </div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-right:auto">
+        <button onclick="filterQ('all')" class="q-filter active-filter" data-f="all">الكل</button>
+        <button onclick="filterQ('ch9')" class="q-filter" data-f="ch9">Ch.9 RSA</button>
+        <button onclick="filterQ('ch10')" class="q-filter" data-f="ch10">Ch.10 DH</button>
+        <button onclick="filterQ('ch11')" class="q-filter" data-f="ch11">Ch.11 Hash</button>
+        <button onclick="filterQ('ch12')" class="q-filter" data-f="ch12">Ch.12 MAC</button>
+        <button onclick="filterQ('ch13')" class="q-filter" data-f="ch13">Ch.13 DS</button>
+        <button onclick="filterQ('ch14')" class="q-filter" data-f="ch14">Ch.14 KD</button>
+        <button onclick="filterQ('ch16')" class="q-filter" data-f="ch16">Ch.16 SSL</button>
+        <button onclick="filterQ('ch22')" class="q-filter" data-f="ch22">Ch.22 FW</button>
+        <button onclick="filterQ('mcq')" class="q-filter" data-f="mcq">MCQ</button>
+      </div>
+    </div>
+
+    <div id="q-container">
+
+      <div class="q-card" data-ch="ch9" id="q1">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q1</span>
+            <span class="q-tag">Ch.9 — RSA</span>
+            <span class="q-type">🔢 حساب</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q1')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">احسب: RSA بمعطيات e=7, n=33, M=2 — أوجد d وCiphertext C</p>
+          <p class="en q-text" style="white-space:pre-line">RSA: given e=7, n=33, plaintext M=2 — Find d and ciphertext C</p>
+          
+          <div class="q-answer" id="ans-q1" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الحل خطوة بخطوة</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">القانون: n = p × q — حلّل 33 إلى عواملها الأولية</div>
+<div class="sol-calc">n = 33 = 3 × 11 → p=3, q=11</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
+<div class="sol-calc">φ(33) = (3−1)(11−1) = 2 × 10 = 20</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule ar">القانون: d × e ≡ 1 mod φ(n) — جرّب d حتى تجد الناتج 1</div>
+<div class="sol-calc">d × 7 ≡ 1 mod 20</div>
+<div class="sol-calc">d=3: 3×7=21 → 21 mod 20 = 1 ✓</div>
+<div class="sol-result">d = 3 → Private Key = {3, 33}</div></div></div>
+<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+<div class="sol-rule ar">القانون: C = Mᵉ mod n</div>
+<div class="sol-calc">C = 2⁷ mod 33 = 128 mod 33</div>
+<div class="sol-calc">128 = 3×33 + 29</div>
+<div class="sol-result">C = 29 ← النص المشفّر</div></div></div>
+<div class="sol-step"><div class="sol-num">5</div><div class="sol-content">
+<div class="sol-rule ar">تحقق: M = Cᵈ mod n</div>
+<div class="sol-calc">M = 29³ mod 33 = 24389 mod 33 = 2 ✓</div>
+<div class="sol-result">رجعت الرسالة الأصلية M=2 ✓</div></div></div></div>
+              <div class="en"><div class="sol-head en">✦ Step-by-step solution</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule en">Formula: n = p × q — factor 33 into primes</div>
+<div class="sol-calc">n = 33 = 3 × 11 → p=3, q=11</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule en">Formula: φ(n) = (p−1)(q−1)</div>
+<div class="sol-calc">φ(33) = (3−1)(11−1) = 2 × 10 = 20</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule en">Formula: d × e ≡ 1 mod φ(n) — find d</div>
+<div class="sol-calc">d × 7 ≡ 1 mod 20 → d=3: 3×7=21 mod 20 = 1 ✓</div>
+<div class="sol-result">d = 3 → Private Key = {3, 33}</div></div></div>
+<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+<div class="sol-rule en">Formula: C = Mᵉ mod n</div>
+<div class="sol-calc">C = 2⁷ mod 33 = 128 mod 33 = 29</div>
+<div class="sol-result">Ciphertext C = 29</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch9" id="q2">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q2</span>
+            <span class="q-tag">Ch.9 — RSA</span>
+            <span class="q-type">🔢 حساب</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q2')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما هو التوقيع RSA على الرسالة M=4 إذا كان المفتاح الخاص هو {d=17, n=21}؟</p>
+          <p class="en q-text" style="white-space:pre-line">What is the RSA signature on message M=4 if private key is {d=17, n=21}?</p>
+          
+          <div class="q-answer" id="ans-q2" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الحل</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">القانون: التوقيع = S = E(PRₐ, M) = Mᵈ mod n</div>
+<div class="sol-calc">S = 4¹⁷ mod 21</div>
+<div class="sol-rule ar">احسب باستخدام Square and Multiply — 17 ثنائي = 10001</div>
+<div class="sol-calc">4¹ = 4</div>
+<div class="sol-calc">4² = 16</div>
+<div class="sol-calc">4⁴ = 16² mod 21 = 256 mod 21 = 4</div>
+<div class="sol-calc">4⁸ = 4² mod 21 = 16</div>
+<div class="sol-calc">4¹⁶ = 16² mod 21 = 256 mod 21 = 4</div>
+<div class="sol-calc">4¹⁷ = 4¹⁶ × 4¹ mod 21 = 4 × 4 = 16</div>
+<div class="sol-result">التوقيع S = 16</div></div></div>
+<div class="callout tip" style="margin-top:.8rem"><div class="c-head ar">💡 لماذا؟</div>
+<p class="ar">التوقيع الرقمي في RSA = تشفير الرسالة بالمفتاح الخاص. المستقبل يفك التشفير بالمفتاح العام للتحقق.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Solution</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule en">Formula: Signature S = Mᵈ mod n (encrypt with private key)</div>
+<div class="sol-calc">S = 4¹⁷ mod 21 = 16</div>
+<div class="sol-result">Signature S = 16</div></div></div>
+<div class="callout tip" style="margin-top:.8rem"><div class="c-head en">💡 Why?</div>
+<p class="en">RSA signature = encrypting message with private key. Receiver decrypts with public key to verify.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch10" id="q3">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q3</span>
+            <span class="q-tag">Ch.10 — DH</span>
+            <span class="q-type">🔢 حساب</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q3')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">DH: prime q=13، root α=2، Ali X_A=5، Naif X_B=4 — أوجد المفتاح المشترك</p>
+          <p class="en q-text" style="white-space:pre-line">DH: prime q=13, root α=2, Ali X_A=5, Naif X_B=4 — Find the shared secret key</p>
+          
+          <div class="q-answer" id="ans-q3" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الحل خطوة بخطوة</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">القانون: Y_A = α^X_A mod q</div>
+<div class="sol-calc">Y_A = 2⁵ mod 13 = 32 mod 13</div>
+<div class="sol-result">Y_A = 6 ← ينشره Ali للجميع</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule ar">القانون: Y_B = α^X_B mod q</div>
+<div class="sol-calc">Y_B = 2⁴ mod 13 = 16 mod 13</div>
+<div class="sol-result">Y_B = 3 ← ينشره Naif للجميع</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule ar">القانون: K = Y_B^X_A mod q (يحسبه Ali)</div>
+<div class="sol-calc">K = 3⁵ mod 13 = 243 mod 13 = 9</div>
+<div class="sol-result">K = 9</div></div></div>
+<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+<div class="sol-rule ar">القانون: K = Y_A^X_B mod q (يحسبه Naif)</div>
+<div class="sol-calc">K = 6⁴ mod 13 = 1296 mod 13 = 9 ✓</div>
+<div class="sol-result">K = 9 — نفس النتيجة ✓</div>
+<div class="sol-note ar">المفتاح المشترك = 9 دون أن يُرسل على الشبكة أبداً</div></div></div></div>
+              <div class="en"><div class="sol-head en">✦ Step-by-step</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule en">Y_A = α^X_A mod q = 2⁵ mod 13 = 32 mod 13</div>
+<div class="sol-result">Y_A = 6 (Ali publishes this)</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule en">Y_B = α^X_B mod q = 2⁴ mod 13 = 16 mod 13</div>
+<div class="sol-result">Y_B = 3 (Naif publishes this)</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule en">K = Y_B^X_A mod q = 3⁵ mod 13 = 243 mod 13 = 9</div>
+<div class="sol-result">K = 9 ✓ (same for both parties)</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch10" id="q4">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q4</span>
+            <span class="q-tag">Ch.10 — DH</span>
+            <span class="q-type">📊 رسم/خطوات</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q4')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أرسم/اشرح خطوات هجوم MITM على DH — q=13، α=2، Ali X_A=5، Naif X_B=4، Darth X_D=7</p>
+          <p class="en q-text" style="white-space:pre-line">Draw/explain MITM attack steps on DH — q=13, α=2, Ali X_A=5, Naif X_B=4, Darth X_D=7</p>
+          
+          <div class="q-answer" id="ans-q4" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ حساب المفاتيح أولاً</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">حساب المفاتيح العامة لكل طرف</div>
+<div class="sol-calc">Y_A = 2⁵ mod 13 = 6 &nbsp;&nbsp; Y_B = 2⁴ mod 13 = 3 &nbsp;&nbsp; Y_D = 2⁷ mod 13 = 11</div></div></div>
+<div class="sol-head ar" style="margin-top:.8rem">✦ خطوات الهجوم</div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule ar">Ali يرسل Y_A=6 إلى Naif</div>
+<div class="sol-calc">Ali → [Y_A = 6] → Naif</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule ar">Darth يعترض Y_A=6 ويرسل Y_D=11 إلى Naif</div>
+<div class="sol-calc">Ali → [6] → Darth → [Y_D = 11] → Naif</div>
+<div class="sol-note ar">K_AD = 6⁷ mod 13 = 279936 mod 13 = 9 (مفتاح Darth مع Ali)</div></div></div>
+<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+<div class="sol-rule ar">Naif يستقبل Y_D=11 ظاناً أنه Y_A</div>
+<div class="sol-calc">K_BD = 11⁴ mod 13 = 14641 mod 13 = 3 (مفتاح Naif مع Darth)</div></div></div>
+<div class="sol-step"><div class="sol-num">5</div><div class="sol-content">
+<div class="sol-rule ar">Naif يرسل Y_B=3 إلى Ali</div>
+<div class="sol-calc">Naif → [Y_B = 3] → Ali</div></div></div>
+<div class="sol-step"><div class="sol-num">6</div><div class="sol-content">
+<div class="sol-rule ar">Darth يعترض Y_B=3 ويرسل Y_D=11 إلى Ali</div>
+<div class="sol-calc">Naif → [3] → Darth → [Y_D = 11] → Ali</div>
+<div class="sol-note ar">K_AD = 11⁵ mod 13 = 161051 mod 13 = 9 (Ali يحسب نفس K مع Darth)</div></div></div>
+<div class="sol-step"><div class="sol-num">7</div><div class="sol-content">
+<div class="sol-rule ar">النتيجة: Darth يجلس في المنتصف</div>
+<div class="sol-calc">Ali ↔ [K=9] ↔ Darth ↔ [K=3] ↔ Naif</div>
+<div class="sol-note ar">Darth يفك تشفير رسائل Ali بـ K=9 ويُعيد تشفيرها لـ Naif بـ K=3 والعكس</div></div></div>
+<div class="callout danger" style="margin-top:.8rem"><div class="c-head ar">🚨 الحل</div>
+<p class="ar">توثيق المفاتيح العامة بشهادات رقمية — لو كانت عند Darth يبدّل المفاتيح يُكتشف الأمر.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Key Computation</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-calc">Y_A = 2⁵ mod 13 = 6 &nbsp; Y_B = 2⁴ mod 13 = 3 &nbsp; Y_D = 2⁷ mod 13 = 11</div></div></div>
+<div class="sol-head en" style="margin-top:.8rem">✦ Attack Steps</div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule en">Ali sends Y_A=6, Darth intercepts → sends Y_D=11 to Naif</div>
+<div class="sol-calc">K_AD = 6⁷ mod 13 = 9 (Darth's key with Ali)</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule en">Naif sends Y_B=3, Darth intercepts → sends Y_D=11 to Ali</div>
+<div class="sol-calc">K_BD = 3⁷ mod 13 = 3 (Darth's key with Naif)</div></div></div>
+<div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+<div class="sol-result">Ali ↔ [K=9] ↔ Darth ↔ [K=3] ↔ Naif</div>
+<div class="sol-note en">Darth reads all messages in the middle</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch10" id="q5">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q5</span>
+            <span class="q-tag">Ch.10 — ElGamal</span>
+            <span class="q-type">🔢 حساب</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q5')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ElGamal DS: المفتاح العام {q=19, α=10, y_A=4}، الرسالة m=14، التوقيع {S1=3, S2=4} — تحقق من صحة التوقيع</p>
+          <p class="en q-text" style="white-space:pre-line">ElGamal DS: Public key {q=19, α=10, y_A=4}, message m=14, signature {S1=3, S2=4} — Verify the signature</p>
+          
+          <div class="q-answer" id="ans-q5" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ التحقق من التوقيع</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">القانون: V1 = α^m mod q</div>
+<div class="sol-calc">V1 = 10¹⁴ mod 19</div>
+<div class="sol-calc">10² = 100 mod 19 = 5</div>
+<div class="sol-calc">10⁴ = 5² mod 19 = 25 mod 19 = 6</div>
+<div class="sol-calc">10⁸ = 6² mod 19 = 36 mod 19 = 17</div>
+<div class="sol-calc">10¹² = 10⁸ × 10⁴ = 17×6 = 102 mod 19 = 7</div>
+<div class="sol-calc">10¹⁴ = 10¹² × 10² = 7×5 = 35 mod 19 = 16</div>
+<div class="sol-result">V1 = 16</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule ar">القانون: V2 = y_A^S1 × S1^S2 mod q</div>
+<div class="sol-calc">V2 = 4³ × 3⁴ mod 19</div>
+<div class="sol-calc">= 64 × 81 mod 19</div>
+<div class="sol-calc">64 mod 19 = 7 &nbsp;&nbsp; 81 mod 19 = 5</div>
+<div class="sol-calc">V2 = 7 × 5 mod 19 = 35 mod 19 = 16</div>
+<div class="sol-result">V2 = 16</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-rule ar">المقارنة: V1 == V2؟</div>
+<div class="sol-calc">V1 = 16 == V2 = 16 ✓</div>
+<div class="sol-result" style="color:var(--green)">التوقيع صالح ✓ — الرسالة حقيقية ولم تُعدَّل</div></div></div></div>
+              <div class="en"><div class="sol-head en">✦ Verification Steps</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule en">Formula: V1 = α^m mod q = 10¹⁴ mod 19 = 16</div>
+<div class="sol-result">V1 = 16</div></div></div>
+<div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+<div class="sol-rule en">Formula: V2 = y_A^S1 × S1^S2 mod q = 4³ × 3⁴ mod 19 = 64×81 mod 19 = 16</div>
+<div class="sol-result">V2 = 16</div></div></div>
+<div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+<div class="sol-result" style="color:var(--green)">V1 = V2 = 16 ✓ — Signature is VALID</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch11" id="q6">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q6</span>
+            <span class="q-tag">Ch.11 — Hash</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q6')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما الفرق بين Second Preimage Resistant وCollision Resistant؟ وهل Collision Resistant تعني Second Preimage Resistant؟</p>
+          <p class="en q-text" style="white-space:pre-line">What is the difference between Second Preimage Resistant and Collision Resistant? Does Collision Resistant imply Second Preimage Resistant?</p>
+          
+          <div class="q-answer" id="ans-q6" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الإجابة</div>
+<table class="tbl ar"><tr><th>الخاصية</th><th>التعريف</th><th>ما يملكه المهاجم</th></tr>
+<tr><td><strong>Second Preimage Resistant</strong></td><td>صعب إيجاد M' ≠ M بحيث H(M) = H(M') إذا عرفت M</td><td>رسالة M محددة</td></tr>
+<tr><td><strong>Collision Resistant</strong></td><td>صعب إيجاد أي زوج (M, M') بحيث H(M) = H(M')</td><td>حرية اختيار أي M وM'</td></tr>
+</table>
+<div class="callout key" style="margin-top:.8rem"><div class="c-head ar">🔑 العلاقة</div>
+<p class="ar">Collision Resistant <strong>تعني</strong> Second Preimage Resistant — لأن إذا كان صعباً إيجاد أي تصادم، أصعب أن تجد M' لـ M محدد.<br>
+لكن Second Preimage Resistant <strong>لا تعني</strong> Collision Resistant — المهاجم في Collision يختار كلاهما بحرية فهو أسهل.<br>
+الجواب: <strong>True</strong> — Collision Resistant → Second Preimage Resistant، لكن العكس غير صحيح.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Answer</div>
+<table class="tbl en"><tr><th>Property</th><th>Definition</th><th>Attacker has</th></tr>
+<tr><td><strong>Second Preimage Resistant</strong></td><td>Hard to find M' ≠ M such that H(M) = H(M') given M</td><td>A specific M</td></tr>
+<tr><td><strong>Collision Resistant</strong></td><td>Hard to find any pair (M, M') such that H(M) = H(M')</td><td>Freedom to choose any M and M'</td></tr>
+</table>
+<div class="callout key" style="margin-top:.8rem"><div class="c-head en">🔑 Relationship</div>
+<p class="en">Collision Resistant <strong>implies</strong> Second Preimage Resistant — if finding any collision is hard, finding one for a specific M is even harder.<br>
+But Second Preimage Resistant does <strong>NOT</strong> imply Collision Resistant.<br>
+<strong>True</strong> — Collision Resistant → Second Preimage Resistant, but NOT vice versa.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch11" id="q7">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q7</span>
+            <span class="q-tag">Ch.11 — Hash</span>
+            <span class="q-type">🔢 حساب</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q7')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">نظام يستخدم hash function بطول 64 بت. كم عملية hash تحتاج لإيجاد تصادم (Birthday Attack)؟</p>
+          <p class="en q-text" style="white-space:pre-line">A system uses a 64-bit hash function. Approximately how many hash operations are needed to find a collision using the birthday attack?</p>
+          
+          <div class="q-answer" id="ans-q7" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الحل</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule ar">القانون: Birthday Attack يحتاج ≈ 2^(n/2) عملية حيث n = عدد البتات</div>
+<div class="sol-calc">n = 64 بت</div>
+<div class="sol-calc">عدد العمليات ≈ 2^(64/2) = 2^32</div>
+<div class="sol-result">≈ 4 مليار عملية (2³² ≈ 4.3 × 10⁹)</div></div></div>
+<div class="callout tip" style="margin-top:.8rem"><div class="c-head ar">💡 لماذا n/2 وليس n؟</div>
+<p class="ar">Birthday Paradox: إيجاد أي زوج يتطابق أسهل من إيجاد تطابق لقيمة محددة. تحتاج 2^n لـ Preimage لكن 2^(n/2) لـ Collision.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Solution</div>
+<div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+<div class="sol-rule en">Formula: Birthday Attack needs ≈ 2^(n/2) operations, n = hash bits</div>
+<div class="sol-calc">n = 64, operations ≈ 2^(64/2) = 2^32 ≈ 4.3 billion</div>
+<div class="sol-result">≈ 2³² ≈ 4.3 × 10⁹ hash operations</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch11" id="q8">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q8</span>
+            <span class="q-tag">Ch.11 — Hash</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q8')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">اشرح خطوات Birthday Attack على التوقيع الرقمي</p>
+          <p class="en q-text" style="white-space:pre-line">List the steps to perform a Birthday Attack on a digital signature</p>
+          
+          <div class="q-answer" id="ans-q8" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ خطوات Birthday Attack</div>
+<ul class="steps">
+<li><div><p class="ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة الأصلية المشروعة x (بتغيير طفيف غير ملحوظ) ويحسب H(x) لكل منها</p></div></li>
+<li><div><p class="ar">المهاجم يُعدّ 2^(n/2) تنويعاً للرسالة المزوّرة y ويحسب H(y) لكل منها</p></div></li>
+<li><div><p class="ar">يبحث عن x' وy' بحيث H(x') = H(y') — هذا ممكن بسبب Birthday Paradox</p></div></li>
+<li><div><p class="ar">يُقدّم x' للضحية ليوقّع عليها (رسالة شرعية تبدو طبيعية)</p></div></li>
+<li><div><p class="ar">بعد الحصول على التوقيع sign(x')، يستبدل x' بـ y' — لأن H(x')=H(y') فالتوقيع صالح على y' أيضاً!</p></div></li>
+</ul>
+<div class="callout danger"><div class="c-head ar">🚨 الخطورة</div>
+<p class="ar">الضحية وقّعت على رسالة شرعية لكن المهاجم يستخدم نفس التوقيع على رسالة مختلفة تماماً.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Birthday Attack Steps</div>
+<ul class="steps">
+<li><div><p class="en">Attacker prepares 2^(n/2) variations of legitimate message x and computes their hashes</p></div></li>
+<li><div><p class="en">Attacker prepares 2^(n/2) variations of fraudulent message y and computes their hashes</p></div></li>
+<li><div><p class="en">Finds x' and y' such that H(x') = H(y') — possible by Birthday Paradox</p></div></li>
+<li><div><p class="en">Presents x' to victim to sign (looks like a legitimate message)</p></div></li>
+<li><div><p class="en">After getting sign(x'), substitutes x' with y' — since H(x')=H(y'), the signature is valid on y'!</p></div></li>
+</ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch12" id="q9">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q9</span>
+            <span class="q-tag">Ch.12 — MAC</span>
+            <span class="q-type">📊 رسم/خطوات</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q9')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أرسم/اشرح الخطوات التي تتبعها Alice لإرسال رسالة M مع MAC إلى Bob (يملكان مفتاح K مشترك)</p>
+          <p class="en q-text" style="white-space:pre-line">Draw/explain the steps Alice must follow to send message M with MAC to Bob (both share key K)</p>
+          
+          <div class="q-answer" id="ans-q9" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ خطوات Alice للإرسال</div>
+<ul class="steps">
+<li><div><p class="ar">تمتلك Alice الرسالة M والمفتاح السري المشترك K</p></div></li>
+<li><div><p class="ar">القانون: تحسب MAC = C(K, M) — تطبّق خوارزمية الـ MAC على المفتاح والرسالة</p></div></li>
+<li><div><p class="ar">تُرسل: M || MAC — الرسالة ملحقاً بها الـ MAC</p></div></li>
+</ul>
+<div class="sol-head ar" style="margin-top:.8rem">✦ خطوات Bob للتحقق</div>
+<ul class="steps">
+<li><div><p class="ar">يستقبل M' والـ MAC المُرسَل</p></div></li>
+<li><div><p class="ar">يحسب MAC' = C(K, M') باستخدام نفس المفتاح</p></div></li>
+<li><div><p class="ar">إذا MAC' == MAC_received → الرسالة حقيقية ✓ وإذا MAC' ≠ MAC → الرسالة عُدِّلت ✗</p></div></li>
+</ul>
+<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.8rem 0">
+<div style="font-size:.7rem;font-weight:600;color:var(--green);margin-bottom:.6rem">الرسم البياني</div>
+<div style="font-family:var(--mono);font-size:.82rem;direction:ltr;color:#a5f3fc">
+Alice: &nbsp;M + K → MAC = C(K,M) → send [M || MAC]<br>
+Bob: &nbsp;&nbsp; receive [M' || MAC] → compute MAC' = C(K,M') → compare MAC' == MAC
+</div></div>
+<div class="callout warn"><div class="c-head ar">⚠️ لماذا لا يمكن Bob إثبات الأصالة لطرف ثالث؟</div>
+<p class="ar">لأن كلاً من Alice وBob يملكان نفس المفتاح K — Bob يمكنه هو نفسه إنشاء نفس الـ MAC. لا يوجد دليل من أنشأه. هذا هو الفرق الجوهري مع التوقيع الرقمي.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Alice's Sending Steps</div>
+<ul class="steps">
+<li><div><p class="en">Alice has message M and shared secret key K</p></div></li>
+<li><div><p class="en">Compute MAC = C(K, M) using the MAC algorithm</p></div></li>
+<li><div><p class="en">Send: M || MAC (message with MAC appended)</p></div></li>
+</ul>
+<div class="sol-head en" style="margin-top:.8rem">✦ Bob's Verification Steps</div>
+<ul class="steps">
+<li><div><p class="en">Receive M' and transmitted MAC</p></div></li>
+<li><div><p class="en">Compute MAC' = C(K, M') using same key</p></div></li>
+<li><div><p class="en">If MAC' == received MAC → authentic ✓, else → tampered ✗</p></div></li>
+</ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch12" id="q10">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q10</span>
+            <span class="q-tag">Ch.12 — MAC</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q10')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما هي أفضل طريقة للجمع بين التشفير والمصادقة (Authenticated Encryption)؟ ولماذا؟</p>
+          <p class="en q-text" style="white-space:pre-line">What is the best approach for Authenticated Encryption and why?</p>
+          
+          <div class="q-answer" id="ans-q10" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الأساليب الأربعة مقارنة</div>
+<table class="tbl ar"><tr><th>الأسلوب</th><th>التعبير</th><th>الأمان</th></tr>
+<tr><td>Hash-then-Encrypt</td><td>E(K, M||H(M))</td><td><span class="bd ba">متوسط</span></td></tr>
+<tr><td>MAC-then-Encrypt</td><td>E(K2, M||MAC(K1,M))</td><td><span class="bd ba">متوسط</span></td></tr>
+<tr><td><strong>Encrypt-then-MAC</strong></td><td>C=E(K2,M), T=MAC(K1,C)</td><td><span class="bd bg">الأفضل ✓</span></td></tr>
+<tr><td>Encrypt-and-MAC</td><td>C=E(K2,M) || T=MAC(K1,M)</td><td><span class="bd br">الأضعف</span></td></tr>
+</table>
+<div class="callout key"><div class="c-head ar">🔑 لماذا Encrypt-then-MAC الأفضل؟</div>
+<p class="ar">١- المستقبل يتحقق من الـ MAC أولاً قبل فك التشفير<br>
+٢- إذا كان الـ MAC خاطئاً يُرفض الـ ciphertext فوراً دون فك التشفير<br>
+٣- هذا يمنع هجمات Chosen Ciphertext (CCA) التي تستغل عملية فك التشفير نفسها</p></div></div>
+              <div class="en"><div class="sol-head en">✦ The Four Approaches</div>
+<table class="tbl en"><tr><th>Approach</th><th>Expression</th><th>Security</th></tr>
+<tr><td>Hash-then-Encrypt</td><td>E(K, M||H(M))</td><td><span class="bd ba">Medium</span></td></tr>
+<tr><td>MAC-then-Encrypt</td><td>E(K2, M||MAC(K1,M))</td><td><span class="bd ba">Medium</span></td></tr>
+<tr><td><strong>Encrypt-then-MAC</strong></td><td>C=E(K2,M), T=MAC(K1,C)</td><td><span class="bd bg">Best ✓</span></td></tr>
+<tr><td>Encrypt-and-MAC</td><td>C=E(K2,M) || T=MAC(K1,M)</td><td><span class="bd br">Weakest</span></td></tr>
+</table>
+<div class="callout key"><div class="c-head en">🔑 Why Encrypt-then-MAC is best?</div>
+<p class="en">Receiver verifies MAC BEFORE decrypting. If MAC fails, ciphertext is rejected immediately without attempting decryption — prevents Chosen Ciphertext Attacks (CCA).</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch13" id="q11">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q11</span>
+            <span class="q-tag">Ch.13 — Digital Sig</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q11')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">اشرح أنواع التزوير الأربعة في التوقيع الرقمي. A = الضحية، C = المهاجم.</p>
+          <p class="en q-text" style="white-space:pre-line">Explain the four forgery types in digital signatures. A = the attacked user, C = the attacker.</p>
+          
+          <div class="q-answer" id="ans-q11" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الإجابة</div>
+<table class="tbl ar"><tr><th>نوع التزوير</th><th>ما يفعله C</th><th>الخطورة</th></tr>
+<tr><td><strong>Total Break</strong></td><td>يكتشف C المفتاح الخاص لـ A — يقدر يوقّع على أي شيء باسم A</td><td><span class="bd br">الأخطر — اختراق كامل</span></td></tr>
+<tr><td><strong>Universal Forgery</strong></td><td>يجد C خوارزمية تتيح إنشاء توقيع صالح لأي رسالة دون معرفة المفتاح الخاص</td><td><span class="bd br">خطير جداً</span></td></tr>
+<tr><td><strong>Selective Forgery</strong></td><td>يزوّر C توقيعاً لرسالة معينة يختارها مسبقاً</td><td><span class="bd ba">خطير</span></td></tr>
+<tr><td><strong>Existential Forgery</strong></td><td>يزوّر C توقيعاً لرسالة واحدة على الأقل لكنه لا يختار الرسالة</td><td><span class="bd bb">الأضعف</span></td></tr>
+</table></div>
+              <div class="en"><div class="sol-head en">✦ Answer</div>
+<table class="tbl en"><tr><th>Forgery Type</th><th>What C does</th><th>Severity</th></tr>
+<tr><td><strong>Total Break</strong></td><td>C discovers A's private key — can sign anything as A</td><td><span class="bd br">Most dangerous</span></td></tr>
+<tr><td><strong>Universal Forgery</strong></td><td>C finds algorithm to forge any message signature without knowing private key</td><td><span class="bd br">Very dangerous</span></td></tr>
+<tr><td><strong>Selective Forgery</strong></td><td>C forges a signature for a specifically chosen message</td><td><span class="bd ba">Dangerous</span></td></tr>
+<tr><td><strong>Existential Forgery</strong></td><td>C forges a signature for at least one message but cannot choose which</td><td><span class="bd bb">Weakest</span></td></tr>
+</table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch13" id="q12">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q12</span>
+            <span class="q-tag">Ch.13 — Digital Sig</span>
+            <span class="q-type">📊 رسم/خطوات</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q12')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أرسم مخطط التوقيع الرقمي بنهج RSA: كيف يوقّع المُرسِل وكيف يتحقق المستقبل؟</p>
+          <p class="en q-text" style="white-space:pre-line">Draw the RSA digital signature approach: How does the sender sign and receiver verify?</p>
+          
+          <div class="q-answer" id="ans-q12" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ نهج RSA للتوقيع الرقمي</div>
+<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin:.8rem 0;font-family:var(--mono);font-size:.83rem;direction:ltr">
+<div style="color:var(--teal);font-family:var(--sans-ar);direction:rtl;font-size:.75rem;margin-bottom:.6rem">جانب المُرسِل (Sender):</div>
+M → Hash H() → H(M) → Encrypt(PR_A) → Signature S<br>
+M + S → transmit together<br><br>
+<div style="color:var(--amber);font-family:var(--sans-ar);direction:rtl;font-size:.75rem;margin-bottom:.6rem">جانب المستقبل (Receiver):</div>
+Received M' + S<br>
+M' → Hash H() → H(M')<br>
+S → Decrypt(PU_A) → H(M)<br>
+Compare: H(M') == H(M) ?
+</div>
+<div class="callout key"><div class="c-head ar">🔑 ملاحظات مهمة</div>
+<p class="ar">• دالة الـ Hash تُستخدم لتقليل حجم البيانات المُوقَّعة (أسرع بكثير)<br>
+• يمكن استخدام SHA-256, SHA-512, MD5 كـ H()<br>
+• يمكن استخدام RSA أو DSS كـ E()<br>
+• التوقيع = E(PR_A, H(M)) والتحقق = D(PU_A, S) == H(M)</p></div></div>
+              <div class="en"><div class="sol-head en">✦ RSA Digital Signature Approach</div>
+<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin:.8rem 0;font-family:var(--mono);font-size:.83rem;direction:ltr">
+Sender side:<br>
+M → Hash H() → H(M) → Encrypt(PR_A) → Signature S<br>
+Transmit: M || S<br><br>
+Receiver side:<br>
+M' → Hash H() → H(M') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Compare<br>
+S  → Decrypt(PU_A) → H(M) → Compare<br>
+Valid if H(M') == H(M)
+</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch14" id="q13">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q13</span>
+            <span class="q-tag">Ch.14 — Key Dist</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q13')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">في بروتوكول KDC: A) كيف تتحقق A أن الرد جاء من الـ KDC؟ B) كيف يتحقق B أن الطرف الآخر هو A؟ C) ما الغرض من الـ Nonces؟</p>
+          <p class="en q-text" style="white-space:pre-line">In the KDC protocol: A) How can A be sure the response is from the KDC? B) How does B know the other party is really A? C) What is the purpose of nonces?</p>
+          
+          <div class="q-answer" id="ans-q13" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ البروتوكول أولاً</div>
+<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.6rem 0;font-family:var(--mono);font-size:.8rem;direction:ltr">
+(1) A → KDC : ID_A || ID_B || N1<br>
+(2) KDC → A : E(Ka, [Ks||ID_B||N1]) || E(Kb, [Ks||ID_A])<br>
+(3) A → B  : E(Kb, [Ks||ID_A])<br>
+(4) B → A  : E(Ks, N2)<br>
+(5) A → B  : E(Ks, f(N2))
+</div>
+<div class="sol-step"><div class="sol-num">A</div><div class="sol-content">
+<div class="sol-rule ar">كيف تتحقق A أن الرد من الـ KDC؟</div>
+<div class="sol-calc">الرد مشفّر بـ Ka (المفتاح الرئيسي لـ A)</div>
+<div class="sol-note ar">فقط الـ KDC يعرف Ka — إذا فكّت A التشفير بـ Ka ووجدت N1 (نفس الرقم الذي أرسلته)، فالرد حقيقي من الـ KDC. N1 يمنع إعادة إرسال رسالة قديمة.</div></div></div>
+<div class="sol-step"><div class="sol-num">B</div><div class="sol-content">
+<div class="sol-rule ar">كيف يتحقق B أن الطرف الآخر هو A؟</div>
+<div class="sol-calc">التذكرة: E(Kb, [Ks || ID_A]) — صنعها الـ KDC</div>
+<div class="sol-note ar">يفك B التشفير بمفتاحه الرئيسي Kb ويرى ID_A مُضمَّناً من الـ KDC — لا يمكن تزويره لأنه مشفّر بـ Kb الذي فقط الـ KDC وB يعرفانه.</div></div></div>
+<div class="sol-step"><div class="sol-num">C</div><div class="sol-content">
+<div class="sol-rule ar">الغرض من الـ Nonces (N1, N2)</div>
+<div class="sol-calc">منع Replay Attacks (هجمات إعادة الإرسال)</div>
+<div class="sol-note ar">N1: يُثبت أن رد الـ KDC حديث وليس رسالة قديمة مُعادة. N2: يُثبت أن A تملك مفتاح الجلسة Ks الصحيح في الخطوة 5.</div></div></div></div>
+              <div class="en"><div class="sol-head en">✦ KDC Protocol</div>
+<div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.6rem 0;font-family:var(--mono);font-size:.8rem;direction:ltr">
+(1) A→KDC: ID_A||ID_B||N1<br>
+(2) KDC→A: E(Ka,[Ks||ID_B||N1]) || E(Kb,[Ks||ID_A])<br>
+(3) A→B: E(Kb,[Ks||ID_A]) &nbsp;&nbsp;(4) B→A: E(Ks,N2) &nbsp;&nbsp;(5) A→B: E(Ks,f(N2))
+</div>
+<div class="sol-step"><div class="sol-num">A</div><div class="sol-content">
+<div class="sol-rule en">How can A verify the response is from KDC?</div>
+<div class="sol-note en">Response is encrypted with Ka (A's master key). Only the KDC knows Ka. N1 inside the response proves it is fresh (not a replay of an old message).</div></div></div>
+<div class="sol-step"><div class="sol-num">B</div><div class="sol-content">
+<div class="sol-rule en">How does B know the other party is A?</div>
+<div class="sol-note en">Ticket E(Kb,[Ks||ID_A]) was encrypted by KDC with Kb. B decrypts it and sees ID_A reliably — cannot be forged since only KDC and B know Kb.</div></div></div>
+<div class="sol-step"><div class="sol-num">C</div><div class="sol-content">
+<div class="sol-rule en">Purpose of Nonces</div>
+<div class="sol-note en">Prevent Replay Attacks — each nonce is unique per session. N1 ensures KDC response is fresh. N2 proves A has the correct Ks in step 5.</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch14" id="q14">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q14</span>
+            <span class="q-tag">Ch.14 — Key Dist</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q14')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">اشرح أساليب توزيع المفاتيح العامة الأربعة وأيها الأفضل؟</p>
+          <p class="en q-text" style="white-space:pre-line">List the four public key distribution schemes and identify the best one</p>
+          
+          <div class="q-answer" id="ans-q14" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الأساليب الأربعة</div>
+<ul class="steps">
+<li><div><p class="ar"><strong>Public Announcement</strong>: كل مستخدم ينشر مفتاحه العام مباشرة. <span class="bd br">ضعيف</span> — أي شخص يقدر ينشر مفتاحاً مزيفاً باسم شخص آخر.</p></div></li>
+<li><div><p class="ar"><strong>Publicly Available Directory</strong>: دليل عام موثوق يحتوي {اسم، مفتاح}. <span class="bd ba">أفضل</span> — لكن يُمكن اختراق الدليل.</p></div></li>
+<li><div><p class="ar"><strong>Public-Key Authority</strong>: جهة موثوقة توزّع المفاتيح لحظياً عند الطلب. <span class="bd bg">جيد</span> — لكن يتطلب وصولاً فورياً في كل مرة.</p></div></li>
+<li><div><p class="ar"><strong>Public-Key Certificates</strong>: شهادات رقمية من CA تربط الهوية بالمفتاح. <span class="bd bg">الأفضل ✓</span> — لا تحتاج وصولاً فورياً، تُتداول بحرية.</p></div></li>
+</ul></div>
+              <div class="en"><div class="sol-head en">✦ Four Schemes</div>
+<ul class="steps">
+<li><div><p class="en"><strong>Public Announcement</strong>: Users broadcast public keys directly. <span class="bd br">Weak</span> — anyone can publish a fake key claiming to be someone else.</p></div></li>
+<li><div><p class="en"><strong>Publicly Available Directory</strong>: Trusted directory with {name, public-key} entries. <span class="bd ba">Better</span> — but directory can be compromised.</p></div></li>
+<li><div><p class="en"><strong>Public-Key Authority</strong>: Trusted authority distributes keys on-demand in real time. <span class="bd bg">Good</span> — but requires real-time access every time.</p></div></li>
+<li><div><p class="en"><strong>Public-Key Certificates</strong>: CA-signed certificates binding identity to key. <span class="bd bg">Best ✓</span> — no real-time access needed, freely distributable.</p></div></li>
+</ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch16" id="q15">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q15</span>
+            <span class="q-tag">Ch.16 — SSL/TLS</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q15')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما الفرق بين SSL Session وSSL Connection؟</p>
+          <p class="en q-text" style="white-space:pre-line">What is the difference between an SSL Session and an SSL Connection?</p>
+          
+          <div class="q-answer" id="ans-q15" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الإجابة</div>
+<table class="tbl ar"><tr><th>الخاصية</th><th>SSL Session</th><th>SSL Connection</th></tr>
+<tr><td>التعريف</td><td>علاقة بين Client وServer تُنشئها Handshake Protocol</td><td>رابط اتصال مؤقت بين طرفين</td></tr>
+<tr><td>العمر</td><td>يستمر — يخدم اتصالات متعددة</td><td>مؤقت جداً</td></tr>
+<tr><td>الوظيفة</td><td>يُعرّف cipher suite ومعاملات التشفير</td><td>يحمل بيانات التطبيق باستخدام معاملات الـ Session</td></tr>
+<tr><td>الهدف</td><td>تجنّب التفاوض على مفاتيح جديدة لكل اتصال</td><td>الاتصال الفعلي لنقل البيانات</td></tr>
+</table></div>
+              <div class="en"><div class="sol-head en">✦ Answer</div>
+<table class="tbl en"><tr><th>Property</th><th>SSL Session</th><th>SSL Connection</th></tr>
+<tr><td>Definition</td><td>Association between client and server, created by Handshake Protocol</td><td>Transient peer-to-peer communications link</td></tr>
+<tr><td>Lifetime</td><td>Persistent — can serve multiple connections</td><td>Very temporary</td></tr>
+<tr><td>Function</td><td>Defines cipher suite and cryptographic parameters</td><td>Carries actual application data using session parameters</td></tr>
+<tr><td>Purpose</td><td>Avoid renegotiating keys for every connection</td><td>Actual data transfer</td></tr>
+</table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch16" id="q16">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q16</span>
+            <span class="q-tag">Ch.16 — SSL/TLS</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q16')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما هي الخدمتان اللتان يوفرهما SSL Record Protocol؟ واشرح خطواته</p>
+          <p class="en q-text" style="white-space:pre-line">What are the two services provided by SSL Record Protocol? Explain its steps</p>
+          
+          <div class="q-answer" id="ans-q16" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الخدمتان</div>
+<ul class="steps">
+<li><div><p class="ar"><strong>Confidentiality</strong> (السرية): تشفير متماثل بمفتاح مشترك حدّده الـ Handshake Protocol</p></div></li>
+<li><div><p class="ar"><strong>Message Integrity</strong> (سلامة الرسالة): MAC بمفتاح سري مشترك مشابه لـ HMAC</p></div></li>
+</ul>
+<div class="sol-head ar" style="margin-top:.8rem">✦ الخطوات الست</div>
+<ul class="steps">
+<li><div><p class="ar"><strong>Fragment</strong>: تجزئة بيانات التطبيق إلى كتل (max 2¹⁴ bytes)</p></div></li>
+<li><div><p class="ar"><strong>Compress</strong>: ضغط البيانات (اختياري)</p></div></li>
+<li><div><p class="ar"><strong>Add MAC</strong>: إضافة MAC للتحقق من السلامة</p></div></li>
+<li><div><p class="ar"><strong>Encrypt</strong>: تشفير البيانات مع الـ MAC</p></div></li>
+<li><div><p class="ar"><strong>Append Header</strong>: إضافة SSL Record Header (النوع، الإصدار، الطول)</p></div></li>
+<li><div><p class="ar"><strong>Transmit</strong>: الإرسال</p></div></li>
+</ul></div>
+              <div class="en"><div class="sol-head en">✦ Two Services</div>
+<ul class="steps">
+<li><div><p class="en"><strong>Confidentiality</strong>: Symmetric encryption with shared key defined by Handshake</p></div></li>
+<li><div><p class="en"><strong>Message Integrity</strong>: MAC using shared secret key, similar to HMAC</p></div></li>
+</ul>
+<div class="sol-head en" style="margin-top:.8rem">✦ Six Steps</div>
+<ul class="steps">
+<li><div><p class="en"><strong>Fragment</strong> → <strong>Compress</strong> → <strong>Add MAC</strong> → <strong>Encrypt</strong> → <strong>Append Header</strong> → <strong>Transmit</strong></p></div></li>
+</ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch22" id="q17">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q17</span>
+            <span class="q-tag">Ch.22 — Firewalls</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q17')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">قراءة قواعد ACL:
+Rule 1: allow | src=* | dst=192.168.1.10 | port=80
+Rule 2: block | src=* | dst=* | port=*
+A) ما معنى القواعد؟ B) ماذا يحدث لحزمة من 128.30.5.4:1800 إلى 192.168.1.20:80؟ C) كيف تحوّلها لـ Permissive؟</p>
+          <p class="en q-text" style="white-space:pre-line">Read ACL rules:
+Rule 1: allow | src=* | dst=192.168.1.10 | port=80
+Rule 2: block | src=* | dst=* | port=*
+A) What do the rules mean? B) What happens to packet from 128.30.5.4:1800 to 192.168.1.20:80? C) How to make it Permissive?</p>
+          
+          <div class="q-answer" id="ans-q17" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-step"><div class="sol-num">A</div><div class="sol-content">
+<div class="sol-rule ar">معنى القواعد</div>
+<div class="sol-note ar">Rule 1: اسمح لأي مصدر (*) بالوصول إلى IP 192.168.1.10 على المنفذ 80 (HTTP فقط)</div>
+<div class="sol-note ar">Rule 2: احذف كل شيء آخر — هذه هي السياسة المحافظة (Conservative): "ما لم يُسمح به صراحةً فهو محظور"</div></div></div>
+<div class="sol-step"><div class="sol-num">B</div><div class="sol-content">
+<div class="sol-rule ar">الحزمة: src=128.30.5.4:1800, dst=192.168.1.20:80</div>
+<div class="sol-calc">Rule 1: dst=192.168.1.20 ≠ 192.168.1.10 → لا تنطبق</div>
+<div class="sol-calc">Rule 2: * → تنطبق → BLOCK ✗</div>
+<div class="sol-result">الحزمة تُحذف — الـ IP المقصود ليس 192.168.1.10</div></div></div>
+<div class="sol-step"><div class="sol-num">C</div><div class="sol-content">
+<div class="sol-rule ar">لتحويلها لـ Permissive — أضف Rule 3</div>
+<div class="sol-calc">Rule 3: allow | src=* | dst=* | port=*</div>
+<div class="sol-note ar">أو غيّر Rule 2 من block إلى allow — السياسة المتساهلة: "ما لم يُحظر صراحةً فهو مسموح"</div></div></div></div>
+              <div class="en"><div class="sol-step"><div class="sol-num">A</div><div class="sol-content">
+<div class="sol-note en">Rule 1: Allow any source to reach 192.168.1.10 on port 80 (HTTP only)</div>
+<div class="sol-note en">Rule 2: Block everything else — Conservative policy: "that not expressly permitted is prohibited"</div></div></div>
+<div class="sol-step"><div class="sol-num">B</div><div class="sol-content">
+<div class="sol-calc">Rule 1: dst=192.168.1.20 ≠ 192.168.1.10 → no match</div>
+<div class="sol-calc">Rule 2: * matches → BLOCK ✗</div>
+<div class="sol-result">Packet is blocked — destination IP is not 192.168.1.10</div></div></div>
+<div class="sol-step"><div class="sol-num">C</div><div class="sol-content">
+<div class="sol-rule en">Add Rule 3: allow | * | * | *</div>
+<div class="sol-note en">Or change Rule 2 from block to allow — Permissive policy: "that not expressly prohibited is permitted"</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="ch22" id="q18">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q18</span>
+            <span class="q-tag">Ch.22 — Firewalls</span>
+            <span class="q-type">📝 شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q18')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">هل DHBH أقل أماناً من SHBH؟ اشرح إجابتك مع المبرر</p>
+          <p class="en q-text" style="white-space:pre-line">Is the Dual-Homed Bastion Host (DHBH) less secure than the Single-Homed Bastion Host (SHBH)? Justify your answer.</p>
+          
+          <div class="q-answer" id="ans-q18" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class="sol-head ar">✦ الإجابة: لا — DHBH أكثر أماناً</div>
+<table class="tbl ar"><tr><th></th><th>SHBH</th><th>DHBH</th></tr>
+<tr><td>البنية</td><td>Packet-filter Router + Bastion Host منفصلان</td><td>Bastion Host بواجهتين شبكيتين</td></tr>
+<tr><td>الفصل</td><td>منطقي فقط</td><td>فيزيائي كامل</td></tr>
+<tr><td>للاختراق</td><td>اختراق نظام واحد قد يكفي</td><td>يجب اختراق نظامين منفصلين</td></tr>
+<tr><td>الأمان</td><td><span class="bd ba">جيد</span></td><td><span class="bd bg">أعلى ✓</span></td></tr>
+</table>
+<div class="callout key"><div class="c-head ar">🔑 السبب</div>
+<p class="ar">في DHBH، الـ Bastion Host هو الجهاز الوحيد المتصل بالشبكتين. لا يمكن أي packet أن ينتقل مباشرة بين الداخل والخارج — يجب المرور بالـ Bastion. هذا الفصل الفيزيائي يجعله أكثر أماناً.</p></div></div>
+              <div class="en"><div class="sol-head en">✦ Answer: No — DHBH is MORE secure</div>
+<table class="tbl en"><tr><th></th><th>SHBH</th><th>DHBH</th></tr>
+<tr><td>Structure</td><td>Packet-filter Router + Bastion Host (two separate systems)</td><td>Bastion Host with two network interfaces</td></tr>
+<tr><td>Separation</td><td>Logical only</td><td>Physical separation</td></tr>
+<tr><td>To compromise</td><td>May only need to breach one system</td><td>Must breach two separate systems</td></tr>
+<tr><td>Security</td><td><span class="bd ba">Good</span></td><td><span class="bd bg">Higher ✓</span></td></tr>
+</table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q19">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q19</span>
+            <span class="q-tag">MCQ — Hash</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q19')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أي الخصائص التالية تضمن استحالة إيجاد رسالتين مختلفتين تُنتجان نفس الـ hash؟</p>
+          <p class="en q-text" style="white-space:pre-line">Which property ensures it is computationally infeasible to find two different messages that produce the same hash value?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q19','A','C')">A) Preimage resistance</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q19','B','C')">B) One-way property</div>
+<div class="mcq-opt correct-opt" onclick="pickOpt(this,'q19','C','C')">C) Collision resistance</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q19','D','C')">D) Uniform distribution</div>
+
+          <div class="q-answer" id="ans-q19" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: C — Collision Resistance</div><p class='ar'>Collision Resistance = مستحيل إيجاد M,M' بحيث H(M)=H(M'). Preimage = مستحيل إيجاد M من hash معطى. هما خصائص مختلفة.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: C — Collision Resistance</div><p class='en'>Collision Resistance = infeasible to find M,M' where H(M)=H(M'). Preimage = infeasible to find M from a given hash. These are different properties.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q20">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q20</span>
+            <span class="q-tag">MCQ — MAC</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q20')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أي العبارات التالية صحيحة؟</p>
+          <p class="en q-text" style="white-space:pre-line">Which statement is TRUE?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q20','A','D')">A) MAC provides non-repudiation</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q20','B','D')">B) A hash function uses a secret key</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q20','C','D')">C) A MAC guarantees message confidentiality</div>
+<div class="mcq-opt correct-opt" onclick="pickOpt(this,'q20','D','D')">D) A MAC authenticates a message using a shared secret key</div>
+
+          <div class="q-answer" id="ans-q20" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: D</div><p class='ar'>A خطأ — MAC لا يوفر non-repudiation (كلاهما يملك المفتاح). B خطأ — Hash لا يستخدم مفتاح. C خطأ — MAC لا يوفر سرية. D صحيح — MAC يُصادق باستخدام مفتاح مشترك.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: D</div><p class='en'>A wrong — MAC does not provide non-repudiation. B wrong — hash functions don't use keys. C wrong — MAC doesn't provide confidentiality. D correct — MAC authenticates using a shared secret key.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q21">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q21</span>
+            <span class="q-tag">MCQ — MAC</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q21')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">أفضل أسلوب للجمع بين التشفير والمصادقة هو:</p>
+          <p class="en q-text" style="white-space:pre-line">Which approach is generally considered the most secure for authenticated encryption?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q21','A','D')">A) Hash-then-encrypt</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q21','B','D')">B) Encrypt-and-MAC</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q21','C','D')">C) MAC-then-encrypt</div>
+<div class="mcq-opt correct-opt" onclick="pickOpt(this,'q21','D','D')">D) Encrypt-then-MAC</div>
+
+          <div class="q-answer" id="ans-q21" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: D — Encrypt-then-MAC</div><p class='ar'>لأن المستقبل يتحقق من الـ MAC قبل فك التشفير — يمنع هجمات CCA.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: D — Encrypt-then-MAC</div><p class='en'>Because the receiver verifies MAC before decrypting — prevents Chosen Ciphertext Attacks (CCA).</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q22">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q22</span>
+            <span class="q-tag">MCQ — Hash</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q22')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">هجوم يبحث فيه المهاجم عن M وM' بحيث H(M) = H(M') يُسمى:</p>
+          <p class="en q-text" style="white-space:pre-line">The attack where the attacker looks for two messages M and M' such that H(M) = H(M') is called:</p>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q22','A','A')">A) Birthday attack</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q22','B','A')">B) Chaining attack</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q22','C','A')">C) MAC attack</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q22','D','A')">D) Hash attack</div>
+
+          <div class="q-answer" id="ans-q22" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: A — Birthday Attack</div><p class='ar'>Birthday Attack يستغل Birthday Paradox — يجمع تنويعات من رسالتين حتى يجد تصادماً. يحتاج 2^(n/2) عملية فقط.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: A — Birthday Attack</div><p class='en'>Birthday Attack exploits the Birthday Paradox — collects variations of two messages until finding a collision. Requires only 2^(n/2) operations.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q23">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q23</span>
+            <span class="q-tag">MCQ — General</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q23')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">ما الذي يوفر أمانًا مساوياً لـ RSA بحجم مفتاح أصغر بكثير؟</p>
+          <p class="en q-text" style="white-space:pre-line">What provides equal security to RSA with a much smaller key size?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q23','A','B')">A) Hash</div>
+<div class="mcq-opt correct-opt" onclick="pickOpt(this,'q23','B','B')">B) ECC</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q23','C','B')">C) MAC</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q23','D','B')">D) DH</div>
+
+          <div class="q-answer" id="ans-q23" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: B — ECC</div><p class='ar'>ECC بـ 256 بت = RSA بـ 3072 بت في مستوى الأمان. مثالي للأجهزة المحدودة الموارد.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: B — ECC</div><p class='en'>ECC with 256 bits = RSA with 3072 bits in security level. Ideal for resource-constrained devices.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card" data-ch="mcq" id="q24">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q24</span>
+            <span class="q-tag">MCQ — SSH</span>
+            <span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q24')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text" style="white-space:pre-line">SSH طُوِّر أساساً ليحلّ محل:</p>
+          <p class="en q-text" style="white-space:pre-line">SSH was primarily designed to replace:</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q24','A','C')">A) SSL</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q24','B','C')">B) TLS</div>
+<div class="mcq-opt correct-opt" onclick="pickOpt(this,'q24','C','C')">C) TELNET</div>
+<div class="mcq-opt" onclick="pickOpt(this,'q24','D','C')">D) HTTPS</div>
+
+          <div class="q-answer" id="ans-q24" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar"><div class='sol-result' style='color:var(--green)'>الجواب: C — TELNET</div><p class='ar'>TELNET يُرسل كل شيء بنص صريح بدون تشفير. SSH يوفر نفس الوظيفة مع التشفير والمصادقة.</p></div>
+              <div class="en"><div class='sol-result' style='color:var(--green)'>Answer: C — TELNET</div><p class='en'>TELNET sends everything in plaintext with no encryption. SSH provides the same remote login functionality with encryption and authentication.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ NEW QUESTIONS FROM ALL FILES ═══ -->
+
+      <div class="q-card" data-ch="ch9" id="q25">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q25</span>
+            <span class="q-tag">Ch.9 — RSA</span>
+            <span class="q-type">🔢 Brute Force</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q25')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">المفتاح العام {e=7, n=55}, M=2. استخدم Brute Force للعثور على المفتاح الخاص d ابتداءً من d=21. ثم احسب ciphertext C.</p>
+          <p class="en q-text">Public key {e=7, n=55}, M=2. Use Brute Force to find private key d starting from d=21. Then find ciphertext C.</p>
+          <div class="q-answer" id="ans-q25" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ الحل</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: n = p×q — حلّل 55</div>
+                  <div class="sol-calc">55 = 5 × 11 → p=5, q=11</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: φ(n) = (p−1)(q−1)</div>
+                  <div class="sol-calc">φ(55) = 4 × 10 = 40</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: d×e ≡ 1 mod φ(n) — جرّب من d=21</div>
+                  <div class="sol-calc">d=21: 21×7=147 → 147 mod 40 = 27 ✗</div>
+                  <div class="sol-calc">d=22: 22×7=154 → 154 mod 40 = 34 ✗</div>
+                  <div class="sol-calc">d=23: 23×7=161 → 161 mod 40 = 1 ✓</div>
+                  <div class="sol-result">d = 23 → Private Key = {23, 55}</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: C = Mᵉ mod n</div>
+                  <div class="sol-calc">C = 2⁷ mod 55 = 128 mod 55 = 18</div>
+                  <div class="sol-result">Ciphertext C = 18</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ Solution</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">55 = 5×11 → p=5, q=11 → φ(55) = 4×10 = 40</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule en">Try d×7 ≡ 1 mod 40 starting from d=21</div>
+                  <div class="sol-calc">d=23: 23×7=161 → 161 mod 40 = 1 ✓ → d=23</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-calc">C = 2⁷ mod 55 = 128 mod 55 = 18</div>
+                  <div class="sol-result">Ciphertext C = 18</div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="ch9" id="q26">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q26</span>
+            <span class="q-tag">Ch.9 — RSA</span>
+            <span class="q-type">🔢 Word Encryption</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q26')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">شفّر الكلمة {ZOBGAC} بـ RSA، المفتاح العام {e=7, n=25121}. قسّمها لـ blocks وأعطِ معادلة التشفير. ثم: هل يمكن تشفيرها كـ block واحد؟</p>
+          <p class="en q-text">Encrypt the word {ZOBGAC} using RSA with public key {e=7, n=25121}. Divide into blocks and give the encryption equation. Then: Is it possible to encrypt as a single block?</p>
+          <div class="q-answer" id="ans-q26" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ جدول الحروف: A=00, B=01, ..., Z=25</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-rule ar">حوّل الحروف لأرقام (رقمان لكل حرف)</div>
+                  <div class="sol-calc">Z=25, O=14, B=01, G=06, A=00, C=02</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule ar">قسّم إلى blocks — كل block يجب أن يكون أصغر من n=25121</div>
+                  <div class="sol-calc">Block 1: ZOB → M₁ = 251401</div>
+                  <div class="sol-calc">Block 2: GAC → M₂ = 060002</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: Cᵢ = Mᵢᵉ mod n</div>
+                  <div class="sol-calc">C₁ = 251401⁷ mod 25121</div>
+                  <div class="sol-calc">C₂ = 060002⁷ mod 25121</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+                  <div class="sol-rule ar">هل يمكن تشفيرها كـ block واحد؟</div>
+                  <div class="sol-calc">ZOBGAC كرقم = 251401060002</div>
+                  <div class="sol-calc">251401060002 >> 25121 → M > n ✗</div>
+                  <div class="sol-result" style="color:var(--coral)">لا — مستحيل لأن M يجب أن يكون أصغر من n</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ Solution</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">Z=25, O=14, B=01, G=06, A=00, C=02</div>
+                  <div class="sol-calc">Block 1 ZOB: M₁ = 251401 &nbsp;&nbsp; Block 2 GAC: M₂ = 060002</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-calc">C₁ = 251401⁷ mod 25121 &nbsp;&nbsp; C₂ = 060002⁷ mod 25121</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule en">Single block? ZOBGAC = 251401060002 >> 25121 → violates M &lt; n</div>
+                  <div class="sol-result" style="color:var(--coral)">Not possible — M must be less than n</div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="ch10" id="q27">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q27</span>
+            <span class="q-tag">Ch.10 — DH</span>
+            <span class="q-type">🔢 حساب كامل</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q27')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">DH: q=11, α=5, X_A=2, X_B=3
+a) احسب جميع القيم للتبادل
+b) هل Alice وBob يصلان لنفس K؟
+c) اكتب معادلة يجب على المهاجم حلّها لإيجاد المفتاح السري
+d) اشرح هجوم Man-in-the-Middle</p>
+          <p class="en q-text">DH: q=11, α=5, X_A=2, X_B=3
+a) Perform all necessary computations for the key exchange
+b) Do Alice and Bob get the same key value?
+c) Write the equation an attacker must solve to find the secret key
+d) Briefly explain the Man-in-the-Middle attack</p>
+          <div class="q-answer" id="ans-q27" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ a) الحسابات الكاملة</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: Y_A = α^X_A mod q</div>
+                  <div class="sol-calc">Y_A = 5² mod 11 = 25 mod 11 = 3</div>
+                  <div class="sol-result">Y_A = 3 ← تنشره Alice</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: Y_B = α^X_B mod q</div>
+                  <div class="sol-calc">Y_B = 5³ mod 11 = 125 mod 11 = 4</div>
+                  <div class="sol-result">Y_B = 4 ← ينشره Bob</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: K = Y_B^X_A mod q (Alice)</div>
+                  <div class="sol-calc">K = 4² mod 11 = 16 mod 11 = 5</div>
+                  <div class="sol-result">K = 5</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+                  <div class="sol-rule ar">القانون: K = Y_A^X_B mod q (Bob)</div>
+                  <div class="sol-calc">K = 3³ mod 11 = 27 mod 11 = 5 ✓</div>
+                  <div class="sol-result">K = 5 — نفس النتيجة ✓</div>
+                </div></div>
+                <div class="sol-head ar" style="margin-top:.6rem">✦ b) نعم — نفس K=5</div>
+                <div class="sol-head ar" style="margin-top:.6rem">✦ c) معادلة المهاجم</div>
+                <div class="sol-step"><div class="sol-num">5</div><div class="sol-content">
+                  <div class="sol-rule ar">يجب على المهاجم حل مسألة اللوغاريتم المنفصل:</div>
+                  <div class="sol-calc">Y_A = α^X_A mod q &nbsp;→&nbsp; 3 = 5^X_A mod 11</div>
+                  <div class="sol-note ar">إيجاد X_A = 2 من هذه المعادلة مستحيل حسابياً إذا كانت الأرقام كبيرة</div>
+                </div></div>
+                <div class="sol-head ar" style="margin-top:.6rem">✦ d) MITM — باختصار</div>
+                <div class="sol-step"><div class="sol-num">6</div><div class="sol-content">
+                  <div class="sol-rule ar">المهاجم يعترض مفاتيح Alice وBob العامة ويستبدلها بمفاتيحه الخاصة</div>
+                  <div class="sol-calc">Alice ↔ [K_AD] ↔ Darth ↔ [K_BD] ↔ Bob</div>
+                  <div class="sol-note ar">الحل: توثيق المفاتيح بشهادات رقمية</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ a) Full computations</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">Y_A = 5² mod 11 = 3 &nbsp;&nbsp; Y_B = 5³ mod 11 = 4</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-calc">K (Alice) = 4² mod 11 = 5 &nbsp;&nbsp; K (Bob) = 3³ mod 11 = 5 ✓</div>
+                  <div class="sol-result">K = 5 — same result for both</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule en">c) Attacker must solve: Y_A = α^X_A mod q → 3 = 5^X_A mod 11</div>
+                  <div class="sol-note en">This is the Discrete Logarithm problem — computationally infeasible for large numbers</div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="ch12" id="q28">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q28</span>
+            <span class="q-tag">Ch.12 — MAC / Hash</span>
+            <span class="q-type">📊 رسم + شرح</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q28')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">المخطط: Source A يرسل M مع H(M||S). S = مفتاح سري مشترك, H = Hash.
+a) اشرح العمليات في Source A وDestination B
+b) هل يوفر سرية ومصادقة معاً؟
+c) إذا لا — كيف تُحسّنه ليوفرهما معاً؟</p>
+          <p class="en q-text">Diagram: Source A sends M with H(M||S). S=shared secret key, H=Hash function.
+a) Explain operations at Source A and Destination B
+b) Does it provide both confidentiality AND message authentication?
+c) If not — enhance the diagram to provide both.</p>
+          <div class="q-answer" id="ans-q28" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ a) شرح العمليات</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-rule ar">Source A:</div>
+                  <div class="sol-calc">M || S → H() → H(M||S)</div>
+                  <div class="sol-calc">يُرسل: M || H(M||S)</div>
+                  <div class="sol-note ar">يُلحق الـ hash كمصادقة — الرسالة M تُرسل بشكل صريح غير مشفّر</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule ar">Destination B:</div>
+                  <div class="sol-calc">M' || S → H() → H'(M'||S)</div>
+                  <div class="sol-calc">مقارنة: H'(M'||S) == H(M||S) ؟</div>
+                  <div class="sol-note ar">إذا تساويا → الرسالة حقيقية ✓ وإذا اختلفا → الرسالة عُدِّلت ✗</div>
+                </div></div>
+                <div class="sol-head ar" style="margin-top:.6rem">✦ b) هل يوفر سرية ومصادقة؟</div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule ar">المصادقة؟</div>
+                  <div class="sol-calc">نعم ✓ — H(M||S) يتحقق من سلامة الرسالة ومصدرها</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">4</div><div class="sol-content">
+                  <div class="sol-rule ar">السرية؟</div>
+                  <div class="sol-calc">لا ✗ — M تُرسل بنص صريح، أي مهاجم يقدر يقرأها</div>
+                  <div class="sol-result" style="color:var(--coral)">يوفر مصادقة فقط — لا سرية</div>
+                </div></div>
+                <div class="sol-head ar" style="margin-top:.6rem">✦ c) التحسين — إضافة التشفير</div>
+                <div class="sol-step"><div class="sol-num">5</div><div class="sol-content">
+                  <div class="sol-rule ar">أضف تشفيراً للرسالة كاملة (Encrypt-then-MAC):</div>
+                  <div class="sol-calc">C = E(K, M) &nbsp;&nbsp;&nbsp; T = H(C||S)</div>
+                  <div class="sol-calc">أرسل: C || T</div>
+                  <div class="sol-note ar">الآن: السرية بالتشفير + المصادقة بالـ Hash</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ a) Operations Explained</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-rule en">Source A: M || S → H() → H(M||S) → sends M || H(M||S)</div>
+                  <div class="sol-note en">M is sent in plaintext, hash appended for authentication</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">2</div><div class="sol-content">
+                  <div class="sol-rule en">Destination B: recomputes H(M'||S), compares with received H(M||S)</div>
+                  <div class="sol-note en">Match → authentic ✓, no match → tampered ✗</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">3</div><div class="sol-content">
+                  <div class="sol-rule en">b) Authentication? YES ✓ &nbsp;&nbsp; Confidentiality? NO ✗ (M sent in plaintext)</div>
+                  <div class="sol-rule en">c) Enhancement: C = E(K,M), T = H(C||S), send C||T</div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="ch16" id="q29">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q29</span>
+            <span class="q-tag">Ch.16 — SSL/TLS</span>
+            <span class="q-type">📊 ترتيب البروتوكولات</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q29')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">رتّب هذه البروتوكولات في مكدس SSL الصحيح (الأسفل → الأعلى):
+1=TCP · 2=SSL Handshake · 3=IP · 4=SSL Alert · 5=HTTP · 6=SSL Change Cipher Spec · 7=SSL Record Protocol</p>
+          <p class="en q-text">Place these protocols in the correct SSL/TLS stack (bottom to top):
+1=TCP · 2=SSL Handshake · 3=IP · 4=SSL Alert · 5=HTTP · 6=SSL Change Cipher Spec · 7=SSL Record Protocol</p>
+          <div class="q-answer" id="ans-q29" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ الترتيب الصحيح</div>
+                <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.8rem 0;direction:ltr">
+                  <div style="font-family:var(--mono);font-size:.88rem;color:#a5f3fc">
+                    ┌─────────────────────────────────────┐<br>
+                    │ 5=HTTP (Application)                │  ← الأعلى<br>
+                    ├──────────┬──────────────┬───────────┤<br>
+                    │2=Handshake│ 4=Alert     │6=ChangeCipher│<br>
+                    ├─────────────────────────────────────┤<br>
+                    │ 7=SSL Record Protocol               │<br>
+                    ├─────────────────────────────────────┤<br>
+                    │ 1=TCP                               │<br>
+                    ├─────────────────────────────────────┤<br>
+                    │ 3=IP                                │  ← الأسفل<br>
+                    └─────────────────────────────────────┘
+                  </div>
+                </div>
+                <div class="callout key"><div class="c-head ar">🔑 القاعدة</div>
+                <p class="ar">IP → TCP → SSL Record → [Handshake | Alert | Change Cipher] → HTTP<br>
+                الـ Record Protocol هو الطبقة السفلى من SSL وكل البروتوكولات الأخرى تعمل فوقه.</p></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ Correct Order (bottom to top)</div>
+                <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.8rem 0;direction:ltr">
+                  <div style="font-family:var(--mono);font-size:.88rem;color:#a5f3fc">
+                    5=HTTP → 2=Handshake | 4=Alert | 6=ChangeCipher → 7=Record → 1=TCP → 3=IP
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="ch9" id="q30">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q30</span>
+            <span class="q-tag">Ch.9 — Encryption Schemes</span>
+            <span class="q-type">📝 مقارنة</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q30')">
+            <span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span>
+          </button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">ثلاثة أنظمة بنفس مستوى الأمان: Symmetric 128-bit · RSA 3072-bit · ECC 256-bit
+a) أيها تختار لتشفير ملف فيديو؟
+b) أيها لتشفير كلمة مرور وإرسالها عبر الإنترنت؟
+c) أيها لإنشاء توقيع رقمي لصورة؟</p>
+          <p class="en q-text">Three schemes at equivalent security: Symmetric 128-bit · RSA 3072-bit · ECC 256-bit
+a) Which to encrypt a video file?
+b) Which to encrypt a password and send over internet?
+c) Which to generate a digital signature for an image?</p>
+          <div class="q-answer" id="ans-q30" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-head ar">✦ الإجابات</div>
+                <div class="sol-step"><div class="sol-num">a</div><div class="sol-content">
+                  <div class="sol-rule ar">تشفير ملف فيديو (bulk data)</div>
+                  <div class="sol-result" style="color:var(--green)">Symmetric 128-bit ✓</div>
+                  <div class="sol-note ar">لأن التشفير المتماثل أسرع بكثير للبيانات الكبيرة. RSA وECC بطيئان جداً لتشفير ملفات كاملة.</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">b</div><div class="sol-content">
+                  <div class="sol-rule ar">تشفير كلمة مرور وإرسالها بأمان</div>
+                  <div class="sol-result" style="color:var(--green)">RSA 3072-bit أو ECC 256-bit ✓</div>
+                  <div class="sol-note ar">يستخدم المفتاح العام للخادم — فقط الخادم يقدر يفك التشفير بمفتاحه الخاص</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">c</div><div class="sol-content">
+                  <div class="sol-rule ar">توقيع رقمي لصورة</div>
+                  <div class="sol-result" style="color:var(--green)">RSA 3072-bit أو ECC 256-bit ✓</div>
+                  <div class="sol-note ar">التوقيع الرقمي يتطلب asymmetric — المفتاح الخاص للتوقيع والعام للتحقق</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-head en">✦ Answers</div>
+                <div class="sol-step"><div class="sol-num">a</div><div class="sol-content">
+                  <div class="sol-result" style="color:var(--green)">Symmetric 128-bit ✓ — fastest for bulk data encryption</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">b</div><div class="sol-content">
+                  <div class="sol-result" style="color:var(--green)">RSA or ECC ✓ — encrypt with server's public key, only server can decrypt</div>
+                </div></div>
+                <div class="sol-step"><div class="sol-num">c</div><div class="sol-content">
+                  <div class="sol-result" style="color:var(--green)">RSA or ECC ✓ — digital signatures require asymmetric key pairs</div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCQ from FinalExam + إختبارنا -->
+      <div class="q-card" data-ch="mcq" id="q31">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q31</span><span class="q-tag">MCQ — RSA</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q31')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">RSA: p=11, q=19, e=17, M=5. أوجد Ciphertext C.</p>
+          <p class="en q-text">RSA: p=11, q=19, e=17, M=5. Find Ciphertext C.</p>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q31','A','A')">A) 80</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q31','B','A')">B) 23</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q31','C','A')">C) 64</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q31','D','A')">D) 54</div>
+          <div class="q-answer" id="ans-q31" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: A = 80</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">n = 11 × 19 = 209</div>
+                  <div class="sol-calc">C = 5¹⁷ mod 209</div>
+                  <div class="sol-calc">17 ثنائي = 10001</div>
+                  <div class="sol-calc">5¹=5, 5²=25, 5⁴=625 mod 209=207, 5⁸=207² mod 209=4, 5¹⁶=4²=16</div>
+                  <div class="sol-calc">5¹⁷ = 5¹⁶ × 5¹ = 16 × 5 = 80</div>
+                  <div class="sol-result">C = 80 ✓</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: A = 80</div>
+                <div class="sol-calc">n=209, C = 5¹⁷ mod 209 = 80 ✓ (using square-and-multiply)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q32">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q32</span><span class="q-tag">MCQ — RSA</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q32')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">RSA: p=11, q=17, d=7, C=11. أوجد Plaintext M.</p>
+          <p class="en q-text">RSA: p=11, q=17, d=7, C=11. Find Plaintext M.</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q32','A','D')">A) 122</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q32','B','D')">B) 111</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q32','C','D')">C) 134</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q32','D','D')">D) 88</div>
+          <div class="q-answer" id="ans-q32" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: D = 88</div>
+                <div class="sol-calc">n = 11 × 17 = 187</div>
+                <div class="sol-calc">M = C^d mod n = 11⁷ mod 187 = 88 ✓</div>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: D = 88</div>
+                <div class="sol-calc">n = 187, M = 11⁷ mod 187 = 88 ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q33">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q33</span><span class="q-tag">MCQ — DH</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q33')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">DH: q=23, α=5, x_A=6, x_B=15. أوجد المفتاح المشترك K.</p>
+          <p class="en q-text">DH: q=23, α=5, x_A=6, x_B=15. Find shared key K_AB.</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q33','A','C')">A) 5</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q33','B','C')">B) 3</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q33','C','C')">C) 2</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q33','D','C')">D) 4</div>
+          <div class="q-answer" id="ans-q33" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: C = 2</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">Y_A = 5⁶ mod 23 = 8 &nbsp;&nbsp; Y_B = 5¹⁵ mod 23 = 19</div>
+                  <div class="sol-calc">K = Y_B^x_A mod 23 = 19⁶ mod 23</div>
+                  <div class="sol-calc">19² mod 23 = 16, 19⁴ mod 23 = 3, 19⁶ = 3×16 = 48 mod 23 = 2</div>
+                  <div class="sol-result">K = 2 ✓</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: C = 2</div>
+                <div class="sol-calc">Y_A=8, Y_B=19, K = 19⁶ mod 23 = 2 ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q34">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q34</span><span class="q-tag">MCQ — RSA</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q34')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">RSA: p=7, q=13. أيّ القيم التالية يمكن استخدامها كمفتاح عام؟</p>
+          <p class="en q-text">RSA: p=7, q=13. Which of the following can be used as a public key?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q34','A','B')">A) (91, 18)</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q34','B','B')">B) (17, 91)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q34','C','B')">C) (72, 18)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q34','D','B')">D) (72, 17)</div>
+          <div class="q-answer" id="ans-q34" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: B = (17, 91)</div>
+                <div class="sol-step"><div class="sol-num">1</div><div class="sol-content">
+                  <div class="sol-calc">n = 7 × 13 = 91 ✓</div>
+                  <div class="sol-calc">φ(n) = 6 × 12 = 72</div>
+                  <div class="sol-calc">gcd(17, 72) = 1 ✓ → e=17 صالح</div>
+                  <div class="sol-result">Public Key = {e=17, n=91}</div>
+                </div></div>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: B = (17, 91)</div>
+                <div class="sol-calc">n=7×13=91, φ(n)=72, gcd(17,72)=1 ✓ → valid public key {17, 91}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q35">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q35</span><span class="q-tag">MCQ — Trap-door</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q35')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">في دالة trap-door Y=fₖ(X) — إذا عُرف كلٌّ من k وY، فإن حساب X يكون:</p>
+          <p class="en q-text">In a trap-door one-way function Y=fₖ(X) — if both k and Y are known, computing X is:</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q35','A','B')">A) easy, X=f⁻¹ₖ(X)</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q35','B','B')">B) easy, X=f⁻¹ₖ(Y)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q35','C','B')">C) infeasible, Y=f⁻¹ₖ(X)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q35','D','B')">D) infeasible, X=f⁻¹ₖ(Y)</div>
+          <div class="q-answer" id="ans-q35" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: B</div>
+                <p class="ar">هذا هو تعريف الـ Trap-door: إذا عرفت k (الباب الخلفي) وY، يمكن حساب X=f⁻¹ₖ(Y) بسهولة. بدون k مستحيل.</p>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: B — easy, X=f⁻¹ₖ(Y)</div>
+                <p class="en">Definition of trapdoor: knowing the trapdoor k and Y makes computing X=f⁻¹ₖ(Y) easy. Without k it's infeasible.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q36">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q36</span><span class="q-tag">MCQ — ElGamal</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q36')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">في تشفير ElGamal، الـ plaintext message هو ______ رقم، والـ ciphertext هو ______ أرقام.</p>
+          <p class="en q-text">In ElGamal encryption, the plaintext message is _____ number(s), and the ciphertext message is _____ number(s).</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q36','A','C')">A) one, two</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q36','B','C')">B) one, one</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q36','C','C')">C) two, two</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q36','D','C')">D) two, one</div>
+          <div class="q-answer" id="ans-q36" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: C — اثنان، اثنان</div>
+                <p class="ar">PlainText = رقم واحد M. لكن السؤال يقول "two, two" — ربما الـ plaintext يُعامَل كزوج أيضاً في بعض التطبيقات. الأهم أن الـ Ciphertext دائماً = (C₁, C₂) أي رقمان.</p>
+                <div class="sol-note ar">الإجابة من الكويز الرسمي: C</div>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: C — two, two</div>
+                <p class="en">ElGamal ciphertext is always a pair (C₁, C₂). Answer per official quiz: C.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q37">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q37</span><span class="q-tag">MCQ — RSA</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q37')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">مقارنةً بأحجام مفاتيح التشفير المتماثل، حجم الـ modulus (n) في RSA يكون ____________.</p>
+          <p class="en q-text">Comparing key sizes for equivalent security, the modulus (n) size in RSA is ____________ than the key size for a symmetric scheme.</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q37','A','C')">A) exactly equal</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q37','B','C')">B) almost equal</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q37','C','C')">C) much greater</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q37','D','C')">D) much less</div>
+          <div class="q-answer" id="ans-q37" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: C — Much greater</div>
+                <p class="ar">مثال: AES-128 (128 بت) يعادل أمان RSA-3072 (3072 بت). RSA يحتاج مفاتيح أكبر بكثير لنفس مستوى الأمان.</p>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: C — Much greater</div>
+                <p class="en">Example: AES-128 (128 bits) ≈ RSA-3072 (3072 bits). RSA needs much larger keys for equivalent security.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q38">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q38</span><span class="q-tag">MCQ — DH</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q38')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">Diffie-Hellman Key Exchange غير عرضة لـ Man-in-the-Middle Attack لأنها تُوثّق المشتركين. صح أم خطأ؟</p>
+          <p class="en q-text">Diffie-Hellman Key Exchange is NOT vulnerable to Man-in-the-Middle Attack because it authenticates the participants. True or False?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q38','A','B')">A) True</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q38','B','B')">B) False</div>
+          <div class="q-answer" id="ans-q38" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: B — False</div>
+                <p class="ar">DH <strong>عرضة</strong> لـ MITM لأنه <strong>لا يُوثّق</strong> الأطراف. المهاجم يقدر يستبدل المفاتيح العامة ويجلس في المنتصف. الحل: شهادات رقمية.</p>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: B — False</div>
+                <p class="en">DH IS vulnerable to MITM because it does NOT authenticate parties. An attacker can substitute public keys and sit in the middle.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q39">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q39</span><span class="q-tag">MCQ — General</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q39')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">أيّ الخوارزميات التالية لا تُستخدم في تشفير المفتاح غير المتماثل؟</p>
+          <p class="en q-text">Which of the following algorithms is NOT used in asymmetric-key cryptography?</p>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q39','A','A')">A) Electronic Code Book (ECB)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q39','B','A')">B) RSA algorithm</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q39','C','A')">C) Diffie-Hellman algorithm</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q39','D','A')">D) Elliptic Curve</div>
+          <div class="q-answer" id="ans-q39" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: A — ECB (Electronic Code Book)</div>
+                <p class="ar">ECB هو وضع تشفير متماثل (Symmetric) يُستخدم مع AES/DES. لا علاقة له بالتشفير غير المتماثل. RSA وDH وECC كلها asymmetric.</p>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: A — ECB (Electronic Code Book)</div>
+                <p class="en">ECB is a symmetric cipher mode used with AES/DES. Not asymmetric. RSA, DH, and ECC are all asymmetric algorithms.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" data-ch="mcq" id="q40">
+        <div class="q-header">
+          <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+            <span class="q-num">Q40</span><span class="q-tag">MCQ — RSA</span><span class="q-type">✅ MCQ</span>
+          </div>
+          <button class="q-reveal-btn" onclick="toggleAns('q40')"><span class="ar">👁 الإجابة</span><span class="en">👁 Answer</span></button>
+        </div>
+        <div class="q-body">
+          <p class="ar q-text">في RSA: φ(n) تساوي؟</p>
+          <p class="en q-text">In RSA, φ(n) equals?</p>
+          <div class="mcq-opt" onclick="pickOpt(this,'q40','A','C')">A) (p)/(q)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q40','B','C')">B) (p)(q)</div>
+          <div class="mcq-opt correct-opt" onclick="pickOpt(this,'q40','C','C')">C) (p-1)(q-1)</div>
+          <div class="mcq-opt" onclick="pickOpt(this,'q40','D','C')">D) (p+1)(q+1)</div>
+          <div class="q-answer" id="ans-q40" style="display:none">
+            <div class="solution" style="margin-top:.8rem">
+              <div class="ar">
+                <div class="sol-result" style="color:var(--green)">الجواب: C — (p-1)(q-1)</div>
+                <p class="ar">هذه دالة أويلر (Euler's Totient). مثال: p=17, q=11 → φ(187) = 16×10 = 160</p>
+              </div>
+              <div class="en">
+                <div class="sol-result" style="color:var(--green)">Answer: C — (p-1)(q-1)</div>
+                <p class="en">This is Euler's Totient function. Example: p=17, q=11 → φ(187) = 16×10 = 160</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- q-container -->
+  </div><!-- ch-body -->
+</div><!-- practice-exam -->
 
 <!-- ═══════════ CH 9 ═══════════ -->
 <div class="chapter" id="ch9">
@@ -3527,6 +5291,73 @@ function setLang(l){
   document.querySelectorAll('.lang-btn button').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.lang-btn button[onclick="setLang('${l}')"]`).classList.add('active');
 }
+
+var currentMode = 'practice';
+function setMode(m) {
+  currentMode = m;
+  document.body.classList.remove('mode-practice','mode-answer');
+  document.body.classList.add('mode-' + m);
+  document.getElementById('btn-practice').style.background = m==='practice' ? 'var(--amber)' : 'none';
+  document.getElementById('btn-practice').style.color = m==='practice' ? '#000' : 'var(--muted)';
+  document.getElementById('btn-answer').style.background = m==='answer' ? 'var(--accent)' : 'none';
+  document.getElementById('btn-answer').style.color = m==='answer' ? '#fff' : 'var(--muted)';
+  if(m==='answer'){
+    document.querySelectorAll('.q-answer').forEach(a => a.classList.add('revealed-ans'));
+    document.querySelectorAll('.correct-opt').forEach(o => o.classList.add('reveal-correct'));
+  } else {
+    document.querySelectorAll('.q-answer').forEach(a => a.classList.remove('revealed-ans'));
+    document.querySelectorAll('.q-reveal-btn').forEach(b => b.classList.remove('revealed'));
+    document.querySelectorAll('.mcq-opt').forEach(o => {
+      o.classList.remove('selected-wrong','selected-correct','reveal-correct');
+    });
+  }
+}
+function toggleAns(id) {
+  var ans = document.getElementById('ans-'+id);
+  var card = document.getElementById(id);
+  var btn = card.querySelector('.q-reveal-btn');
+  if(ans.classList.contains('revealed-ans')) {
+    ans.classList.remove('revealed-ans');
+    btn.classList.remove('revealed');
+    btn.querySelector('.ar').textContent='👁 الإجابة';
+    btn.querySelector('.en').textContent='👁 Answer';
+    card.querySelectorAll('.correct-opt').forEach(o => o.classList.remove('reveal-correct'));
+  } else {
+    ans.classList.add('revealed-ans');
+    btn.classList.add('revealed');
+    btn.querySelector('.ar').textContent='✓ إخفاء';
+    btn.querySelector('.en').textContent='✓ Hide';
+    card.querySelectorAll('.correct-opt').forEach(o => o.classList.add('reveal-correct'));
+  }
+}
+function pickOpt(el, qid, letter, correct) {
+  var card = el.closest('.q-card');
+  card.querySelectorAll('.mcq-opt').forEach(o => {
+    o.classList.remove('selected-wrong','selected-correct');
+    o.style.pointerEvents = 'none';
+  });
+  if(letter === correct) {
+    el.classList.add('selected-correct');
+  } else {
+    el.classList.add('selected-wrong');
+    card.querySelectorAll('.correct-opt').forEach(o => o.classList.add('reveal-correct'));
+  }
+  // reveal answer
+  var ans = document.getElementById('ans-'+qid);
+  if(ans && !ans.classList.contains('revealed-ans')) {
+    toggleAns(qid);
+  }
+}
+function filterQ(ch) {
+  document.querySelectorAll('.q-filter').forEach(b => b.classList.remove('active-filter'));
+  document.querySelector('.q-filter[data-f="'+ch+'"]').classList.add('active-filter');
+  document.querySelectorAll('.q-card').forEach(c => {
+    c.style.display = (ch==='all' || c.dataset.ch===ch) ? 'block' : 'none';
+  });
+}
+// init practice mode
+document.body.classList.add('mode-practice');
+
 function tog(h){
   h.classList.toggle('open');
   h.nextElementSibling.classList.toggle('open');
