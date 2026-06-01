@@ -4245,7 +4245,57 @@ c) Which to generate a digital signature for an image?</p>
       </div>
     </div>
 
-    <!-- MCQ -->
+        <!-- X.509 Generation Steps -->
+    <div class="sec">
+      <div class="sec-title ar">توليد شهادة X.509 — خطوات أساسية ⭐ جاء في الاختبار</div>
+      <div class="sec-title en">Generating an X.509 Certificate — Key Steps ⭐ Exam Q</div>
+      <p class="ar">سؤال متكرر: <strong>"List the key steps in generating an X.509 certificate"</strong>. النقطة الجوهرية التي يركّز عليها الدكتور: الـ CA يوقّع الشهادة <strong>بمفتاحه الخاص</strong>، والتحقق لاحقاً يتم <strong>بمفتاحه العام</strong>.</p>
+      <p class="en">Common exam question. The key point: the CA signs the certificate with <strong>its private key</strong>, and verification later uses <strong>its public key</strong>.</p>
+
+      <div class="callout key">
+        <div class="c-head ar">🔑 الخطوات الست</div>
+        <ul class="ar">
+          <li>المستخدم يولّد زوج مفاتيحه (<span class="ltr">PU</span> عام و<span class="ltr">PR</span> خاص).</li>
+          <li>يرسل مفتاحه العام + معلومات هويته إلى الـ <span class="ltr">CA</span> بطريقة آمنة، والـ CA يتحقق من هويته.</li>
+          <li>الـ CA يجمّع حقول الشهادة (<span class="ltr">Version, Serial Number, Issuer, Validity, Subject, Public-key info</span>).</li>
+          <li>الـ CA يحسب <span class="ltr">hash</span> لكل محتوى الشهادة.</li>
+          <li>الـ CA يشفّر الـ hash بمفتاحه الخاص لإنتاج التوقيع.</li>
+          <li>تُلحَق التوقيع وتُصدَر الشهادة — يتحقق منها أي طرف بمفتاح الـ CA العام.</li>
+        </ul>
+        <div class="c-head en">🔑 The Six Steps</div>
+        <ul class="en">
+          <li>User generates a key pair (<span class="ltr">PU</span> public, <span class="ltr">PR</span> private).</li>
+          <li>Sends public key + identity to the <span class="ltr">CA</span> securely; CA verifies identity.</li>
+          <li>CA assembles certificate fields (<span class="ltr">Version, Serial Number, Issuer, Validity, Subject, Public-key info</span>).</li>
+          <li>CA computes a <span class="ltr">hash</span> of the certificate contents.</li>
+          <li>CA signs (encrypts) the hash with its private key.</li>
+          <li>Signature appended, certificate issued — anyone verifies it with the CA's public key.</li>
+        </ul>
+      </div>
+
+      <div class="solution">
+        <div class="ar">
+          <div class="sc"><div class="sc-head">🔏 خطوة التوقيع (الجوهر)</div>
+            <div class="sc-row"><div class="sc-lbl lbl-f">قانون</div><div class="sc-val val-f">Signature = E(PR<sub>CA</sub>, H(cert))</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-c">المحتوى</div><div class="sc-val val-c">cert = {Version, SN, AlgID, Issuer, Validity, Subject, PU<sub>subject</sub>}</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-c">hash</div><div class="sc-val val-c">H(cert) → digest ثابت الطول</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-r">الناتج</div><div class="sc-val val-r">CA&lt;&lt;A&gt;&gt; = cert ‖ Signature</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-w">التحقق</div><div class="sc-val val-w">أي طرف: يحسب H(cert) ويفك التوقيع بـ PU_CA — إذا تطابقا فالشهادة صحيحة</div></div>
+          </div>
+        </div>
+        <div class="en">
+          <div class="sc"><div class="sc-head">🔏 The Signing Step (core)</div>
+            <div class="sc-row"><div class="sc-lbl lbl-f">Formula</div><div class="sc-val val-f">Signature = E(PR<sub>CA</sub>, H(cert))</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-c">Contents</div><div class="sc-val val-c">cert = {Version, SN, AlgID, Issuer, Validity, Subject, PU<sub>subject</sub>}</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-c">hash</div><div class="sc-val val-c">H(cert) → fixed-length digest</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-r">Output</div><div class="sc-val val-r">CA&lt;&lt;A&gt;&gt; = cert ‖ Signature</div></div>
+            <div class="sc-row"><div class="sc-lbl lbl-w">Verify</div><div class="sc-val val-w">Anyone: recompute H(cert), decrypt signature with PU_CA — if they match, certificate is valid</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- MCQ -->
     
     <div class="sec">
       <div class="sec-title ar">تفاصيل متقدمة في توزيع المفاتيح + X.509 و PKIX ⭐</div>
